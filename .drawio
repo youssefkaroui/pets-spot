@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="B9SX_loh46KMbBYnWu5M" name="Home / Login/Signup">
-        <mxGraphModel dx="1386" dy="802" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1120" dy="802" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -50,7 +50,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="z6fKnHopgMtBliQPzYuU" name="Dashboard">
-        <mxGraphModel dx="1386" dy="802" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1120" dy="802" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -75,7 +75,7 @@
                 <mxCell id="yOwEDX2_ZHTeextzaBkp-7" value="Your Pets" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="660" y="180" width="77.5" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="yOwEDX2_ZHTeextzaBkp-8" value="Adopt" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="yOwEDX2_ZHTeextzaBkp-8" value="Favorites" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="742.5" y="180" width="77.5" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="yOwEDX2_ZHTeextzaBkp-9" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -99,7 +99,7 @@
                 <mxCell id="yOwEDX2_ZHTeextzaBkp-15" value="Your Pets" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="235" y="180" width="77.5" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="yOwEDX2_ZHTeextzaBkp-16" value="Adopt" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="yOwEDX2_ZHTeextzaBkp-16" value="Favorites" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="317.5" y="180" width="77.5" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="yOwEDX2_ZHTeextzaBkp-17" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -123,7 +123,7 @@
                 <mxCell id="yOwEDX2_ZHTeextzaBkp-23" value="Your Pets" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="1085" y="180" width="77.5" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="yOwEDX2_ZHTeextzaBkp-24" value="Adopt" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="yOwEDX2_ZHTeextzaBkp-24" value="Favorites" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="1167.5" y="180" width="77.5" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="yOwEDX2_ZHTeextzaBkp-25" value="User Information&amp;nbsp;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
@@ -187,7 +187,7 @@
         </mxGraphModel>
     </diagram>
     <diagram id="kp18QXYanu7havBnI3MZ" name="Create Listing / Donate">
-        <mxGraphModel dx="1386" dy="802" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1120" dy="802" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
