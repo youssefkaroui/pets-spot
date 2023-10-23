@@ -14,7 +14,6 @@
 */
 
 const { Schema, model } = require('mongoose');
-const medicalHistorySchema = require('./MedicalHistory')
 
 const petSchema = new Schema (
     {
@@ -23,43 +22,54 @@ const petSchema = new Schema (
             required: true,
             unique: true
         },
-        specie: {
+        species: {
             type: String,
-            required: true, 
-
+            required: true,
         },
         age: {
-            type: Integer,
+            type: Number,
             require: true,
 
         },
         sex: {
             type: String,
             required: true,
-
         },
         image: {
-            type: ??? ,
+            type: String,
             required: true,
             unique: true
-
         },
         breed: {
             type: String,
             required: true,
-
         },
         temperment: {
             type: String,
             required: true,
-
         },
         childFriendly: {
             type: Boolean,
             required: true
         },
-        medicalHistory: [medicalHistorySchema],
+        description: {
+            type: String,
+            required: true,
+            unique: true
+        },
+        active: {
+            type: Boolean,
+            required: true
+        },
+        dateCreated: {
+            type: String,
+            required: true,
+            unique: true
+        },
+
     }
 );
 
-module.exports = petSchema;
+const Pet = model('Pet', petSchema)
+
+module.exports = Pet;

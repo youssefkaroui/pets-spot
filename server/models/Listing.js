@@ -10,8 +10,7 @@
 
 const { Schema, model } = require('mongoose');
 
-const user = require('./User');
-const pet = require ('./Pet');
+const Pet = require ('./Pet');
 
 
 const listingSchema = new Schema (
@@ -22,19 +21,20 @@ const listingSchema = new Schema (
             required: true,
             unique: true
         },
-        dateEnds: {
-            type: String,
-            required: true,
-            unique:true
-
-        },
+        // dateEnds: {
+        //     type: String,
+        //     required: true,
+        //     unique:true
+        // },
         description: {
             type: String,
             required: true,
             unique: true
         },
-        pet: [petSchema],
-        postedBy: [User],
+        pet: {
+            type: Schema.Types.ObjectId,
+            ref: 'Pet'
+        },
         active: {
             type: Boolean,
             required: true
@@ -44,5 +44,7 @@ const listingSchema = new Schema (
     }
 );
 
-module.exports = listingSchema;
+const Listing = model('Listing', listingSchema)
+
+module.exports = Listing;
 

@@ -6,7 +6,7 @@ const typeDefs = gql`
         username: String
         email: String
         address: String
-        petsForAdoption: [Pet, Listing]
+        petsForAdoption: [Pet]
     }
 
     type Pet {
@@ -19,7 +19,6 @@ const typeDefs = gql`
         image: String
         temperament: String
         childFriendly: Boolean
-        medicalHistory: medicalHistory
     }
 
     type Listing {
@@ -50,7 +49,6 @@ const typeDefs = gql`
         image: String
         temperament: String
         childFriendly: Boolean
-        medicalHistory: {}
     }
     input searchForm {
         name: String
@@ -72,7 +70,7 @@ const typeDefs = gql`
         addListing(dateEnds: String, description: String, pet: petData): Listing
         updateUser(user: userForm, password: String): User
         updatePet(pet: petData): Pet
-        updateListing(??): Listing
+        updateListing(pet: petData): Listing
         deletePet(petId: ID!): Pet
         deleteListing(listingId: ID!): Listing
     }

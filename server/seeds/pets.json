@@ -1,0 +1,46 @@
+[{
+    "name": "Dog",
+    "species": "Cat",
+    "age": 4,
+    "sex": "M",
+    "breed": "Mixed",
+    "temperament": "Hateful",
+    "childFriendly": true,
+    "image": "./assets/cats/catthedog"
+},{
+    "name": "Hercules",
+    "species": "Dog",
+    "age": 8,
+    "sex": "M",
+    "breed": "Malamute",
+    "temperament": "Friendly",
+    "childFriendly": true,
+    "image": "./assets/dogs/malamute"
+},{
+    "name": "Chance",
+    "species": "Dog",
+    "age": 12,
+    "sex": "F",
+    "breed": "Corgi",
+    "temperament": "Social",
+    "childFriendly": false,
+    "image": "./assets/dogs/corgi"
+},{
+    "name": "Ghost",
+    "species": "Dog",
+    "age": 6,
+    "sex": "M",
+    "breed": "Husky",
+    "temperament": "Anxious",
+    "childFriendly": true,
+    "image": "./assets/dogs/husky"
+},{
+    "name": "Champion",
+    "species": "Dog",
+    "age": 1,
+    "sex": "M",
+    "breed": "Pitbull",
+    "temperament": "Skittish",
+    "childFriendly": false,
+    "image": "./assets/dogs/pitbull"
+}]
