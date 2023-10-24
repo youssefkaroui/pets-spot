@@ -13,6 +13,7 @@ import { setContext } from '@apollo/client/link/context';
 import Dashboard from './pages/Dashboard';
 //import Donate from './pages/Donate';     NICE TO HAVE
 import Home from './pages/Home';
+import Listings from './pages/Listings';
 import Favorites from './pages/dashboard/favorites';
 import Profile from './pages/dashboard/profile';
 import YourPets from './pages/dashboard/your-pets';
@@ -48,6 +49,10 @@ function App() {
             <Route 
               path='/' 
               element={<Home />} 
+            />
+            <Route 
+              path='/listings' 
+              element={<Listings />} 
             />
             <Route 
               path='/dashboard' 
