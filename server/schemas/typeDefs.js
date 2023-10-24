@@ -45,7 +45,7 @@ const typeDefs = gql`
   input userForm {
     username: String
     email: String
-    password: String
+    password: String!
     address: UserAddress
   }
   input UserAddress {
@@ -90,7 +90,7 @@ const typeDefs = gql`
   
   type Mutation {
     login(email: String!, password: String!): Auth
-    addUser(User: userForm): Auth
+    addUser(userInput: userForm): Auth
     addPet(pet: petData): Pet
     updateUser(user: userForm): User
     updatePet(pet: petData): Pet
