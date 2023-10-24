@@ -1,22 +1,21 @@
-const { Schema, model} = require('mongoose');
+const { Schema } = require('mongoose');
 
 const addressSchema = new Schema(
     {
     line_one: {
         type: String,
-        required: true,
+        // required: true,
     },
     line_two: {
         type: String,
-        
     },
     city: {
         type: String,
-        required: true,
+        // required: true,
     },
     zipcode: {
         type: String,
-        required: true,
+        // required: true,
     }
 });
 

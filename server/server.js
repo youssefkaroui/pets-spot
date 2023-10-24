@@ -15,7 +15,7 @@ const server = new ApolloServer({
   context: authMiddleware,
 });
 
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Serve up static assets
@@ -42,6 +42,6 @@ const startApolloServer = async () => {
     })
   })
   };
-  
+
 // Call the async function to start the server
   startApolloServer();
