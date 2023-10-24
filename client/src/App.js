@@ -9,13 +9,13 @@ import {
 import { setContext } from "@apollo/client/link/context";
 // import Dashboard from "./pages/Dashboard";
 //import Donate from './pages/Donate';     NICE TO HAVE
-import Home from './pages/Home';
+import Home from "./pages/Home";
 // import Listings from './pages/Listings';
-import Favorites from './pages/dashboard/favorites';
-import Profile from './pages/dashboard/profile';
-import YourPets from './pages/dashboard/your-pets';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer'
+import Favorites from "./pages/dashboard/favorites/favorites";
+import Profile from "./pages/dashboard/profile/profile";
+import YourPets from "./pages/dashboard/your-pets/your-pets";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -47,10 +47,7 @@ function App() {
         <>
           <Navbar />
           <Routes>
-            <Route 
-              path='/' 
-              element={<Home />} 
-            />
+            <Route path="/" element={<Home />} />
             {/* <Route 
               path='/listings' 
               element={<Listings />} 
@@ -63,21 +60,12 @@ function App() {
               path='/donate' 
               element={<Donate />} 
             /> */}
-            <Route 
-              path='/favorites' 
-              element={<Favorites />} 
-            />
-            <Route 
-              path='/profile' 
-              element={<Profile />} 
-            />
-            <Route 
-              path='/yourpets' 
-              element={<YourPets />} 
-            />
-            <Route 
-              path='*'
-              element={<h1 className='display-2'>Wrong page!</h1>}
+            <Route path="/favorites" element={<Favorites />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/yourpets" element={<YourPets />} />
+            <Route
+              path="*"
+              element={<h1 className="display-2">Wrong page!</h1>}
             />
           </Routes>
           <Footer />
@@ -89,11 +77,10 @@ function App() {
 
 export default App;
 
-
 // {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-//             {/* <Route 
-//               path='/donate' 
-//               element={<Donate />} 
+//             {/* <Route
+//               path='/donate'
+//               element={<Donate />}
 //             /> */}
 //             {/* <Route path="/favorites" element={<Favorites />} />
 //             <Route path="/profile" element={<Profile />} />
