@@ -11,7 +11,7 @@ import { setContext } from "@apollo/client/link/context";
 //import Donate from './pages/Donate';     NICE TO HAVE
 import Home from "./pages/Home";
 // import Listings from './pages/Listings';
-import Favorites from "./pages/dashboard/favorites/favorites";
+import Favorites from "./pages/dashboard/favorites";
 import Profile from "./pages/dashboard/profile/profile";
 import YourPets from "./pages/dashboard/your-pets/your-pets";
 import Navbar from "./components/Navbar";

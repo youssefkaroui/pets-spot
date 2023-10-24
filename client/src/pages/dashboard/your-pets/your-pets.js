@@ -4,10 +4,11 @@ import { useMutation } from "@apollo/client";
 
 import { ADD_PET } from "../../../utils/mutations";
 //IDK IF I NEED QUERY_ME
-import { QUERY_MY_PETS, QUERY_ME } from "../../../utils/queries";
+// import { QUERY_MY_PETS, QUERY_ME } from "../../../utils/queries";
+//UNCOMMENT THIS OUT UNTIL BACKEND IS WORKING
+// import Auth from "../../../utils/auth";
 
-import Auth from "../../../utils/auth";
-
+const tempPetData = { pet1: { _id: 1, name: "test" } };
 const PetList = () => {
   const { loading, data } = userQuery(QUERY_MY_PETS);
 
@@ -29,39 +30,39 @@ const PetList = () => {
       }
 
       // update me object's cache with new pet
-      const { me } = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: { me: { ...me, pets: [...me.pets, addPet] } },
-      });
+      // const { me } = cache.readQuery({ query: QUERY_ME });
+      // cache.writeQuery({
+      //   query: QUERY_ME,
+      //   data: { me: { ...me, pets: [...me.pets, addPet] } },
+      // });
     },
   });
 
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
+  // const handleFormSubmit = async (event) => {
+  //   event.preventDefault();
 
-    try {
-      const { data } = await addPet({
-        variables: {
-          thoughtText,
-          thoughtAuthor: Auth.getProfile().data.username,
-        },
-      });
+  //   try {
+  //     const { data } = await addPet({
+  //       variables: {
+  //         thoughtText,
+  //         thoughtAuthor: Auth.getProfile().data.username,
+  //       },
+  //     });
 
-      setThoughtText("");
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  //     setThoughtText("");
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // };
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  // const handleChange = (event) => {
+  //   const { name, value } = event.target;
 
-    if (name === "thoughtText" && value.length <= 280) {
-      setThoughtText(value);
-      setCharacterCount(value.length);
-    }
-  };
+  //   if (name === "thoughtText" && value.length <= 280) {
+  //     setThoughtText(value);
+  //     setCharacterCount(value.length);
+  //   }
+  // };
 
   const pets = data.pets;
 
