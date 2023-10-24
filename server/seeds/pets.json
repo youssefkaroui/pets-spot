@@ -3,10 +3,17 @@
     "species": "Cat",
     "age": 4,
     "sex": "M",
+    "image": "./assets/cats/catthedog",
     "breed": "Mixed",
     "temperament": "Hateful",
     "childFriendly": true,
-    "image": "./assets/cats/catthedog"
+    "description": "Its a cat",
+    "active": true,
+    "medicalHistory": {
+        "allergies": ["peanuts", "chocolate"],
+        "vaccinated": true,
+        "spayedNeutered": true
+    }
 },{
     "name": "Hercules",
     "species": "Dog",
@@ -15,7 +22,14 @@
     "breed": "Malamute",
     "temperament": "Friendly",
     "childFriendly": true,
-    "image": "./assets/dogs/malamute"
+    "image": "./assets/dogs/malamute",
+    "description": "Its a cat",
+    "active": true,
+    "medicalHistory": {
+        "allergies": ["peanuts", "chocolate"],
+        "vaccinated": true,
+        "spayedNeutered": true
+    }
 },{
     "name": "Chance",
     "species": "Dog",
@@ -24,7 +38,14 @@
     "breed": "Corgi",
     "temperament": "Social",
     "childFriendly": false,
-    "image": "./assets/dogs/corgi"
+    "image": "./assets/dogs/corgi",
+    "description": "Its a cat",
+    "active": true,
+    "medicalHistory": {
+        "allergies": ["peanuts", "chocolate"],
+        "vaccinated": true,
+        "spayedNeutered": true
+    }
 },{
     "name": "Ghost",
     "species": "Dog",
@@ -33,8 +54,16 @@
     "breed": "Husky",
     "temperament": "Anxious",
     "childFriendly": true,
-    "image": "./assets/dogs/husky"
-},{
+    "image": "./assets/dogs/husky",
+    "description": "Its a cat",
+    "active": true,
+    "medicalHistory": {
+        "allergies": ["peanuts", "chocolate"],
+        "vaccinated": true,
+        "spayedNeutered": true
+    }
+    },
+    {
     "name": "Champion",
     "species": "Dog",
     "age": 1,
@@ -42,5 +71,12 @@
     "breed": "Pitbull",
     "temperament": "Skittish",
     "childFriendly": false,
-    "image": "./assets/dogs/pitbull"
+    "image": "./assets/dogs/pitbull",
+    "description": "Its a cat",
+    "active": true,
+    "medicalHistory": {
+        "allergies": ["peanuts", "chocolate"],
+        "vaccinated": true,
+        "spayedNeutered": true
+    }
 }]

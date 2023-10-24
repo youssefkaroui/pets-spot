@@ -14,13 +14,13 @@
 */
 
 const { Schema, model } = require('mongoose');
+const medicalHistorySchema = require('./MedicalHistory')
 
 const petSchema = new Schema (
     {
         name: {
             type: String,
             required: true,
-            unique: true
         },
         species: {
             type: String,
@@ -29,7 +29,6 @@ const petSchema = new Schema (
         age: {
             type: Number,
             require: true,
-
         },
         sex: {
             type: String,
@@ -37,14 +36,14 @@ const petSchema = new Schema (
         },
         image: {
             type: String,
-            required: true,
+            // required: true, KEEPING BUT FIGURING OUT IMPLEMENTATION
             unique: true
         },
         breed: {
             type: String,
             required: true,
         },
-        temperment: {
+        temperament: {
             type: String,
             required: true,
         },
@@ -55,18 +54,23 @@ const petSchema = new Schema (
         description: {
             type: String,
             required: true,
-            unique: true
         },
         active: {
             type: Boolean,
+            default: true,
             required: true
         },
         dateCreated: {
-            type: String,
-            required: true,
-            unique: true
+            type: Date,
+            default: Date.now,
+            get: (dateCreated) => dateCreated.toLocaleDateString('en-US')
         },
-
+        medicalHistory: medicalHistorySchema
+    },
+    {
+        toJSON: {
+            getters: true,
+          },
     }
 );
 
