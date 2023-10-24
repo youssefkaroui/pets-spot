@@ -1,0 +1,82 @@
+[{
+    "name": "Dog",
+    "species": "Cat",
+    "age": 4,
+    "sex": "M",
+    "image": "./assets/cats/catthedog",
+    "breed": "Mixed",
+    "temperament": "Hateful",
+    "childFriendly": true,
+    "description": "Its a cat",
+    "active": true,
+    "medicalHistory": {
+        "allergies": ["peanuts", "chocolate"],
+        "vaccinated": true,
+        "spayedNeutered": true
+    }
+},{
+    "name": "Hercules",
+    "species": "Dog",
+    "age": 8,
+    "sex": "M",
+    "breed": "Malamute",
+    "temperament": "Friendly",
+    "childFriendly": true,
+    "image": "./assets/dogs/malamute",
+    "description": "Its a cat",
+    "active": true,
+    "medicalHistory": {
+        "allergies": ["peanuts", "chocolate"],
+        "vaccinated": true,
+        "spayedNeutered": true
+    }
+},{
+    "name": "Chance",
+    "species": "Dog",
+    "age": 12,
+    "sex": "F",
+    "breed": "Corgi",
+    "temperament": "Social",
+    "childFriendly": false,
+    "image": "./assets/dogs/corgi",
+    "description": "Its a cat",
+    "active": true,
+    "medicalHistory": {
+        "allergies": ["peanuts", "chocolate"],
+        "vaccinated": true,
+        "spayedNeutered": true
+    }
+},{
+    "name": "Ghost",
+    "species": "Dog",
+    "age": 6,
+    "sex": "M",
+    "breed": "Husky",
+    "temperament": "Anxious",
+    "childFriendly": true,
+    "image": "./assets/dogs/husky",
+    "description": "Its a cat",
+    "active": true,
+    "medicalHistory": {
+        "allergies": ["peanuts", "chocolate"],
+        "vaccinated": true,
+        "spayedNeutered": true
+    }
+    },
+    {
+    "name": "Champion",
+    "species": "Dog",
+    "age": 1,
+    "sex": "M",
+    "breed": "Pitbull",
+    "temperament": "Skittish",
+    "childFriendly": false,
+    "image": "./assets/dogs/pitbull",
+    "description": "Its a cat",
+    "active": true,
+    "medicalHistory": {
+        "allergies": ["peanuts", "chocolate"],
+        "vaccinated": true,
+        "spayedNeutered": true
+    }
+}]

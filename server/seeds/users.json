@@ -1,0 +1,55 @@
+[{
+    "username": "angelin",
+    "email": "angelin@email.com",
+    "password": "12345678",
+    "address": {
+        "line_one": "2000 Road Street",
+        "line_two": "101",
+        "city": "Washington DC",
+        "zipcode": "20000"
+    }
+},
+{
+    "username": "edward",
+    "email": "edward@email.com",
+    "password": "past-sword",
+    "address": {
+        "line_one": "2000 Road Street",
+        "line_two": "102",
+        "city": "Washington DC",
+        "zipcode": "20000"
+    }
+},
+{
+    "username": "Lucas",
+    "email": "uwlryoung@yahoo.com",
+    "password": "09876543",
+    "address": {
+        "line_one": "2000 Road Street",
+        "line_two": "103",
+        "city": "Washington DC",
+        "zipcode": "20000"
+    }
+},
+{
+    "username": "Youseff",
+    "email": "youseff@email.com",
+    "password": "qwertywasda",
+    "address": {
+        "line_one": "2000 Road Street",
+        "line_two": "104",
+        "city": "Washington DC",
+        "zipcode": "20000"
+    }
+},
+{
+    "username": "Ziad",
+    "email": "ziad@email.com",
+    "password": "h2q9rhsdakaghfk",
+    "address": {
+        "line_one": "2000 Road Street",
+        "line_two": "Penthouse",
+        "city": "Washington DC",
+        "zipcode": "20000"
+    }
+}]

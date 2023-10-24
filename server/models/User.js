@@ -16,33 +16,34 @@ const { Schema, model} = require('mongoose');
 const bcrypt = require('bcrypt');
 
 //  imports shema for Pets.js
-const listingSchema = require('./Listing');
-const  addressSchema = require ('./Listing');
+const Pet = require('./Pet');
+const  addressSchema = require ('./Address');
 
 const userSchema = new Schema (
     {
         username: {
             type: String,
-            required: true,
-            unique: true
+            // required: true,
+            // unique: true
         },
-
         email: {
             type: String,
-            required: true,
-            unique: true,
+            // required: true,
+            // unique: true,
             match: [/.+@.+\..+/, 'Must use a valid email address'],
         },
         password: {
             type: String, 
             required: true
         },
-        address: [addressSchema],
+        
+        address: addressSchema,
 
-        petsForAdoption: [pestSchema, listingSchema],
-
+        petsForAdoption: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Pet',
+        }],
     },
-
     {
         toJSON: {
           virtuals: true,
@@ -63,7 +64,6 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
 };
-
 
 const User = model('User', userSchema);
 
