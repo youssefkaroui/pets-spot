@@ -10,10 +10,12 @@ import { setContext } from "@apollo/client/link/context";
 // import Dashboard from "./pages/Dashboard";
 //import Donate from './pages/Donate';     NICE TO HAVE
 import Home from './pages/Home';
-import Listings from './pages/Listings';
+// import Listings from './pages/Listings';
 import Favorites from './pages/dashboard/favorites';
 import Profile from './pages/dashboard/profile';
 import YourPets from './pages/dashboard/your-pets';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer'
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -49,14 +51,14 @@ function App() {
               path='/' 
               element={<Home />} 
             />
-            <Route 
+            {/* <Route 
               path='/listings' 
               element={<Listings />} 
             />
             <Route 
               path='/dashboard' 
               element={<Dashboard />} 
-            />
+            /> */}
             {/* <Route 
               path='/donate' 
               element={<Donate />} 
@@ -78,6 +80,7 @@ function App() {
               element={<h1 className='display-2'>Wrong page!</h1>}
             />
           </Routes>
+          <Footer />
         </>
       </Router>
     </ApolloProvider>
