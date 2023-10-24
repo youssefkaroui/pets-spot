@@ -1,16 +1,13 @@
-//import logo from './logo.svg';
-//import './App.css';
-
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import Dashboard from './pages/Dashboard';
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+// import Dashboard from "./pages/Dashboard";
 //import Donate from './pages/Donate';     NICE TO HAVE
 import Home from './pages/Home';
 import Listings from './pages/Listings';
@@ -20,16 +17,17 @@ import YourPets from './pages/dashboard/your-pets';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
+
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -45,6 +43,7 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <>
+          <Navbar />
           <Routes>
             <Route 
               path='/' 
@@ -85,25 +84,14 @@ function App() {
   );
 }
 
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-
 export default App;
+
+
+// {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+//             {/* <Route 
+//               path='/donate' 
+//               element={<Donate />} 
+//             /> */}
+//             {/* <Route path="/favorites" element={<Favorites />} />
+//             <Route path="/profile" element={<Profile />} />
+//             <Route path="/yourpets" element={<YourPets />} /> */}
