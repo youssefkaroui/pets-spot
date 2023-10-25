@@ -60,11 +60,21 @@ Mutation: login({ email, password }) \/
       return { token, user };
     },
     // addPet({formData})
-    addPet: async (parent, { formData }) => {
-      const pet = await Pet.create({ formData });
+    addPet: async (parent, { pet }) => {
+      const newPet = await Pet.create({ ...pet });
+      console.log(newPet);
 
-      return pet;
+      return newPet;
     },
+    updateUser: async (parent, { user }) => {
+      console.log(user)
+      const updatedUser = User.findOneAndUpdate(
+          {_id: user._id},
+          { $set: {...user}},
+          {runValidators: true, new: true}
+          )
+      return updatedUser
+  },
   },
 };
 
