@@ -7,13 +7,13 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-// import Dashboard from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard";
 //import Donate from './pages/Donate';     NICE TO HAVE
 import Home from "./pages/Home";
 // import Listings from './pages/Listings';
 import Favorites from "./pages/dashboard/favorites";
-import Profile from "./pages/dashboard/profile/profile";
-import YourPets from "./pages/dashboard/your-pets/your-pets";
+import Profile from "./pages/dashboard/profile";
+import YourPets from "./pages/dashboard/your-pets";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -51,11 +51,8 @@ function App() {
             {/* <Route 
               path='/listings' 
               element={<Listings />} 
-            />
-            <Route 
-              path='/dashboard' 
-              element={<Dashboard />} 
             /> */}
+            <Route path="/dashboard" element={<Dashboard />} />
             {/* <Route 
               path='/donate' 
               element={<Donate />} 

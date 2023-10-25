@@ -1,5 +1,5 @@
 body {
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
 }
 
 h1,
@@ -8,7 +8,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family: "Rubik Mono One", sans-serif;
 }
 
 .small {
@@ -25,6 +25,18 @@ h6 {
   color: white;
 }
 
-.nav-link:hover{
-  color: #334443
+.nav-link:hover {
+  color: #334443;
+}
+/* DASHBOARD NAVBAR STYLING */
+.dash-link {
+  font-size: 20px;
+  font-weight: 800;
+  padding: 15px;
+  text-decoration: none;
+  color: #34656d;
+}
+
+.dash-link:hover {
+  color: #334443;
 }

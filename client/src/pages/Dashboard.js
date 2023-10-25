@@ -4,9 +4,17 @@ import NavTabs from "../components/Navbar";
 import YourPets from "../pages/dashboard/your-pets";
 import Favorites from "../pages/dashboard/favorites";
 import Profile from "../pages/dashboard/profile";
-import Footer from "./Footer";
+import Footer from "../components/Footer";
+import {
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  Link,
+} from "@chakra-ui/react";
 
-export default function PortfolioContainer() {
+export default function DashboardContainer() {
   const [currentPage, setCurrentPage] = useState("Profile");
 
   // This method is checking to see what the value of `currentPage` is. Depending on the value of currentPage, we return the corresponding component to render.
@@ -25,16 +33,35 @@ export default function PortfolioContainer() {
   return (
     <div className="mainContainer">
       <div>
-        <Box>Test SEE IF THIS WORKS</Box>
-        <NavTabs
-          currentPage={currentPage}
-          handlePageChange={handlePageChange}
-        />
+        <Tabs variant="unstyled">
+          <TabList>
+            <Tab
+              className="dash-link"
+              currentPage="Profile"
+              onClick={() => handlePageChange("Profile")}
+            >
+              Profile
+            </Tab>
 
-        {renderPage()}
+            <Tab
+              className="dash-link"
+              currentPage="YourPets"
+              onClick={() => handlePageChange("YourPets")}
+            >
+              Listed Pets
+            </Tab>
+
+            <Tab
+              className="dash-link"
+              currentPage="Favorites"
+              onClick={() => handlePageChange("Favorites")}
+            >
+              Favorite Pets
+            </Tab>
+          </TabList>
+        </Tabs>
       </div>
-
-      <Footer></Footer>
+      <div>{renderPage()}</div>
     </div>
   );
 }

@@ -17,7 +17,7 @@ function Home() {
             have always wanted.
           </h2>
           <Box>
-            <Button 
+            <Button
               borderRadius={10}
               size="lg"
               fontSize={20}
@@ -27,9 +27,11 @@ function Home() {
               p="10px 20px"
               _hover={{
                 bgColor: "#34656D",
-                color: "white"
+                color: "white",
               }}
-            >Adopt Today!</Button>
+            >
+              Adopt Today!
+            </Button>
           </Box>
         </Box>
         <Box>

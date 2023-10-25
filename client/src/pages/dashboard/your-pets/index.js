@@ -63,10 +63,16 @@ const PetList = () => {
   //   }
   // };
 
+  //UNCOMMENT THIS WHEN THE BACKEND WORKS MORE
   // const pets = data.pets;
   const tempPetData = [
-    { _id: 1, name: "test" },
-    { _id: 2, name: "test2" },
+    { _id: 1, name: "test", description: "this is the first pet", info: "123" },
+    {
+      _id: 2,
+      name: "test2",
+      description: "this is the second pet",
+      info: "456",
+    },
   ];
   const pets = tempPetData;
 
@@ -75,54 +81,28 @@ const PetList = () => {
       <h3>Your Pet Adoption Listings</h3>
       {/* YOU NEED TO SWAP THE NEXT TWO LINES WHEN BACKEND IS DONE */}
       {/* {Auth.loggedIn() ? ( */}
-      {pets ? (
+      {/* {pets ? (
         <>
           {pets.length === 0 ? (
             <p>You have no pets listed for adoption.</p>
           ) : (
             <ul>
-              {pets.map((pets) => (
-                <li key={pets[0]._id}>
-                  <h4>{pets[0].name}</h4>
-                  <p>{pets[0].description}</p>
-                  <p>{pets[0].info}</p>
+              {pets.map((pet) => (
+                <li key={pet[0]._id}>
+                  <h4>{pet[0].name}</h4>
+                  <p>{pet[0].description}</p>
+                  <p>{pet[0].info}</p>
                 </li>
               ))}
             </ul>
           )}
-          {/* <form
-            className="flex-row justify-center justify-space-between-md align-center"
-            onSubmit={handleFormSubmit}
-          >
-            <div className="col-12 col-lg-9">
-              <textarea
-                name="thoughtText"
-                placeholder="Here's a new thought..."
-                value={thoughtText}
-                className="form-input w-100"
-                style={{ lineHeight: "1.5", resize: "vertical" }}
-                onChange={handleChange}
-              ></textarea>
-            </div>
-
-            <div className="col-12 col-lg-3">
-              <button className="btn btn-primary btn-block py-3" type="submit">
-                Add Pet
-              </button>
-            </div>
-            {error && (
-              <div className="col-12 my-3 bg-danger text-white p-3">
-                {error.message}
-              </div>
-            )}
-          </form> */}
         </>
       ) : (
         <p>
           You need to be logged in to see your pet listing. Please{" "}
           <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
         </p>
-      )}
+      )} */}
     </div>
   );
 };
