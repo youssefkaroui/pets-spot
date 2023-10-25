@@ -1,5 +1,5 @@
 [{
-    "username": "angelin",
+    "username": "Angelin",
     "email": "angelin@email.com",
     "password": "12345678",
     "address": {
@@ -10,7 +10,7 @@
     }
 },
 {
-    "username": "edward",
+    "username": "Edward",
     "email": "edward@email.com",
     "password": "past-sword",
     "address": {
