@@ -1,17 +1,4 @@
-// User model
-/* {
-    name string, trim
-    password bcrypt 
-    email string unique 
-    location string
-    petsForAdoption [Pets.Id]
-}
-method {
-    bcrypt
-    hash password
-    dehash password - compare
-}
-*/
+
 const { Schema, model} = require('mongoose');
 const bcrypt = require('bcrypt');
 
