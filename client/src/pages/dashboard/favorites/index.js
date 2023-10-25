@@ -2,6 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 //THIS IS BORROWED FROM MERN 21 ACTIVITY 26
 
+const tempPetData = [
+  { _id: 1, name: "test" },
+  { _id: 2, name: "test2" },
+];
+const pets = tempPetData;
+
 const SavedPetList = ({
   savedPets,
   title,

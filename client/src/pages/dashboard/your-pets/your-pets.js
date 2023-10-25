@@ -8,35 +8,34 @@ import { ADD_PET } from "../../../utils/mutations";
 //UNCOMMENT THIS OUT UNTIL BACKEND IS WORKING
 // import Auth from "../../../utils/auth";
 
-const tempPetData = { pet1: { _id: 1, name: "test" } };
 const PetList = () => {
-  const { loading, data } = userQuery(QUERY_MY_PETS);
+  // const { loading, data } = userQuery(QUERY_MY_PETS);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
 
-  const [addPet, { error }] = useMutation(ADD_PET, {
-    update(cache, { data: { addPet } }) {
-      try {
-        const { pets } = cache.readQuery({ query: QUERY_MY_PETS });
+  // const [addPet, { error }] = useMutation(ADD_PET, {
+  //   update(cache, { data: { addPet } }) {
+  //     try {
+  //       const { pets } = cache.readQuery({ query: QUERY_MY_PETS });
 
-        cache.writeQuery({
-          query: QUERY_MY_PETS,
-          data: { pets: [addPet, ...pets] },
-        });
-      } catch (e) {
-        console.error(e);
-      }
+  //       cache.writeQuery({
+  //         query: QUERY_MY_PETS,
+  //         data: { pets: [addPet, ...pets] },
+  //       });
+  //     } catch (e) {
+  //       console.error(e);
+  //     }
 
-      // update me object's cache with new pet
-      // const { me } = cache.readQuery({ query: QUERY_ME });
-      // cache.writeQuery({
-      //   query: QUERY_ME,
-      //   data: { me: { ...me, pets: [...me.pets, addPet] } },
-      // });
-    },
-  });
+  // update me object's cache with new pet
+  // const { me } = cache.readQuery({ query: QUERY_ME });
+  // cache.writeQuery({
+  //   query: QUERY_ME,
+  //   data: { me: { ...me, pets: [...me.pets, addPet] } },
+  // });
+  //   },
+  // });
 
   // const handleFormSubmit = async (event) => {
   //   event.preventDefault();
@@ -64,23 +63,29 @@ const PetList = () => {
   //   }
   // };
 
-  const pets = data.pets;
+  // const pets = data.pets;
+  const tempPetData = [
+    { _id: 1, name: "test" },
+    { _id: 2, name: "test2" },
+  ];
+  const pets = tempPetData;
 
   return (
     <div>
       <h3>Your Pet Adoption Listings</h3>
-
-      {Auth.loggedIn() ? (
+      {/* YOU NEED TO SWAP THE NEXT TWO LINES WHEN BACKEND IS DONE */}
+      {/* {Auth.loggedIn() ? ( */}
+      {pets ? (
         <>
           {pets.length === 0 ? (
             <p>You have no pets listed for adoption.</p>
           ) : (
             <ul>
-              {pets.map((pet) => (
-                <li key={pet._id}>
-                  <h4>{pet.name}</h4>
-                  <p>{pet.description}</p>
-                  <p>{pet.info}</p>
+              {pets.map((pets) => (
+                <li key={pets[0]._id}>
+                  <h4>{pets[0].name}</h4>
+                  <p>{pets[0].description}</p>
+                  <p>{pets[0].info}</p>
                 </li>
               ))}
             </ul>
