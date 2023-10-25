@@ -1,17 +1,4 @@
 
-// Pets
-/* {
-    img string
-    species string
-    name string
-    age int
-    sex string
-    breed string
-    temperament string
-    child-friendly boolean
-    medical-history []
-}
-*/
 
 const { Schema, model } = require('mongoose');
 const medicalHistorySchema = require('./MedicalHistory')
@@ -24,24 +11,24 @@ const petSchema = new Schema (
         },
         species: {
             type: String,
-            required: true,
+            // required: true,
         },
         age: {
             type: Number,
-            require: true,
+            // require: true,
         },
         sex: {
             type: String,
-            required: true,
+            // required: true,
         },
         image: {
             type: String,
-            // required: true, KEEPING BUT FIGURING OUT IMPLEMENTATION
-            unique: true
+            // required: true
+            // unique: true
         },
         breed: {
             type: String,
-            required: true,
+            // required: true,
         },
         temperament: {
             type: String,
@@ -49,16 +36,16 @@ const petSchema = new Schema (
         },
         childFriendly: {
             type: Boolean,
-            required: true
+            // required: true
         },
         description: {
             type: String,
-            required: true,
+            // required: true,
         },
         active: {
             type: Boolean,
             default: true,
-            required: true
+            // required: true
         },
         dateCreated: {
             type: Date,

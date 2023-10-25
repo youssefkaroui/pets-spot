@@ -43,6 +43,7 @@ const typeDefs = gql`
   }
 
   input userForm {
+    _id: ID
     username: String
     email: String
     password: String!
