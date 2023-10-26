@@ -7,7 +7,9 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import Dashboard from "./pages/Dashboard";
+import { ChakraProvider } from "@chakra-ui/react";
+import customTheme from "./utils/theme";
+// import Dashboard from "./pages/Dashboard";
 //import Donate from './pages/Donate';     NICE TO HAVE
 import Home from "./pages/Home";
 // import Listings from './pages/Listings';
@@ -42,33 +44,35 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ApolloProvider client={client}>
-      <Router>
-        <>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            {/* <Route 
+    <ChakraProvider theme={customTheme}>
+      <ApolloProvider client={client}>
+        <Router>
+          <>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              {/* <Route 
               path='/listings' 
               element={<Listings />} 
             /> */}
-            <Route path="/dashboard" element={<Dashboard />} />
-            {/* <Route 
+              <Route path="/dashboard" element={<Dashboard />} />
+              {/* <Route 
               path='/donate' 
               element={<Donate />} 
             /> */}
-            <Route path="/favorites" element={<Favorites />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/yourpets" element={<YourPets />} />
-            <Route
-              path="*"
-              element={<h1 className="display-2">Wrong page!</h1>}
-            />
-          </Routes>
-          <Footer />
-        </>
-      </Router>
-    </ApolloProvider>
+              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/yourpets" element={<YourPets />} />
+              <Route
+                path="*"
+                element={<h1 className="display-2">Wrong page!</h1>}
+              />
+            </Routes>
+            <Footer />
+          </>
+        </Router>
+      </ApolloProvider>
+    </ChakraProvider>
   );
 }
 

@@ -8,6 +8,8 @@ const typeDefs = gql`
     address: Address
     petsForAdoption: [Pet]
     petsFollowed: [Pet]
+    petCount: Int
+    followingCount: Int
   }
   type Address {
     line_one: String
@@ -31,6 +33,7 @@ const typeDefs = gql`
     dateCreated: String
     active: Boolean
     medicalHistory: medicalHistory
+    owner: User
   }
 
   type medicalHistory {
@@ -97,7 +100,7 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(userInput: userForm): Auth
-    addPet(pet: petData): User
+    addPet(pet: petData): Pet
     updateUser(user: userForm): User
     updatePet(pet: petData): User
     deletePet(petId: ID!): User

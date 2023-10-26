@@ -3,10 +3,10 @@ const { User, Pet } = require("../models");
 const { signToken } = require("../utils/auth");
 const { connect } = require("mongoose");
 
-//typeDef: Add state to addressSchema
-//typeDef: Add petsFollowed to User
+//typeDef: Add state to addressSchema ---- DONE
+//typeDef: Add petsFollowed to User ---- DONE
 // Query for search ---- DONE
-// Query for petProfile
+// Query for petProfile --- DONE???
 // Mutation for followPet
 
 
@@ -31,11 +31,14 @@ const resolvers = {
     },
      petProfile: async (parent, {petId}) => {
        //gets ONE User's pet, 
-       console.log(petId)
-       const getPetProfile = await Pet.findOne(
-        {_id: petId}
-        )
-        console.log(getPetProfile)
+      //  const getPetProfile = await User.findOne(
+      //   {petsForAdoption: [petId]}
+      //   ).populate({
+      //     path: 'Pet',
+      //     match: {_id: petId},
+      //     strictPopulate: false,
+      //   })
+      const getPetProfile = await Pet.find({_id: petId}).populate('owner')
         return getPetProfile
     }
   },
@@ -58,7 +61,6 @@ const resolvers = {
     },
     //Create a new User document
     addUser: async (parent, { userInput }) => {
-      console.log(userInput);
       const user = await User.create({
         ...userInput,
       });
@@ -68,27 +70,32 @@ const resolvers = {
     },
     // Create Pet document and add reference ID to logged in User
     addPet: async (parent, { pet }, context) => {
-      const newPet = await Pet.create({ ...pet });
+      if (context.user){
+      const newPet = await Pet.create({ ...pet, owner: context.user._id });
       const updateUser = await User.findOneAndUpdate(
         { _id: context.user._id },
         { $addToSet: { petsForAdoption: newPet._id } },
         { new: true }
-      ).populate("petsForAdoption");
+      )
 
-      return updateUser;
+      return newPet.populate('owner');}
+      throw new AuthenticationError("You must be logged in to create a listing")
     },
     //Updates the User
     updateUser: async (parent, { user }, context) => {
-      const updatedUser = await User.findOneAndUpdate(
+      if (context.user)
+      {const updatedUser = await User.findOneAndUpdate(
         { _id: context.user._id },
         { $set: { ...user } },
         { runValidators: true, new: true }
       );
-      return updatedUser;
+      return updatedUser;}
+      throw new AuthenticationError('You must be logged in to update your details')
     },
     //Updates a Pet document if User that owns it is logged in
     updatePet: async (parent, { pet }, context) => {
-     
+     if (context.user) 
+     {
         const updatePet = await Pet.findOneAndUpdate(
         { _id: pet._id },
         { $set: { ...pet } },
@@ -97,18 +104,21 @@ const resolvers = {
       const updatedUser = User.findOne({ _id: context.user._id }).populate(
         "petsForAdoption"
       );
-      return updatedUser;
+      return updatedUser;}
+      throw new AuthenticationError('You must be logged in to update a listing')
     },
     //Delete a Pet document and remove reference from logged in User
     deletePet: async (parent, { petId }, context) => {
-      const deletedPet = await Pet.findOneAndDelete({ _id: petId });
+      if (context.user)
+      {const deletedPet = await Pet.findOneAndDelete({ _id: petId });
       const updatedUser = await User.findOneAndUpdate(
         { _id: context.user._id },
         { $pull: { petsForAdoption: petId } },
         { runValidators: true, new: true }
       ).populate("petsForAdoption");
 
-      return updatedUser;
+      return updatedUser;}
+      throw new AuthenticationError('You must be logged in to do that')
     },
   },
 };
