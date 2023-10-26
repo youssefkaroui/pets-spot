@@ -6,6 +6,7 @@
         "line_one": "2000 Road Street",
         "line_two": "101",
         "city": "Washington DC",
+        "state": "District of Columbia",
         "zipcode": "20000"
     }
 },
@@ -17,6 +18,7 @@
         "line_one": "2000 Road Street",
         "line_two": "102",
         "city": "Washington DC",
+        "state": "District of Columbia",
         "zipcode": "20000"
     }
 },
@@ -28,6 +30,7 @@
         "line_one": "2000 Road Street",
         "line_two": "103",
         "city": "Washington DC",
+        "state": "District of Columbia",
         "zipcode": "20000"
     }
 },
@@ -39,6 +42,7 @@
         "line_one": "2000 Road Street",
         "line_two": "104",
         "city": "Washington DC",
+        "state": "District of Columbia",
         "zipcode": "20000"
     }
 },
@@ -50,6 +54,7 @@
         "line_one": "2000 Road Street",
         "line_two": "Penthouse",
         "city": "Washington DC",
+        "state": "District of Columbia",
         "zipcode": "20000"
     }
 }]

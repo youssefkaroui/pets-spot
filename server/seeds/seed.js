@@ -19,7 +19,7 @@ db.once('open', async () => {
             console.log(`${seedPet.name} added to ${userList[i].username}`)
         }
     } catch (err) {
-        console.err(err);
+        console.log(err);
         process.exit(1)
     }
     console.log('Seeds planted')

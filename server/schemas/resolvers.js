@@ -1,6 +1,17 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Pet } = require("../models");
 const { signToken } = require("../utils/auth");
+const { connect } = require("mongoose");
+
+//typeDef: Add state to addressSchema
+//typeDef: Add petsFollowed to User
+// Query for search ---- DONE
+// Query for petProfile
+// Mutation for followPet
+
+
+// NICETOHAVE: Messages field to User
+
 const resolvers = {
   Query: {
     //Query all data on a logged in user
@@ -13,10 +24,20 @@ const resolvers = {
       throw new AuthenticationError("You are not logged in");
     },
 
-    // search: async (parent, args) => {
-    //     return Listing.find({}).limit(20)
-    //     //??????????????????????????????????????????
-    // }
+    search: async (parent, {searchInput}) => {
+      const searchedPets = await Pet.find({...searchInput});
+      console.log(searchedPets)
+      return searchedPets //Expect array of objects
+    },
+     petProfile: async (parent, {petId}) => {
+       //gets ONE User's pet, 
+       console.log(petId)
+       const getPetProfile = await Pet.findOne(
+        {_id: petId}
+        )
+        console.log(getPetProfile)
+        return getPetProfile
+    }
   },
   Mutation: {
     //Logs in an existing user
