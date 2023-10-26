@@ -31,8 +31,8 @@ export default function DashboardContainer() {
   const handlePageChange = (page) => setCurrentPage(page);
 
   return (
-    <div className="mainContainer">
-      <div>
+    <div className="DashContainer">
+      <div className="tabs-container">
         <Tabs variant="unstyled">
           <TabList>
             <Tab
@@ -61,7 +61,7 @@ export default function DashboardContainer() {
           </TabList>
         </Tabs>
       </div>
-      <div>{renderPage()}</div>
+      <div className="page-content">{renderPage()}</div>
     </div>
   );
 }

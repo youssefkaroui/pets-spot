@@ -9,7 +9,7 @@ import {
   TabPanel,
   Link,
 } from "@chakra-ui/react";
-// import { Navigate, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 // import { useQuery } from "@apollo/client";
 
 // import { QUERY_USER } from "../utils/queries";
@@ -17,7 +17,7 @@ import {
 // import Auth from "../utils/auth";
 
 const Profile = () => {
-  // const { username: userParam } = useParams();
+  const { username: userParam } = useParams();
   // const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
   //   variables: { username: userParam },
   // });
@@ -31,42 +31,12 @@ const Profile = () => {
   // }
   // if (!user?.username) {
   return (
-    <div className="mainContainer">
-      {/* <div>
-        <Tabs variant="unstyled">
-          <TabList>
-            <Tab>
-              <Link className="dash-link" href="#Profile" onClick={() => handlePageChange("Profile")}>
-                Profile
-              </Link>
-            </Tab>
-
-            <Tab>
-              <Link href="YourPets" className="dash-link">
-                Listed Pets
-              </Link>
-            </Tab>
-
-            <Tab>
-              <Link href="YourPets" className="dash-link">
-                Saved Pets
-              </Link>
-            </Tab>
-          </TabList>
-        </Tabs>
-      </div> */}
-      <h4>
-        You need to be logged in to see this. Use the navigation links above to
-        sign up or log in!
-      </h4>
-    </div>
+    <h4>
+      You need to be logged in to see this. Use the navigation links above to
+      sign up or log in!
+    </h4>
   );
-  // return (
-  //   <h4>
-  //     You need to be logged in to see this. Use the navigation links above to
-  //     sign up or log in!
-  //   </h4>
-  // );
+
   // }
   // return (
   //   <div>
