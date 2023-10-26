@@ -53,24 +53,30 @@ const petSchema = new Schema (
             get: (dateCreated) => dateCreated.toLocaleDateString('en-US')
         },
         medicalHistory: medicalHistorySchema,
-        // owner: {
-        //     type: Schema.Types.ObjectId,
-        //     ref: 'User'
-        // }
+        owner: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
     },
     {
         toJSON: {
             getters: true,
+            virtuals: true
           },
+          toObject: {
+            virtuals: true
+        }
     }
 );
 
 // petSchema.virtual('owner', {
 //     ref: "User",
 //     localField: '_id',
-//     foreignField: 'petsForAdoption',
-//     match: petsForAdoption => {petsForAdoption.filter(pet => pet._id === this._id)}
-//})
+//     foreignField: 'petsForAdoption._id',
+//     options: {
+//         match: {_id: this._id}
+//     }
+// })
 
 const Pet = model('Pet', petSchema)
 
