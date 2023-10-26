@@ -8,6 +8,7 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { ChakraProvider } from "@chakra-ui/react";
+import customTheme from "./utils/theme";
 // import Dashboard from "./pages/Dashboard";
 //import Donate from './pages/Donate';     NICE TO HAVE
 import Home from "./pages/Home";
@@ -43,7 +44,7 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={customTheme}>
       <ApolloProvider client={client}>
         <Router>
           <>
@@ -53,11 +54,8 @@ function App() {
               {/* <Route 
               path='/listings' 
               element={<Listings />} 
-            />
-            <Route 
-              path='/dashboard' 
-              element={<Dashboard />} 
             /> */}
+              <Route path="/dashboard" element={<Dashboard />} />
               {/* <Route 
               path='/donate' 
               element={<Donate />} 

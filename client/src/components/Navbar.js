@@ -1,7 +1,21 @@
 import React from "react";
-import { Link, Box, Text, Stack, HStack, VStack } from "@chakra-ui/react";
-// import { Link } from 'react-router-dom';
-// import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
+import { Link, Flex, Text } from "@chakra-ui/react";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  useDisclosure,
+} from "@chakra-ui/react";
+
+import SignUpTest from "./ModalTest";
 // import SignUpForm from './SignupForm';
 // import LoginForm from './LoginForm';
 
@@ -11,37 +25,52 @@ import Logo from "./navbarComponents/Logo";
 const Navbar = () => {
   // set modal display state
   // const [showModal, setShowModal] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
-      <Box
-        display="flex"
+      <Flex
+        flexDirection={{ base: "column", lg: "row" }}
         flexWrap={true}
         alignItems="center"
         justifyContent="space-between"
-        bgColor="#34656D"
-        h={100}
+        bgColor="primary.header"
         w="100%"
       >
-        <Box display="flex" p="10px" alignItems="center">
+        <Flex display="flex" p="10px" alignItems="center">
           <Logo />
-          <Text fontSize={30} fontWeight={900}>Pet Spot</Text>
-        </Box>
-        <Box>
-          <Link className="nav-link" href="/">
+          <Text fontSize={30} fontWeight={900} color="primary.main">
+            Pet Spot
+          </Text>
+        </Flex>
+        <Flex flexDirection={{ base: "column", lg: "row" }} textAlign="center">
+          <Link className="nav-link" color="primary.main" href="/">
             Home
           </Link>
           {/* <Link className="nav-link" href="/listings">Listings</Link> */}
-          <Link className="nav-link" href="/dashboard">
+          <Link className="nav-link" color="primary.main" href="/dashboard">
             Dashboard
           </Link>
-          <Link className="nav-link" href="/create">
+          <Link className="nav-link" color="primary.main" href="/create">
             Create Listing
           </Link>
-          <Link className="nav-link" href="/login">
+          <Link onClick={onOpen} className="nav-link" color="primary.main">
             Login / Signup
           </Link>
-        </Box>
-      </Box>
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>
+                <ModalCloseButton />
+              </ModalHeader>
+              <ModalBody>
+                <SignUpTest />
+              </ModalBody>
+              <ModalFooter></ModalFooter>
+            </ModalContent>
+          </Modal>
+        </Flex>
+      </Flex>
     </>
   );
 };
