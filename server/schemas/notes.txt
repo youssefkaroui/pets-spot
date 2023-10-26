@@ -1,0 +1,6 @@
+Search Parameter:
+    -- Type of animal
+    -- Age
+    -- Gender
+    -- Location
+    -- 
