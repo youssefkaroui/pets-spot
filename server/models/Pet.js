@@ -11,24 +11,24 @@ const petSchema = new Schema (
         },
         species: {
             type: String,
-            // required: true,
+            required: true,
         },
         age: {
             type: Number,
-            // require: true,
+            require: true,
         },
         sex: {
             type: String,
-            // required: true,
+            required: true,
         },
         image: {
             type: String,
-            // required: true
-            // unique: true
+            required: true,
+            unique: true
         },
         breed: {
             type: String,
-            // required: true,
+            required: true,
         },
         temperament: {
             type: String,
@@ -36,23 +36,27 @@ const petSchema = new Schema (
         },
         childFriendly: {
             type: Boolean,
-            // required: true
+            required: true
         },
         description: {
             type: String,
-            // required: true,
+            required: true,
         },
         active: {
             type: Boolean,
             default: true,
-            // required: true
+            required: true
         },
         dateCreated: {
             type: Date,
             default: Date.now,
             get: (dateCreated) => dateCreated.toLocaleDateString('en-US')
         },
-        medicalHistory: medicalHistorySchema
+        medicalHistory: medicalHistorySchema,
+        // owner: {
+        //     type: Schema.Types.ObjectId,
+        //     ref: 'User'
+        // }
     },
     {
         toJSON: {
@@ -60,6 +64,13 @@ const petSchema = new Schema (
           },
     }
 );
+
+// petSchema.virtual('owner', {
+//     ref: "User",
+//     localField: '_id',
+//     foreignField: 'petsForAdoption',
+//     match: petsForAdoption => {petsForAdoption.filter(pet => pet._id === this._id)}
+//})
 
 const Pet = model('Pet', petSchema)
 
