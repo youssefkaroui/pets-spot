@@ -7,18 +7,10 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { ChakraProvider } from "@chakra-ui/react";
-// import Dashboard from "./pages/Dashboard";
 import Dashboard from "./pages/Dashboard";
 //import Donate from './pages/Donate';     NICE TO HAVE
 import Home from "./pages/Home";
-import Home from "./pages/Home";
 // import Listings from './pages/Listings';
-import Favorites from "./pages/dashboard/favorites";
-import Profile from "./pages/dashboard/profile";
-import YourPets from "./pages/dashboard/your-pets";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import Favorites from "./pages/dashboard/favorites";
 import Profile from "./pages/dashboard/profile";
 import YourPets from "./pages/dashboard/your-pets";
@@ -57,17 +49,10 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             {/* <Route 
-    <ChakraProvider>
-      <ApolloProvider client={client}>
-        <Router>
-          <>
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<Home />} />
-              {/* <Route 
               path='/listings' 
               element={<Listings />} 
             /> */}
+            <Route path="/dashboard" element={<Dashboard />} />
             {/* <Route 
               path='/donate' 
               element={<Donate />} 
@@ -84,19 +69,6 @@ function App() {
         </>
       </Router>
     </ApolloProvider>
-              <Route path="/favorites" element={<Favorites />} />
-              <Route path="/profile" element={<Profile />} />
-              <Route path="/yourpets" element={<YourPets />} />
-              <Route
-                path="*"
-                element={<h1 className="display-2">Wrong page!</h1>}
-              />
-            </Routes>
-            <Footer />
-          </>
-        </Router>
-      </ApolloProvider>
-    </ChakraProvider>
   );
 }
 
