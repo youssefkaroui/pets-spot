@@ -1,5 +1,21 @@
 import React from "react";
 import { Link, Flex, Text } from "@chakra-ui/react";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  useDisclosure,
+} from "@chakra-ui/react";
+
+import SignUpTest from "./ModalTest";
 // import SignUpForm from './SignupForm';
 // import LoginForm from './LoginForm';
 
@@ -9,6 +25,8 @@ import Logo from "./navbarComponents/Logo";
 const Navbar = () => {
   // set modal display state
   // const [showModal, setShowModal] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <Flex
@@ -21,7 +39,9 @@ const Navbar = () => {
       >
         <Flex display="flex" p="10px" alignItems="center">
           <Logo />
-          <Text fontSize={30} fontWeight={900} color="primary.main">Pet Spot</Text>
+          <Text fontSize={30} fontWeight={900} color="primary.main">
+            Pet Spot
+          </Text>
         </Flex>
         <Flex flexDirection={{ base: "column", lg: "row" }} textAlign="center">
           <Link className="nav-link" color="primary.main" href="/">
@@ -34,9 +54,21 @@ const Navbar = () => {
           <Link className="nav-link" color="primary.main" href="/create">
             Create Listing
           </Link>
-          <Link className="nav-link" color="primary.main" href="/login">
+          <Link onClick={onOpen} className="nav-link" color="primary.main">
             Login / Signup
           </Link>
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>
+                <ModalCloseButton />
+              </ModalHeader>
+              <ModalBody>
+                <SignUpTest />
+              </ModalBody>
+              <ModalFooter></ModalFooter>
+            </ModalContent>
+          </Modal>
         </Flex>
       </Flex>
     </>
