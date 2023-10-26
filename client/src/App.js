@@ -54,11 +54,8 @@ function App() {
               {/* <Route 
               path='/listings' 
               element={<Listings />} 
-            />
-            <Route 
-              path='/dashboard' 
-              element={<Dashboard />} 
             /> */}
+              <Route path="/dashboard" element={<Dashboard />} />
               {/* <Route 
               path='/donate' 
               element={<Donate />} 
