@@ -46,7 +46,7 @@ const typeDefs = gql`
     _id: ID
     username: String
     email: String
-    password: String!
+    password: String
     address: UserAddress
   }
   input UserAddress {
@@ -56,6 +56,7 @@ const typeDefs = gql`
     zipcode: String
   }
   input petData {
+    _id: ID
     name: String
     species: String
     age: Int
@@ -92,10 +93,10 @@ const typeDefs = gql`
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(userInput: userForm): Auth
-    addPet(pet: petData): Pet
+    addPet(pet: petData): User
     updateUser(user: userForm): User
-    updatePet(pet: petData): Pet
-    deletePet(petId: ID!): Pet
+    updatePet(pet: petData): User
+    deletePet(petId: ID!): User
   }
 `;
 module.exports = typeDefs;

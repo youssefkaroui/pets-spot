@@ -1,18 +1,16 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Pet } = require("../models");
-const {signToken} = require('../utils/auth')
+const { signToken } = require("../utils/auth");
 const resolvers = {
-  /*
-Queries: me => User.findOne({_id})
-        me => Pet.findOne({_id})
-        search => Listing.findOne({_id})
-*/
   Query: {
+    //Query all data on a logged in user
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id });
-        //Maybe populate pets in same query
+        return User.findOne({ _id: context.user._id }).populate(
+          "petsForAdoption"
+        );
       }
+      throw new AuthenticationError("You are not logged in");
     },
 
     // search: async (parent, args) => {
@@ -21,18 +19,7 @@ Queries: me => User.findOne({_id})
     // }
   },
   Mutation: {
-    /* 
-Mutation: login({ email, password }) \/
-          addUser({username, email, password}) \/
-          addPet({formData}) \/
-          addListing({formData}, context.user) \/
-          updateUser({formData}, context.user) \/
-          updatePet({formData}, context.user)
-          updateListing({formData}, context.user)
-          deletePet({_id}, context.user)
-          deleteListing({_id}, context.user)
-*/
-    //login({ email, password })
+    //Logs in an existing user
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 
@@ -48,33 +35,60 @@ Mutation: login({ email, password }) \/
 
       return { token, user };
     },
-    //addUser({username, email, password})
-    addUser: async (parent, {userInput}) => {
-      
-        console.log(userInput)
-        const user = await User.create({
-       ...userInput
+    //Create a new User document
+    addUser: async (parent, { userInput }) => {
+      console.log(userInput);
+      const user = await User.create({
+        ...userInput,
       });
       const token = signToken(user);
-      
+
       return { token, user };
     },
-    // addPet({formData})
-    addPet: async (parent, { pet }) => {
+    // Create Pet document and add reference ID to logged in User
+    addPet: async (parent, { pet }, context) => {
       const newPet = await Pet.create({ ...pet });
-      console.log(newPet);
+      const updateUser = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $addToSet: { petsForAdoption: newPet._id } },
+        { new: true }
+      ).populate("petsForAdoption");
 
-      return newPet;
+      return updateUser;
     },
-    updateUser: async (parent, { user }) => {
-      console.log(user)
-      const updatedUser = User.findOneAndUpdate(
-          {_id: user._id},
-          { $set: {...user}},
-          {runValidators: true, new: true}
-          )
-      return updatedUser
-  },
+    //Updates the User
+    updateUser: async (parent, { user }, context) => {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $set: { ...user } },
+        { runValidators: true, new: true }
+      );
+      return updatedUser;
+    },
+    //Updates a Pet document if User that owns it is logged in
+    updatePet: async (parent, { pet }, context) => {
+     
+        const updatePet = await Pet.findOneAndUpdate(
+        { _id: pet._id },
+        { $set: { ...pet } },
+        { runValidators: true, new: true }
+      );
+      const updatedUser = User.findOne({ _id: context.user._id }).populate(
+        "petsForAdoption"
+      );
+      return updatedUser;
+    },
+    //Delete a Pet document and remove reference from logged in User
+    deletePet: async (parent, { petId }, context) => {
+      const deletedPet = await Pet.findOneAndDelete({ _id: petId });
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $pull: { petsForAdoption: petId } },
+        { runValidators: true, new: true }
+      ).populate("petsForAdoption");
+
+      return updatedUser;
+    },
   },
 };
 
