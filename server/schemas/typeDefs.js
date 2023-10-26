@@ -7,11 +7,13 @@ const typeDefs = gql`
     email: String
     address: Address
     petsForAdoption: [Pet]
+    petsFollowed: [Pet]
   }
   type Address {
     line_one: String
     line_two: String
     city: String
+    state: String
     zipcode: String
   }
 
@@ -53,6 +55,7 @@ const typeDefs = gql`
     line_one: String
     line_two: String
     city: String
+    state: String
     zipcode: String
   }
   input petData {
@@ -84,10 +87,11 @@ const typeDefs = gql`
   }
 
   
-  
 
   type Query {
     me: User
+    search(searchInput: searchForm): [Pet]
+    petProfile(petId: ID!): Pet
   }
   
   type Mutation {

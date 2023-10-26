@@ -10,13 +10,13 @@ const userSchema = new Schema (
     {
         username: {
             type: String,
-            // required: true,
-            // unique: true
+            required: true,
+            unique: true
         },
         email: {
             type: String,
-            // required: true,
-            // unique: true,
+            required: true,
+            unique: true,
             match: [/.+@.+\..+/, 'Must use a valid email address'],
         },
         password: {
@@ -30,6 +30,17 @@ const userSchema = new Schema (
             type: Schema.Types.ObjectId,
             ref: 'Pet',
         }],
+        petsFollowed: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Pet'
+        }],
+        // messages: [{
+        //     //messagesSchema: {
+        //     message: "hello"
+        //      sentBy: User._id
+        //      sendDate: Date
+        // }
+        // }]
     },
     {
         toJSON: {
