@@ -52,7 +52,13 @@ It's your Pets-spot! It's a platform where you can look for a cute pet for adopt
         * CSS
         * JavaScript
         * REACT
-        *
+        * Mongodb
+        * Mongoose
+        * Chakra UI
+        * Express
+        * Graphgl
+        * Apollo-express
+
 
 
   <a name="testing"></a>
