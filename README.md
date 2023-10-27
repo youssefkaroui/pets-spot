@@ -11,6 +11,7 @@ It's your Pets-spot! It's a platform where you can look for a cute pet for adopt
   - [Usage](#usage)
   - [Contribution](#contribution)
   - [Deployment](#deployment)
+  - [Technologies](#technologies)
   - [Testing](#testing)
   - [License](#license)
   - [Questions](#questions)
@@ -31,10 +32,10 @@ It's your Pets-spot! It's a platform where you can look for a cute pet for adopt
 
   ## Contribution 
     
-        -Angeline Rajan 
-        -Lucas Young
-        -Youssef Karoui
-        -Edward Chang
+        * Angeline Rajan 
+        * Lucas Young
+        * Youssef Karoui
+        * Edward Chang
   
 
   <a name= "deployment"></a>
@@ -42,6 +43,17 @@ It's your Pets-spot! It's a platform where you can look for a cute pet for adopt
   ## Deployment
 
   [Here's a link to heroku deployment](https://shielded-beach-29867-5efce834725b.herokuapp.com/)
+
+  <a name= "technologies"></a>
+
+  ## Technologies
+
+        * HTML5
+        * CSS
+        * JavaScript
+        * REACT
+        *
+
 
   <a name="testing"></a>
 
