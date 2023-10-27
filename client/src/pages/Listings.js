@@ -16,6 +16,9 @@ const Listings = () => {
   //THIS GRABS THE SLIDER'S VALUE FROM THE AGE SELECTOR
   const [sliderValue, setSliderValue] = useState(1);
   const [showTooltip, setShowTooltip] = React.useState(false);
+  //THIS GRABS THE DATA FROM OTHER FIELDS
+  const [dogCheck, setDogCheck] = React.useState(false);
+  console.log(setDogCheck);
 
   return (
     <>
@@ -30,19 +33,23 @@ const Listings = () => {
           <h1 className="searchHeader">Search for a Pet</h1>
 
           <Stack spacing={4} direction="row">
-            <Checkbox>Dog</Checkbox>
-            <Checkbox>Cat</Checkbox>
+            <Checkbox value="dog" onChange={(e) => setDogCheck(true)}>
+              Dog
+            </Checkbox>
+            <Checkbox value="cat" onChange={(e) => setCatCheck(true)}>
+              Cat
+            </Checkbox>
           </Stack>
           <Stack className="childFriendly" spacing={4} direction="row">
-            <Checkbox>Child Friendly</Checkbox>
+            <Checkbox value="childFriendly">Child Friendly</Checkbox>
           </Stack>
           <Stack className="spayed" spacing={4} direction="row">
-            <Checkbox>Spayed/Neutered</Checkbox>
+            <Checkbox value="spayNeuter">Spayed/Neutered</Checkbox>
           </Stack>
           <p className="searchOptionHeader">Sex</p>
           <Stack spacing={4} direction="row">
-            <Checkbox>Male</Checkbox>
-            <Checkbox>Female</Checkbox>
+            <Checkbox value="male">Male</Checkbox>
+            <Checkbox value="female">Female</Checkbox>
           </Stack>
           <p className="searchOptionHeader">Age</p>
           <Slider
