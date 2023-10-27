@@ -39,12 +39,10 @@ function Home() {
             Adopt Today!
           </Button>
         </Flex>
-        <Flex>
-          <Image
-            src="https://media.istockphoto.com/id/464856694/photo/cat-and-happy-dog-together.jpg?s=612x612&w=0&k=20&c=1VLRIwO1B45Xr3HaZ0HDNgTivuwIBdZvCsGXk01nfv4="
-            alt="cat-and-dog"
-          />
-        </Flex>
+        <Image
+          src="https://media.istockphoto.com/id/464856694/photo/cat-and-happy-dog-together.jpg?s=612x612&w=0&k=20&c=1VLRIwO1B45Xr3HaZ0HDNgTivuwIBdZvCsGXk01nfv4="
+          alt="cat-and-dog"
+        />
       </Flex>
     </>
   );

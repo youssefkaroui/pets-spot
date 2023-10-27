@@ -1,7 +1,7 @@
 import React from "react";
 import { Flex, Icon } from "@chakra-ui/react";
-import { FaPaw } from "react-icons/fa"
-import { IoPaw, IoPawSharp } from "react-icons/io5"
+import { FaPaw } from "react-icons/fa";
+import { IoPaw, IoPawSharp } from "react-icons/io5";
 
 const Footer = () => {
   return (
