@@ -58,6 +58,8 @@ It's your Pets-spot! It's a platform where you can look for a cute pet for adopt
         * Express
         * Graphgl
         * Apollo-express
+        * Bcrypt
+        * Jsonwebtoken
 
 
 
