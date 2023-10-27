@@ -51,19 +51,14 @@ const userSchema = new Schema (
         }
     }
 );
-userSchema.virtual('test', {
-    ref: "Pet",
-    localField: 'petsForAdoption._id',
-    foreignField: '_id',
-})
 
 userSchema.virtual('petCount').get(function() {
     return this.petsForAdoption.length
 })
 
-// userSchema.virtual('followingCount').get(function() {
-//     return this.petsFollowed.length
-// })
+userSchema.virtual('followingCount').get(function() {
+    return this.petsFollowed.length
+})
 // hash user password
 userSchema.pre('save', async function (next) {
     if (this.isNew || this.isModified('password')) {

@@ -3,11 +3,7 @@ const { User, Pet } = require("../models");
 const { signToken } = require("../utils/auth");
 const { connect } = require("mongoose");
 
-//typeDef: Add state to addressSchema ---- DONE
-//typeDef: Add petsFollowed to User ---- DONE
-// Query for search ---- DONE
-// Query for petProfile --- DONE???
-// Mutation for followPet
+
 
 // NICETOHAVE: Messages field to User
 
@@ -24,20 +20,15 @@ const resolvers = {
     },
 
     search: async (parent, { searchInput }) => {
+      //finds a pet by search parameters
       const searchedPets = await Pet.find({ ...searchInput });
       console.log(searchedPets);
       return searchedPets; //Expect array of objects
     },
     petProfile: async (parent, { petId }) => {
-      //gets ONE User's pet,
-      //  const getPetProfile = await User.findOne(
-      //   {petsForAdoption: [petId]}
-      //   ).populate({
-      //     path: 'Pet',
-      //     match: {_id: petId},
-      //     strictPopulate: false,
-      //   })
-      const getPetProfile = await Pet.find({ _id: petId }).populate("owner");
+      //gets ONE pet by its ID
+      const getPetProfile = await Pet.findOne({ _id: petId }).populate("owner");
+      console.log(getPetProfile)
       return getPetProfile;
     },
   },
@@ -45,15 +36,16 @@ const resolvers = {
     //Logs in an existing user
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
-
+      //checks if user with that email exists
       if (!user) {
         throw new AuthenticationError("Oops");
       }
+      //checks if password is correct
       const correctPW = await user.isCorrectPassword(password);
       if (!correctPW) {
         throw new AuthenticationError("password is incorrect");
       }
-
+      //creates a token for signed in user
       const token = signToken(user);
 
       return { token, user };
@@ -105,10 +97,11 @@ const resolvers = {
           { $set: { ...pet } },
           { runValidators: true, new: true }
         );
-        const updatedUser = User.findOne({ _id: context.user._id }).populate(
+        //returns user with pet
+        const user = User.findOne({ _id: context.user._id }).populate(
           "petsForAdoption"
         );
-        return updatedUser;
+        return user;
       }
       throw new AuthenticationError(
         "You must be logged in to update a listing"
@@ -130,6 +123,7 @@ const resolvers = {
     },
     followPet: async (parent, { petId }, context) => {
       if (context.user) {
+        // Conditionally adds/removes a pet from petsFollowed array
         const user = await User.findOneAndUpdate({ _id: context.user._id }, [
           {
             $set: {
