@@ -13,19 +13,25 @@ import {
   TabPanel,
   Link,
 } from "@chakra-ui/react";
+import {useQuery} from "@apollo/client"
+import {GET_USER_DATA} from "../utils/queries"
+import sampleData from "./sampleData.json" //NEEDS TO BE COMMENTED OUT LATER
 
 export default function DashboardContainer() {
   const [currentPage, setCurrentPage] = useState("Profile");
-
+  // create a useQuery for ME? then pass it down to YourPets/Favorites/Profile
+  const {loading, data} = useQuery(GET_USER_DATA)
+  const userData = data?.me || sampleData.me
+  const {username, email, address, petsForAdoption, petsFollowed} = userData;
   // This method is checking to see what the value of `currentPage` is. Depending on the value of currentPage, we return the corresponding component to render.
   const renderPage = () => {
     if (currentPage === "YourPets") {
-      return <YourPets />;
+      return <YourPets petsForAdoption={petsForAdoption}/>;
     }
     if (currentPage === "Favorites") {
-      return <Favorites />;
+      return <Favorites petsFollowed={petsFollowed}/>;
     }
-    return <Profile />;
+    return <Profile name={username} email={email} address={address}/>;
   };
 
   const handlePageChange = (page) => setCurrentPage(page);

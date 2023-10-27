@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Flex, Text } from "@chakra-ui/react";
 import {
   Modal,
@@ -15,17 +15,22 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
-import SignUpTest from "./ModalTest";
-// import SignUpForm from './SignupForm';
-// import LoginForm from './LoginForm';
+
+import Auth from "../utils/auth";
+
+//import SignUpTest from "./ModalTest";
+import SignUpForm from './Signup';
+import LoginForm from './Login';
+
+
 
 // import Auth from '../utils/auth';
 import Logo from "./navbarComponents/Logo";
 
 const Navbar = () => {
-  // set modal display state
-  // const [showModal, setShowModal] = useState(false);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { isOpen: isOpenLogin, onOpen: onOpenLogin, onClose: onCloseLogin } = useDisclosure();
+  const { isOpen: isOpenSignup, onOpen: onOpenSignup, onClose: onCloseSignup } = useDisclosure();
+  
 
   return (
     <>
@@ -47,28 +52,58 @@ const Navbar = () => {
           <Link className="nav-link" color="primary.main" href="/">
             Home
           </Link>
-          {/* <Link className="nav-link" href="/listings">Listings</Link> */}
-          <Link className="nav-link" color="primary.main" href="/dashboard">
-            Dashboard
-          </Link>
+          <Link className="nav-link" color="primary.main" href="/listings">Listings</Link>
+          {Auth.loggedIn() ? (
+            <Link className="nav-link" color="primary.main" href="/dashboard">
+              Dashboard
+            </Link>
+          ) : (
+            ""
+          )}
           <Link className="nav-link" color="primary.main" href="/create">
             Create Listing
           </Link>
-          <Link onClick={onOpen} className="nav-link" color="primary.main">
-            Login / Signup
+
+          {Auth.loggedIn() ? (
+            <Link className="nav-link" color="primary.main">
+              Logout
+            </Link>
+          ) : (
+            <>
+          <Link onClick={onOpenSignup} className="nav-link" color="primary.main">
+            Signup
           </Link>
-          <Modal isOpen={isOpen} onClose={onClose}>
+          <Link onClick={onOpenLogin} className="nav-link" color="primary.main">
+            Login
+          </Link>
+ 
+          <Modal isOpen={isOpenLogin} onClose={onCloseLogin}>
             <ModalOverlay />
             <ModalContent>
               <ModalHeader>
                 <ModalCloseButton />
               </ModalHeader>
               <ModalBody>
-                <SignUpTest />
+                <LoginForm />
               </ModalBody>
               <ModalFooter></ModalFooter>
             </ModalContent>
           </Modal>
+          <Modal isOpen={isOpenSignup} onClose={onCloseSignup}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>
+                <ModalCloseButton />
+              </ModalHeader>
+              <ModalBody>
+                <SignUpForm />
+              </ModalBody>
+              <ModalFooter></ModalFooter>
+            </ModalContent>
+          </Modal>
+            </>
+          )}
+        
         </Flex>
       </Flex>
     </>

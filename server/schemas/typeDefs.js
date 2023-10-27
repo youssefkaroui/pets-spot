@@ -104,6 +104,7 @@ const typeDefs = gql`
     updateUser(user: userForm): User
     updatePet(pet: petData): User
     deletePet(petId: ID!): User
+    followPet(petId: ID!): User
   }
 `;
 module.exports = typeDefs;

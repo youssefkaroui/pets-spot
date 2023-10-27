@@ -120,6 +120,14 @@ const resolvers = {
       return updatedUser;}
       throw new AuthenticationError('You must be logged in to do that')
     },
+    followPet: async (parent, {petId}, context) => {
+      console.log(context.user)
+      if (context.user) {
+        const updateUser = await User.findOne({_id: context.user._id})
+        console.log(updateUser)
+        return updateUser
+      }
+    }
   },
 };
 
