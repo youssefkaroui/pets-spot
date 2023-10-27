@@ -46,3 +46,24 @@ h6 {
 .dash-link:hover {
   color: #334443;
 }
+
+/* SEARCH SIDEBAR */
+.searchHeader {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #34656d;
+  font-size: 25px;
+}
+
+.searchOptionHeader {
+  color: #34656d;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.childFriendly,
+.spayed {
+  margin: 30px 0px 30px 0px;
+}
