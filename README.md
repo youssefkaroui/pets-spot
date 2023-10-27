@@ -32,10 +32,11 @@ It's your Pets-spot! It's a platform where you can look for a cute pet for adopt
 
   ## Contribution 
     
-        * Angeline Rajan 
+        * Angelin Rajan 
         * Lucas Young
         * Youssef Karoui
         * Edward Chang
+        * Ziad ALfadl
   
 
   <a name= "deployment"></a>
