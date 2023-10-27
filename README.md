@@ -26,11 +26,16 @@
   ## Usage
 
   Run the application on your local machine then run it on your default browser. 
+  
   <a name="contribution"></a>
 
   ## Contribution 
-
-  Please create an issue first
+    
+        .Angeline Rajan 
+        .Lucas Young
+        .Youssef Karoui
+        .Edward Chang
+  
 
   <a name= "deployment"></a>
 
