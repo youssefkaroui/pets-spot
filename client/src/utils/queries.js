@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 // Query to fetch user data after login
 export const GET_USER_DATA = gql`
@@ -40,7 +40,6 @@ export const GET_USER_DATA = gql`
   }
 `;
 
-
 // Query to search for pets
 export const SEARCH_PETS = gql`
   query search($searchInput: searchForm) {
@@ -67,6 +66,7 @@ export const SEARCH_PETS = gql`
         address {
           city
           state
+        }
       }
     }
   }
@@ -99,7 +99,7 @@ export const GET_PET_PROFILE = gql`
         address {
           city
           state
-      }
+        }
       }
     }
   }
