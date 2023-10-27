@@ -35,6 +35,24 @@ export const LOGIN_USER = gql`
             spayedNeutered
           }
         }
+        petsFollowed {
+          name
+          species
+          age
+          sex
+          image
+          description
+          owner {
+            username
+            email
+            address {
+              city: String
+              state: String
+            }
+          }
+        }
+        petCount: Int
+        followingCount: Int
       }
     }
   }
@@ -116,6 +134,14 @@ export const ADD_PET = gql`
         vaccinated
         spayedNeutered
       }
+      owner {
+        username
+        email
+        address {
+          city
+          state
+        }
+      }
     }
   }
 `;
@@ -159,6 +185,7 @@ export const UPDATE_PET = gql`
         vaccinated
         spayedNeutered
       }
+      petCount
     }
   }
 `;
@@ -196,6 +223,7 @@ export const REMOVE_PET = gql`
           spayedNeutered
         }
       }
+      petCount
     }
   }
 `;
