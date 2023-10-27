@@ -37,6 +37,12 @@ const SignUpForm = () => {
             <FormLabel> Password</FormLabel>
             <Input placeholder='Password' />
           </FormControl>
+          
+          <ModalFooter>
+            <Button colorScheme='green' mr={3}>
+              Submit
+            </Button>
+          </ModalFooter>
         
     </>
   );

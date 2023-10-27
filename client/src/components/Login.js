@@ -17,7 +17,7 @@ import {
 import { DefaultContext } from "react-icons/lib";
 
 function LoginForm  () {
-
+  const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef()
   const finalRef = React.useRef()
 
@@ -35,6 +35,13 @@ function LoginForm  () {
               <FormLabel> Password</FormLabel>
               <Input placeholder='Password' />
             </FormControl>
+            
+            <ModalFooter>
+            <Button colorScheme='green' mr={3}>
+              Submit
+            </Button>
+            
+          </ModalFooter>
           
       
     </>
