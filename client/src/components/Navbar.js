@@ -15,11 +15,14 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
+
 import Auth from "../utils/auth";
 
-import SignUpTest from "./ModalTest";
-// import SignUpForm from './SignupForm';
-// import LoginForm from './LoginForm';
+//import SignUpTest from "./ModalTest";
+import SignUpForm from './Signup';
+import LoginForm from './Login';
+
+
 
 // import Auth from '../utils/auth';
 import Logo from "./navbarComponents/Logo";
@@ -59,29 +62,47 @@ const Navbar = () => {
           <Link className="nav-link" color="primary.main" href="/create">
             Create Listing
           </Link>
+
           {Auth.loggedIn() ? (
             <Link className="nav-link" color="primary.main">
               Logout
             </Link>
           ) : (
             <>
-              <Link onClick={onOpen} className="nav-link" color="primary.main">
-                Login / Signup
-              </Link>
-              <Modal isOpen={isOpen} onClose={onClose}>
-                <ModalOverlay />
-                <ModalContent>
-                  <ModalHeader>
-                    <ModalCloseButton />
-                  </ModalHeader>
-                  <ModalBody>
-                    <SignUpTest />
-                  </ModalBody>
-                  <ModalFooter></ModalFooter>
-                </ModalContent>
-              </Modal>
+<Link onClick={onOpen} className="nav-link" color="primary.main">
+            Signup
+          </Link>
+          <Link onClick={onOpen} className="nav-link" color="primary.main">
+            Login
+          </Link>
+ 
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>
+                <ModalCloseButton />
+              </ModalHeader>
+              <ModalBody>
+                <LoginForm />
+              </ModalBody>
+              <ModalFooter></ModalFooter>
+            </ModalContent>
+          </Modal>
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>
+                <ModalCloseButton />
+              </ModalHeader>
+              <ModalBody>
+                <SignUpForm />
+              </ModalBody>
+              <ModalFooter></ModalFooter>
+            </ModalContent>
+          </Modal>
             </>
           )}
+        
         </Flex>
       </Flex>
     </>
