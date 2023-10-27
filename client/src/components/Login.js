@@ -16,31 +16,25 @@ import {
 } from "@chakra-ui/react";
 import { DefaultContext } from "react-icons/lib";
 
-const LoginForm = () => {
+function LoginForm  () {
   const { isOpen, onOpen, onClose } = useDisclosure()
-
+  
   const initialRef = React.useRef()
   const finalRef = React.useRef()
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
-      <Button ml={4} ref={finalRef}>
-     
-      </Button>
+    
 
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
+        
+  
       >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-          <Button colorScheme='blue' mr={3}>Login</Button>
-            <Button colorScheme='blue' mr={3}> Signup</Button>
-
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
@@ -56,6 +50,7 @@ const LoginForm = () => {
           </ModalBody>
         </ModalContent>
       </Modal>
+      
     </>
   );
 };

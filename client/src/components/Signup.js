@@ -15,7 +15,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
-const SignUpform = () => {
+const SignUpForm = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const initialRef = React.useRef()
@@ -23,11 +23,6 @@ const SignUpform = () => {
 
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
-      <Button ml={4} ref={finalRef}>
-
-      </Button>
-
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
@@ -37,9 +32,6 @@ const SignUpform = () => {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
-            <Button colorScheme='blue' mr={3}>Login</Button>
-            <Button colorScheme='blue' mr={3}> Signup</Button>
-
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
@@ -62,4 +54,4 @@ const SignUpform = () => {
     </>
   );
 };
-export default SignUpform;
+export default SignUpForm;

@@ -15,9 +15,8 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
-import SignUpTest from "./ModalTest";
-// import SignUpForm from './SignupForm';
-// import LoginForm from './LoginForm';
+import SignUpForm from './Signup';
+import LoginForm from './Login';
 
 // import Auth from '../utils/auth';
 import Logo from "./navbarComponents/Logo";
@@ -55,8 +54,12 @@ const Navbar = () => {
             Create Listing
           </Link>
           <Link onClick={onOpen} className="nav-link" color="primary.main">
-            Login / Signup
+            Signup
           </Link>
+          <Link onClick={onOpen} className="nav-link" color="primary.main">
+            Login
+          </Link>
+ 
           <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
@@ -64,7 +67,19 @@ const Navbar = () => {
                 <ModalCloseButton />
               </ModalHeader>
               <ModalBody>
-                <SignUpTest />
+                <LoginForm />
+              </ModalBody>
+              <ModalFooter></ModalFooter>
+            </ModalContent>
+          </Modal>
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalHeader>
+                <ModalCloseButton />
+              </ModalHeader>
+              <ModalBody>
+                <SignUpForm />
               </ModalBody>
               <ModalFooter></ModalFooter>
             </ModalContent>
