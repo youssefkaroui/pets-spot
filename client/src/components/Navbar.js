@@ -28,8 +28,9 @@ import LoginForm from './Login';
 import Logo from "./navbarComponents/Logo";
 
 const Navbar = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  // const [isLoggedIn, setLoginStatus ] = useState("false");
+  const { isOpen: isOpenLogin, onOpen: onOpenLogin, onClose: onCloseLogin } = useDisclosure();
+  const { isOpen: isOpenSignup, onOpen: onOpenSignup, onClose: onCloseSignup } = useDisclosure();
+  
 
   return (
     <>
@@ -69,14 +70,14 @@ const Navbar = () => {
             </Link>
           ) : (
             <>
-<Link onClick={onOpen} className="nav-link" color="primary.main">
+          <Link onClick={onOpenSignup} className="nav-link" color="primary.main">
             Signup
           </Link>
-          <Link onClick={onOpen} className="nav-link" color="primary.main">
+          <Link onClick={onOpenLogin} className="nav-link" color="primary.main">
             Login
           </Link>
  
-          <Modal isOpen={isOpen} onClose={onClose}>
+          <Modal isOpen={isOpenLogin} onClose={onCloseLogin}>
             <ModalOverlay />
             <ModalContent>
               <ModalHeader>
@@ -88,7 +89,7 @@ const Navbar = () => {
               <ModalFooter></ModalFooter>
             </ModalContent>
           </Modal>
-          <Modal isOpen={isOpen} onClose={onClose}>
+          <Modal isOpen={isOpenSignup} onClose={onCloseSignup}>
             <ModalOverlay />
             <ModalContent>
               <ModalHeader>
