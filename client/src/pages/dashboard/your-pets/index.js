@@ -8,9 +8,9 @@ import { ADD_PET } from "../../../utils/mutations";
 //UNCOMMENT THIS OUT UNTIL BACKEND IS WORKING
 // import Auth from "../../../utils/auth";
 
-const PetList = () => {
+const PetList = ({ petsForAdoption }) => {
   // const { loading, data } = userQuery(QUERY_MY_PETS);
-
+  console.log(petsForAdoption[0])
   // if (loading) {
   //   return <div>Loading...</div>;
   // }

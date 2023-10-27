@@ -16,8 +16,11 @@ import { Navigate, useParams } from "react-router-dom";
 
 // import Auth from "../utils/auth";
 
-const Profile = () => {
-  const { username: userParam } = useParams();
+const Profile = ({name, email, address}) => {
+  console.log(name)
+  console.log(email)
+  console.log(address)
+  // const { username: userParam } = useParams();
   // const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
   //   variables: { username: userParam },
   // });
