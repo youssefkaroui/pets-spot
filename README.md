@@ -1,113 +1,63 @@
-# Pets Spot
-This application is a place for prospective pet-parents can find
-pets listed for rehoming/adoption. All data is user provided.
+# Pets-spot
+![alt text](./client/public/images/README.screenshot.png)
 
-## User Story
-* Looking for pet
-    
-        AS A pet-person
-        I WANT to browse pets in need of a home
-        SO THAT I can look for a potential surrogate-child
+  This is your pets-for adaption spot! It's platform where you can look for a cute a pet for adoption or list your pet form adoption.
+ 
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-* Putting pet up for adoption
-        
-        AS A listing-person
-        I WANT to put my pet up for adoption
-        SO THAT I can give my furry friend a loving home     
+  ## Table of Contents
 
-## Backend:
-
-* Data -
-
-        Pets
-            |
-            Pets.healthSchema
-        Users
-        Listing
-
-### Models -
-
-- Pet Data:
-
-        img: Picture(s) of doggo!
-        species: Cat/Dog!
-        name: Dogcat!
-        age: Age!
-        Sex: F/M
-        description: User supplied, describing the pet
-        breed: Labrador (optional or "other" option)
-        tempermant: Social/Skittish? (optional)
-        child-friendly: (User Sourced)
-        allergies (optional)
-        medical history { healthSchema }
-
-<!-- activity-needs:  -->
-<!-- size: Small/Medium/Large  -->
-
-- User Data:
-
-        username: string!
-        email: string!
-        password: string!
-        location: PUBLISH THEIR IP ADDRESS
-        petToRehome: [PetId]
-
-* Listing Data:
-
-        DateCreated
-        dateEnds
-        Pet: { Pet }
-        postedBy: {User}
-        distance: range the person is willing to drive
-
-<!-- adoptionOpen: boolean -->
-
-# Front-End
-
-## Pages
-
-* homePage
-* searchedPets
-* viewPet
-
-## Components
-* Nav
-* searchComponent
-* listingCardComponent
-* fullListingComponent
-* LoginForm
-* SignupForm
-
-## Functionality
-
-- Filters for pet search
-        
-        Species Cat/Dog
-        Location  zip-code/enter address?
-        searchRadius with km/miles toggle?
-        Gender M/F/Any
-        child-safe
-
-- Listing form:
-
-        Name
-        Age
-        Sex: Radio buttons?
-        Species:
-        Breed
-        Temperment
-        child-safe?
-        medicalHistory: {
-                        allergies
-                        vaccinated
-                        Spayed/Neutered
-                        }
-        Description
-        Img uploads
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Contribution](#contribution)
+  - [Deployment](#deployment)
+  - [Testing](#testing)
+  - [License](#license)
+  - [Questions](#questions)
 
 
+  <a name="installation"></a>
+  ## Installation
 
-## Nice To Haves
+  Please clone the repository on your local machine and run `npm install` then `npm run develop`
 
-* Chat feature
+  <a name= "usage"></a>
 
+  ## Usage
+
+  Run the application on your local machine then run it on your default browser. 
+  <a name="contribution"></a>
+
+  ## Contribution 
+
+  Please create an issue first
+
+  <a name= "deployment"></a>
+
+  ## Deployment
+
+  [Here's a link to heroku deployment](https://shielded-beach-29867-5efce834725b.herokuapp.com/)
+
+  <a name="testing"></a>
+
+  ## Testing 
+
+  Run the application on your local machine and navigate through all pages of the app to checkout the functionality  on the application.
+
+  <a name="license"></a>
+
+  ## License 
+
+     Copyright 2023 Youssef Karoui    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+  If you would like to know more about licensing information here's a link for more details: https://opensource.org/license/mit/
+
+  <a name="questions"></a>
+
+  ## Questions 
+
+  [Email me if you have any questions](mailto:youssefkaroui6@gmail.com)
+
+[Review my other projects on GitHub.](https://www.github.com/youssefkaroui)
+
+  
