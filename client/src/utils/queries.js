@@ -28,17 +28,79 @@ export const GET_USER_DATA = gql`
         dateCreated
         active
       }
-      petsFollowed: {
-        _id: ID
-        name: String
-        species: String
-        image: String
+      petsFollowed {
+        _id
+        name
+        species
+        image
       }
+      petCount
+      followingCount
     }
   }
 `;
 
 
-//Search
+// Query to search for pets
+export const SEARCH_PETS = gql`
+  query search($searchInput: searchForm) {
+    search(searchInput: $searchInput) {
+      _id
+      name
+      species
+      age
+      sex
+      image
+      breed
+      temperament
+      childFriendly
+      description
+      dateCreated
+      active
+      medicalHistory {
+        allergies
+        vaccinated
+        spayedNeutered
+      }
+      owner {
+        username
+        address {
+          city
+          state
+      }
+    }
+  }
+`;
 
-//petProfile
+// Query to fetch a pet's profile
+export const GET_PET_PROFILE = gql`
+  query petProfile($petId: ID!) {
+    petProfile(petId: $petId) {
+      _id
+      name
+      species
+      age
+      sex
+      image
+      breed
+      temperament
+      childFriendly
+      description
+      dateCreated
+      active
+      medicalHistory {
+        allergies
+        vaccinated
+        spayedNeutered
+      }
+      owner {
+        username
+        email
+        address {
+          city
+          state
+      }
+      }
+    }
+  }
+`;
