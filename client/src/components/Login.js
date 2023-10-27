@@ -17,8 +17,7 @@ import {
 import { DefaultContext } from "react-icons/lib";
 
 function LoginForm  () {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  
+
   const initialRef = React.useRef()
   const finalRef = React.useRef()
 
@@ -26,18 +25,7 @@ function LoginForm  () {
     <>
     
 
-      <Modal
-        initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
-        
-  
-      >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6}>
+      
             <FormControl>
               <FormLabel>Email address</FormLabel>
               <Input ref={initialRef} placeholder='Email address' />
@@ -47,9 +35,7 @@ function LoginForm  () {
               <FormLabel> Password</FormLabel>
               <Input placeholder='Password' />
             </FormControl>
-          </ModalBody>
-        </ModalContent>
-      </Modal>
+          
       
     </>
   );

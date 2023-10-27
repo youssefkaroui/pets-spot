@@ -23,20 +23,9 @@ const SignUpForm = () => {
 
   return (
     <>
-      <Modal
-        initialFocusRef={initialRef}
-        finalFocusRef={finalRef}
-        isOpen={isOpen}
-        onClose={onClose}
-      >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>
-          </ModalHeader>
-          <ModalCloseButton />
-          <ModalBody pb={6}>
+      
             <FormControl>
-              <FormLabel>User mane</FormLabel>
+              <FormLabel>User name</FormLabel>
               <Input ref={initialRef} placeholder='User name' />
             </FormControl>
             <FormControl mt={4}>
@@ -48,9 +37,7 @@ const SignUpForm = () => {
             <FormLabel> Password</FormLabel>
             <Input placeholder='Password' />
           </FormControl>
-        </ModalBody>
-      </ModalContent>
-    </Modal>
+        
     </>
   );
 };
