@@ -1,7 +1,7 @@
 # Pets-spot
 ![alt text](./client/public/images/README.screenshot.png)
 
-  This is your pets-for adaption spot! It's platform where you can look for a cute a pet for adoption or list your pet form adoption.
+It's your Pets-spot! It's a platform where you can look for a cute pet for adoption or maybe list your pet form adoption.
  
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -19,7 +19,7 @@
   <a name="installation"></a>
   ## Installation
 
-  Please clone the repository on your local machine and run `npm install` then `npm run develop`
+  Please clone the repository on your local machine and run `npm install` then `npm run develop`.
 
   <a name= "usage"></a>
 
@@ -31,10 +31,10 @@
 
   ## Contribution 
     
-        .Angeline Rajan 
-        .Lucas Young
-        .Youssef Karoui
-        .Edward Chang
+        -Angeline Rajan 
+        -Lucas Young
+        -Youssef Karoui
+        -Edward Chang
   
 
   <a name= "deployment"></a>
