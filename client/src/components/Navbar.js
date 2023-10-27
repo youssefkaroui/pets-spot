@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, Flex, Text } from "@chakra-ui/react";
 import {
   Modal,
@@ -15,16 +15,21 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 
+
+import Auth from "../utils/auth";
+
+//import SignUpTest from "./ModalTest";
 import SignUpForm from './Signup';
 import LoginForm from './Login';
+
+
 
 // import Auth from '../utils/auth';
 import Logo from "./navbarComponents/Logo";
 
 const Navbar = () => {
-  // set modal display state
-  // const [showModal, setShowModal] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  // const [isLoggedIn, setLoginStatus ] = useState("false");
 
   return (
     <>
@@ -46,14 +51,25 @@ const Navbar = () => {
           <Link className="nav-link" color="primary.main" href="/">
             Home
           </Link>
-          {/* <Link className="nav-link" href="/listings">Listings</Link> */}
-          <Link className="nav-link" color="primary.main" href="/dashboard">
-            Dashboard
-          </Link>
+          <Link className="nav-link" color="primary.main" href="/listings">Listings</Link>
+          {Auth.loggedIn() ? (
+            <Link className="nav-link" color="primary.main" href="/dashboard">
+              Dashboard
+            </Link>
+          ) : (
+            ""
+          )}
           <Link className="nav-link" color="primary.main" href="/create">
             Create Listing
           </Link>
-          <Link onClick={onOpen} className="nav-link" color="primary.main">
+
+          {Auth.loggedIn() ? (
+            <Link className="nav-link" color="primary.main">
+              Logout
+            </Link>
+          ) : (
+            <>
+<Link onClick={onOpen} className="nav-link" color="primary.main">
             Signup
           </Link>
           <Link onClick={onOpen} className="nav-link" color="primary.main">
@@ -84,6 +100,9 @@ const Navbar = () => {
               <ModalFooter></ModalFooter>
             </ModalContent>
           </Modal>
+            </>
+          )}
+        
         </Flex>
       </Flex>
     </>
