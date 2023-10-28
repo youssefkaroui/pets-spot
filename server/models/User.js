@@ -51,11 +51,6 @@ const userSchema = new Schema (
         }
     }
 );
-// userSchema.virtual('test', {
-//     ref: "Pet",
-//     localField: 'petsForAdoption._id',
-//     foreignField: '_id',
-// })
 
 userSchema.virtual('petCount').get(function() {
     return this.petsForAdoption.length
