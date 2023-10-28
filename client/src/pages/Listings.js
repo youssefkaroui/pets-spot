@@ -10,7 +10,14 @@ import {
   SliderThumb,
   SliderMark,
   Tooltip,
+  Text,
+  Image,
+  Button,
+  Icon,
+  Flex,
 } from "@chakra-ui/react";
+
+import { FaHeartCirclePlus } from "react-icons/fa6";
 
 const Listings = () => {
   //THIS GRABS THE SLIDER'S VALUE FROM THE AGE SELECTOR
@@ -22,12 +29,19 @@ const Listings = () => {
 
   return (
     <>
-      <Grid templateColumns="repeat(5, 1fr)" gap={6}>
+      <Grid
+        templateColumns="repeat(5, 1fr)"
+        columnGap={6}
+        rowGap={6}
+        templateRows="repeat(3,1fr)"
+        m="10px"
+      >
         <GridItem
           as="aside"
-          colSpan={{ base: 2, lg: 2, xl: 1 }}
+          colSpan={{ base: 5, lg: 2, xl: 1 }}
+          rowSpan={{ base: 3 }}
           bg="primary.main"
-          minHeight="100vh"
+          minHeight={{ lg: "100vh" }}
           p={{ base: "20px", lg: "30px" }}
         >
           <h1 className="searchHeader">Search for a Pet</h1>
@@ -84,6 +98,209 @@ const Listings = () => {
             </Tooltip>
           </Slider>
         </GridItem>
+
+        {/* Below are all the pet Card examples:  */}
+        <GridItem
+          border="solid 3px"
+          borderRadius="10px"
+          rowSpan="1"
+          colSpan={{ base: 5, lg: 2, xl: 1 }}
+          textAlign="center"
+        >
+          <Text fontSize="3xl">Name</Text>
+          <Image src="https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></Image>
+          <Text fontSize="3xl">Age:</Text>
+          <Text fontSize="3xl">Sex:</Text>
+          <Flex justifyContent="center">
+            <Button m="3px">
+              <h2>Read More</h2>
+            </Button>
+            <Button m="3px">
+              <Icon as={FaHeartCirclePlus} fontSize="40px"></Icon>
+            </Button>
+          </Flex>
+        </GridItem>
+        <GridItem
+          border="solid 3px"
+          borderRadius="10px"
+          rowSpan="1"
+          colSpan={{ base: 5, lg: 2, xl: 1 }}
+          textAlign="center"
+        >
+          <Text fontSize="3xl">Name</Text>
+          <Image src="https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></Image>
+          <Text fontSize="3xl">Age:</Text>
+          <Text fontSize="3xl">Sex:</Text>
+          <Flex justifyContent="center">
+            <Button m="3px">
+              <h2>Read More</h2>
+            </Button>
+            <Button m="3px">
+              <Icon as={FaHeartCirclePlus} fontSize="40px"></Icon>
+            </Button>
+          </Flex>
+        </GridItem>
+        <GridItem
+          border="solid 3px"
+          borderRadius="10px"
+          rowSpan="1"
+          colSpan={{ base: 5, lg: 2, xl: 1 }}
+          textAlign="center"
+        >
+          <Text fontSize="3xl">Name</Text>
+          <Image src="https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></Image>
+          <Text fontSize="3xl">Age:</Text>
+          <Text fontSize="3xl">Sex:</Text>
+          <Flex justifyContent="center">
+            <Button m="3px">
+              <h2>Read More</h2>
+            </Button>
+            <Button m="3px">
+              <Icon as={FaHeartCirclePlus} fontSize="40px"></Icon>
+            </Button>
+          </Flex>
+        </GridItem>
+        <GridItem
+          border="solid 3px"
+          borderRadius="10px"
+          rowSpan="1"
+          colSpan={{ base: 5, lg: 2, xl: 1 }}
+          textAlign="center"
+        >
+          <Text fontSize="3xl">Name</Text>
+          <Image src="https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></Image>
+          <Text fontSize="3xl">Age:</Text>
+          <Text fontSize="3xl">Sex:</Text>
+          <Flex justifyContent="center">
+            <Button m="3px">
+              <h2>Read More</h2>
+            </Button>
+            <Button m="3px">
+              <Icon as={FaHeartCirclePlus} fontSize="40px"></Icon>
+            </Button>
+          </Flex>
+        </GridItem>
+        <GridItem
+          border="solid 3px"
+          borderRadius="10px"
+          rowSpan="1"
+          colSpan={{ base: 5, lg: 2, xl: 1 }}
+          textAlign="center"
+        >
+          <Text fontSize="3xl">Name</Text>
+          <Image src="https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></Image>
+          <Text fontSize="3xl">Age:</Text>
+          <Text fontSize="3xl">Sex:</Text>
+          <Flex justifyContent="center">
+            <Button m="3px">
+              <h2>Read More</h2>
+            </Button>
+            <Button m="3px">
+              <Icon as={FaHeartCirclePlus} fontSize="40px"></Icon>
+            </Button>
+          </Flex>
+        </GridItem>
+        <GridItem
+          border="solid 3px"
+          borderRadius="10px"
+          rowSpan="1"
+          colSpan={{ base: 5, lg: 2, xl: 1 }}
+          textAlign="center"
+        >
+          <Text fontSize="3xl">Name</Text>
+          <Image src="https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></Image>
+          <Text fontSize="3xl">Age:</Text>
+          <Text fontSize="3xl">Sex:</Text>
+          <Flex justifyContent="center">
+            <Button m="3px">
+              <h2>Read More</h2>
+            </Button>
+            <Button m="3px">
+              <Icon as={FaHeartCirclePlus} fontSize="40px"></Icon>
+            </Button>
+          </Flex>
+        </GridItem>
+        <GridItem
+          border="solid 3px"
+          borderRadius="10px"
+          rowSpan="1"
+          colSpan={{ base: 5, lg: 2, xl: 1 }}
+          textAlign="center"
+        >
+          <Text fontSize="3xl">Name</Text>
+          <Image src="https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></Image>
+          <Text fontSize="3xl">Age:</Text>
+          <Text fontSize="3xl">Sex:</Text>
+          <Flex justifyContent="center">
+            <Button m="3px">
+              <h2>Read More</h2>
+            </Button>
+            <Button m="3px">
+              <Icon as={FaHeartCirclePlus} fontSize="40px"></Icon>
+            </Button>
+          </Flex>
+        </GridItem>
+        <GridItem
+          border="solid 3px"
+          borderRadius="10px"
+          rowSpan="1"
+          colSpan={{ base: 5, lg: 2, xl: 1 }}
+          textAlign="center"
+        >
+          <Text fontSize="3xl">Name</Text>
+          <Image src="https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></Image>
+          <Text fontSize="3xl">Age:</Text>
+          <Text fontSize="3xl">Sex:</Text>
+          <Flex justifyContent="center">
+            <Button m="3px">
+              <h2>Read More</h2>
+            </Button>
+            <Button m="3px">
+              <Icon as={FaHeartCirclePlus} fontSize="40px"></Icon>
+            </Button>
+          </Flex>
+        </GridItem>
+        <GridItem
+          border="solid 3px"
+          borderRadius="10px"
+          rowSpan="1"
+          colSpan={{ base: 5, lg: 2, xl: 1 }}
+          textAlign="center"
+        >
+          <Text fontSize="3xl">Name</Text>
+          <Image src="https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></Image>
+          <Text fontSize="3xl">Age:</Text>
+          <Text fontSize="3xl">Sex:</Text>
+          <Flex justifyContent="center">
+            <Button m="3px">
+              <h2>Read More</h2>
+            </Button>
+            <Button m="3px">
+              <Icon as={FaHeartCirclePlus} fontSize="40px"></Icon>
+            </Button>
+          </Flex>
+        </GridItem>
+        <GridItem
+          border="solid 3px"
+          borderRadius="10px"
+          rowSpan="1"
+          colSpan={{ base: 5, lg: 2, xl: 1 }}
+          textAlign="center"
+        >
+          <Text fontSize="3xl">Name</Text>
+          <Image src="https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></Image>
+          <Text fontSize="3xl">Age:</Text>
+          <Text fontSize="3xl">Sex:</Text>
+          <Flex justifyContent="center">
+            <Button m="3px">
+              <h2>Read More</h2>
+            </Button>
+            <Button m="3px">
+              <Icon as={FaHeartCirclePlus} fontSize="40px"></Icon>
+            </Button>
+          </Flex>
+        </GridItem>
+        
       </Grid>
     </>
   );
