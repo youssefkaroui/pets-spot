@@ -60,7 +60,7 @@ const Navbar = () => {
           ) : (
             ""
           )}
-          <Link className="nav-link" color="primary.main" href="/create">
+          <Link to="/create" className="nav-link" color="primary.main" href="/create">
             Create Listing
           </Link>
 
