@@ -18,6 +18,7 @@ import Profile from "./pages/dashboard/profile";
 import YourPets from "./pages/dashboard/your-pets";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import CreateListing from "./pages/CreateListing";
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -52,6 +53,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/listings" element={<Listings />} />
               <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/create" element={<CreateListing />} />
               {/* <Route 
               path='/donate' 
               element={<Donate />} 
