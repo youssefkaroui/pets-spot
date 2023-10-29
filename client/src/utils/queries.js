@@ -70,6 +70,7 @@ export const SEARCH_PETS = gql`
       }
     }
   }
+  
 `;
 
 // Query to fetch a pet's profile
