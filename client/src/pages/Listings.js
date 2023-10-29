@@ -11,14 +11,16 @@ import {
   SliderMark,
   Tooltip,
 } from "@chakra-ui/react";
+import { useQuery } from "@apollo/client";
+import sampleData from "./sampleData.json"; //NEEDS TO BE COMMENTED OUT LATER
 
 const Listings = () => {
   //THIS GRABS THE SLIDER'S VALUE FROM THE AGE SELECTOR
   const [sliderValue, setSliderValue] = useState(1);
   const [showTooltip, setShowTooltip] = React.useState(false);
   //THIS GRABS THE DATA FROM OTHER FIELDS
-  const [dogCheck, setDogCheck] = React.useState(false);
-  console.log(setDogCheck);
+  const [searchOptions, setSearchOptions] = useState(sampleData);
+  console.log(searchOptions);
 
   return (
     <>
@@ -33,10 +35,17 @@ const Listings = () => {
           <h1 className="searchHeader">Search for a Pet</h1>
 
           <Stack spacing={4} direction="row">
-            <Checkbox value="dog" onChange={(e) => setDogCheck(true)}>
+            <Checkbox
+              value="dog"
+              onChange={(e) =>
+                //NOT SURE ABOUT THIS LINE OF CODE. IT'S SUPPOSED TO
+                //SEND DATA BACK REGARDING THE STATE OF THE DOG CHECK BOX
+                setSearchOptions({ ...searchOptions, dog: e.target.checked })
+              }
+            >
               Dog
             </Checkbox>
-            <Checkbox value="cat" onChange={(e) => setCatCheck(true)}>
+            <Checkbox value="cat" onChange={(e) => setSearchOptions(true)}>
               Cat
             </Checkbox>
           </Stack>
