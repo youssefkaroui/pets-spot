@@ -17,7 +17,7 @@ import {
   Icon,
   Flex,
 } from "@chakra-ui/react";
-
+import sampleData from "../pages/sampleData.json";
 import { FaHeartCirclePlus } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa6";
 
@@ -30,7 +30,6 @@ const Listings = () => {
   console.log(searchOptions);
   const [dogCheck, setDogCheck] = useState(false);
   const [catCheck, setCatCheck] = useState(false);
-  // console.log(setDogCheck);
 
   const PetCard = () => {
     const [interest, setInterest] = useState(false);
@@ -97,7 +96,10 @@ const Listings = () => {
               onChange={(e) =>
                 //NOT SURE ABOUT THIS LINE OF CODE. IT'S SUPPOSED TO
                 //SEND DATA BACK REGARDING THE STATE OF THE DOG CHECK BOX
-                setSearchOptions({ ...searchOptions, dog: e.target.checked })
+                setSearchOptions({
+                  ...searchOptions,
+                  species: e.target.checked,
+                })
               }
             >
               Dog

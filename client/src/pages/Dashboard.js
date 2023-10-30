@@ -13,25 +13,33 @@ import {
   TabPanel,
   Link,
 } from "@chakra-ui/react";
-import {useQuery} from "@apollo/client"
-import {GET_USER_DATA} from "../utils/queries"
-import sampleData from "./sampleData.json" //NEEDS TO BE COMMENTED OUT LATER
+import { useQuery } from "@apollo/client";
+import { GET_USER_DATA } from "../utils/queries";
+import sampleData from "./sampleData.json"; //NEEDS TO BE COMMENTED OUT LATER
 
 export default function DashboardContainer() {
   const [currentPage, setCurrentPage] = useState("Profile");
   // create a useQuery for ME? then pass it down to YourPets/Favorites/Profile
-  const {loading, data} = useQuery(GET_USER_DATA)
-  const userData = data?.me || sampleData.me
-  const {username, email, address, petsForAdoption, petsFollowed} = userData;
+  const { loading, data } = useQuery(GET_USER_DATA);
+  const userData = data?.me || sampleData.me;
+  const { username, email, address, petsForAdoption, petsFollowed } = userData;
+  // console.log(`petsForAdoption: ${petsForAdoption}`);
   // This method is checking to see what the value of `currentPage` is. Depending on the value of currentPage, we return the corresponding component to render.
   const renderPage = () => {
     if (currentPage === "YourPets") {
-      return <YourPets petsForAdoption={petsForAdoption}/>;
+      return <YourPets petsForAdoption={petsForAdoption} />;
     }
     if (currentPage === "Favorites") {
-      return <Favorites petsFollowed={petsFollowed}/>;
+      return <Favorites petsFollowed={petsFollowed} />;
     }
-    return <Profile name={username} email={email} address={address}/>;
+    return (
+      <Profile
+        name={username}
+        email={email}
+        address={address}
+        petsForAdoption={petsForAdoption}
+      />
+    );
   };
 
   const handlePageChange = (page) => setCurrentPage(page);
@@ -43,7 +51,7 @@ export default function DashboardContainer() {
           <TabList>
             <Tab
               className="dash-link"
-              currentPage="Profile"
+              fontSize="25px"
               onClick={() => handlePageChange("Profile")}
             >
               Profile
@@ -51,7 +59,7 @@ export default function DashboardContainer() {
 
             <Tab
               className="dash-link"
-              currentPage="YourPets"
+              fontSize="25px"
               onClick={() => handlePageChange("YourPets")}
             >
               Listed Pets
@@ -59,7 +67,7 @@ export default function DashboardContainer() {
 
             <Tab
               className="dash-link"
-              currentPage="Favorites"
+              fontSize="25px"
               onClick={() => handlePageChange("Favorites")}
             >
               Favorite Pets

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
+import { Grid, GridItem } from "@chakra-ui/react";
 
 import { ADD_PET } from "../../../utils/mutations";
 //IDK IF I NEED QUERY_ME
@@ -9,100 +10,45 @@ import { ADD_PET } from "../../../utils/mutations";
 // import Auth from "../../../utils/auth";
 
 const PetList = ({ petsForAdoption }) => {
-  // const { loading, data } = userQuery(QUERY_MY_PETS);
-  console.log(petsForAdoption[0])
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // const [addPet, { error }] = useMutation(ADD_PET, {
-  //   update(cache, { data: { addPet } }) {
-  //     try {
-  //       const { pets } = cache.readQuery({ query: QUERY_MY_PETS });
-
-  //       cache.writeQuery({
-  //         query: QUERY_MY_PETS,
-  //         data: { pets: [addPet, ...pets] },
-  //       });
-  //     } catch (e) {
-  //       console.error(e);
-  //     }
-
-  // update me object's cache with new pet
-  // const { me } = cache.readQuery({ query: QUERY_ME });
-  // cache.writeQuery({
-  //   query: QUERY_ME,
-  //   data: { me: { ...me, pets: [...me.pets, addPet] } },
-  // });
-  //   },
-  // });
-
-  // const handleFormSubmit = async (event) => {
-  //   event.preventDefault();
-
-  //   try {
-  //     const { data } = await addPet({
-  //       variables: {
-  //         thoughtText,
-  //         thoughtAuthor: Auth.getProfile().data.username,
-  //       },
-  //     });
-
-  //     setThoughtText("");
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-
-  // const handleChange = (event) => {
-  //   const { name, value } = event.target;
-
-  //   if (name === "thoughtText" && value.length <= 280) {
-  //     setThoughtText(value);
-  //     setCharacterCount(value.length);
-  //   }
-  // };
-
   //UNCOMMENT THIS WHEN THE BACKEND WORKS MORE
   // const pets = data.pets;
-  const tempPetData = [
-    { _id: 1, name: "test", description: "this is the first pet", info: "123" },
-    {
-      _id: 2,
-      name: "test2",
-      description: "this is the second pet",
-      info: "456",
-    },
-  ];
-  const pets = tempPetData;
-
+  console.log(`petsForAdoption length: ${petsForAdoption.length}`);
   return (
     <div>
-      <h3>Your Pet Adoption Listings</h3>
-      {/* YOU NEED TO SWAP THE NEXT TWO LINES WHEN BACKEND IS DONE */}
-      {/* {Auth.loggedIn() ? ( */}
-      {/* {pets ? (
-        <>
-          {pets.length === 0 ? (
-            <p>You have no pets listed for adoption.</p>
-          ) : (
-            <ul>
-              {pets.map((pet) => (
-                <li key={pet[0]._id}>
-                  <h4>{pet[0].name}</h4>
-                  <p>{pet[0].description}</p>
-                  <p>{pet[0].info}</p>
-                </li>
-              ))}
-            </ul>
-          )}
-        </>
+      {petsForAdoption.length === 0 ? (
+        <Grid
+          templateColumns="repeat(1, 1fr)"
+          gap={6}
+          mb="3"
+          className="profileBlock"
+          textAlign="center"
+          fontWeight="medium"
+          margin="3"
+        >
+          <GridItem w="100%" h="500" bg="gray.300">
+            <p>No pets up for adoption.</p>
+          </GridItem>
+        </Grid>
       ) : (
-        <p>
-          You need to be logged in to see your pet listing. Please{" "}
-          <Link to="/login">login</Link> or <Link to="/signup">signup.</Link>
-        </p>
-      )} */}
+        <Grid
+          templateColumns="repeat(${petsForAdoption.length}, 1fr)"
+          gap={6}
+          mb="3"
+          className="profileBlock"
+          textAlign="center"
+          fontWeight="medium"
+          margin="3"
+        >
+          {petsForAdoption.map((pet) => (
+            <GridItem w="100%" h="500" bg="gray.300">
+              Pet Info
+              <div key={pet._id} className="card mb-3">
+                <h2>{pet.name}</h2>
+              </div>
+            </GridItem>
+          ))}
+        </Grid>
+      )}
     </div>
   );
 };
