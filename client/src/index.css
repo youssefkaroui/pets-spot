@@ -46,6 +46,10 @@ h6 {
 .dash-link:hover {
   color: #334443;
 }
+.tabs-container {
+  display: flex;
+  justify-content: end;
+}
 
 /* SEARCH SIDEBAR */
 .searchHeader {
@@ -66,4 +70,12 @@ h6 {
 .childFriendly,
 .spayed {
   margin: 30px 0px 30px 0px;
+}
+
+/* FONT STYLING FOR DASHBOARD */
+.profileBlock {
+  font-size: 25px;
+}
+.dash-info {
+  font-size: 20px;
 }

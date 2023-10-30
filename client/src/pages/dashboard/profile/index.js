@@ -23,22 +23,6 @@ import { Navigate, useParams } from "react-router-dom";
 // import Auth from "../utils/auth";
 
 const Profile = ({ name, email, address, petsForAdoption }) => {
-  console.log(name);
-  console.log(email);
-  console.log(address);
-  // const { username: userParam } = useParams();
-  // const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
-  //   variables: { username: userParam },
-  // });
-  // const user = data?.me || data?.user || {};
-  // navigate to personal profile page if username is yours
-  // if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-  //   return <Navigate to="/me" />;
-  // }
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
-  // if (!user?.username) {
   return (
     <Grid
       templateColumns="repeat(3, 1fr)"
@@ -51,15 +35,15 @@ const Profile = ({ name, email, address, petsForAdoption }) => {
     >
       <GridItem w="100%" h="500" bg="gray.300">
         User Info
-        <p>{name}</p>
-        <p>{email}</p>
+        <p className="dash-info">{name}</p>
+        <p className="dash-info">{email}</p>
       </GridItem>
       <GridItem w="100%" h="500" bg="gray.300">
         Address
-        <p>
+        <p className="dash-info">
           {address.line_one}, {address.line_two}
         </p>
-        <p>
+        <p className="dash-info">
           {address.city}, {address.state} {address.zipcode}
         </p>
       </GridItem>
@@ -67,7 +51,7 @@ const Profile = ({ name, email, address, petsForAdoption }) => {
         Pet Info
         {petsForAdoption.map((pet) => (
           <div key={pet._id} className="card mb-3">
-            <h2>{pet.name}</h2>
+            <p className="dash-info">{pet.name}</p>
           </div>
         ))}
       </GridItem>
