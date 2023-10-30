@@ -93,9 +93,9 @@ const Listings = () => {
             <Checkbox value="dog" onChange={(e) => setDogCheck(true)}>
               Dog
             </Checkbox>
-            <Checkbox value="cat" onChange={(e) => setCatCheck(true)}>
-              Cat
-            </Checkbox>
+            {/* //<Checkbox value="cat" onChange={(e) => setCatCheck(true)}>
+            //  Cat
+            //</Checkbox> */}
           </Stack>
           <Stack className="childFriendly" spacing={4} direction="row">
             <Checkbox value="childFriendly">Child Friendly</Checkbox>
