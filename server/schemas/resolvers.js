@@ -1,8 +1,7 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Pet } = require("../models");
+const { User, Pet, Image } = require("../models");
 const { signToken } = require("../utils/auth");
 const { connect } = require("mongoose");
-
 
 
 // NICETOHAVE: Messages field to User

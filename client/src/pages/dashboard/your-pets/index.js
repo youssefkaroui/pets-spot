@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useMutation } from "@apollo/client";
 import { Grid, GridItem } from "@chakra-ui/react";
 
 const PetList = ({ petsForAdoption }) => {
+
+
+
+  //UNCOMMENT THIS WHEN THE BACKEND WORKS MORE
+  // const pets = data.pets;
+  console.log(`petsForAdoption length: ${petsForAdoption.length}`);
+ 
+
+  
   return (
     <div>
       {petsForAdoption.length === 0 ? (
