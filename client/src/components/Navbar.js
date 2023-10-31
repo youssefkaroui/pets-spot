@@ -8,17 +8,12 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Button,
-  FormControl,
-  FormLabel,
-  Input,
   useDisclosure,
 } from "@chakra-ui/react";
 
 
 import Auth from "../utils/auth";
 
-//import SignUpTest from "./ModalTest";
 import SignUpForm from './Signup';
 import LoginForm from './Login';
 
@@ -65,7 +60,7 @@ const Navbar = () => {
           </Link>
 
           {Auth.loggedIn() ? (
-            <Link className="nav-link" color="primary.main">
+            <Link onClick={Auth.logout} className="nav-link" color="primary.main">
               Logout
             </Link>
           ) : (
@@ -103,7 +98,6 @@ const Navbar = () => {
           </Modal>
             </>
           )}
-        
         </Flex>
       </Flex>
     </>
