@@ -18,18 +18,15 @@ import LoginForm from "./Login";
 
 // import Auth from '../utils/auth';
 import Logo from "./navbarComponents/Logo";
+import { LayoutGroupContext } from "framer-motion";
 
 const Navbar = () => {
-  const {
-    isOpen: isOpenLogin,
-    onOpen: onOpenLogin,
-    onClose: onCloseLogin,
-  } = useDisclosure();
-  const {
-    isOpen: isOpenSignup,
-    onOpen: onOpenSignup,
-    onClose: onCloseSignup,
-  } = useDisclosure();
+  const { isOpen: isOpenLogin, onOpen: onOpenLogin, onClose: onCloseLogin } = useDisclosure();
+  const { isOpen: isOpenSignup, onOpen: onOpenSignup, onClose: onCloseSignup } = useDisclosure();
+  
+  const handleLogout = () => {
+    Auth.logout();
+  }
 
   return (
     <>
@@ -73,11 +70,8 @@ const Navbar = () => {
           )}
 
           {Auth.loggedIn() ? (
-            <Link
-              onClick={Auth.logout}
-              className="nav-link"
-              color="primary.main"
-            >
+            <Link className="nav-link" color="primary.main" onClick={handleLogout}>
+
               Logout
             </Link>
           ) : (
