@@ -1,12 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-//THIS IS BORROWED FROM MERN 21 ACTIVITY 26
-
-const tempPetData = [
-  { _id: 1, name: "test" },
-  { _id: 2, name: "test2" },
-];
-const pets = tempPetData;
+import { Grid, GridItem } from "@chakra-ui/react";
 
 const SavedPetList = ({ petsFollowed }) => {
   if (!petsFollowed.length) {
@@ -15,18 +9,42 @@ const SavedPetList = ({ petsFollowed }) => {
 
   return (
     <div>
-      {petsFollowed.map((pet) => (
-        <div key={pet._id} className="card mb-3">
-          <h4 className="card-header bg-primary text-light p-2 m-0">
-            <Link className="text-light" to={`/profiles/${pet._id}`}>
-              {pet.name}
-              <div className="card-body bg-light p-2">
-                <p>{pet.description}</p>
+      {petsFollowed.length === 0 ? (
+        <Grid
+          templateColumns="repeat(1, 1fr)"
+          gap={6}
+          mb="3"
+          className="profileBlock"
+          textAlign="center"
+          fontWeight="medium"
+          margin="3"
+        >
+          <GridItem w="100%" h="500" bg="gray.300">
+            <p>No pets favorited.</p>
+          </GridItem>
+        </Grid>
+      ) : (
+        <Grid
+          templateColumns="repeat(3, 1fr)"
+          gap={6}
+          mb="3"
+          className="profileBlock"
+          textAlign="center"
+          fontWeight="medium"
+          margin="3"
+        >
+          {petsFollowed.map((pet) => (
+            <GridItem key={pet._id} w="100%" h="500" bg="gray.300">
+              Pet Info
+              <div className="card mb-3">
+                <h2>Name: {pet.name}</h2>
+                <h2>Species: {pet.species}</h2>
+                <h2>Breed: {pet.breed}</h2>
               </div>
-            </Link>
-          </h4>
-        </div>
-      ))}
+            </GridItem>
+          ))}
+        </Grid>
+      )}
     </div>
   );
 };
