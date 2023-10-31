@@ -56,48 +56,7 @@ const Profile = ({ name, email, address, petsForAdoption }) => {
         ))}
       </GridItem>
     </Grid>
-
-    // <Grid
-    //   templateAreas={`"header header"
-    //               "nav main"
-    //              `}
-    //   gridTemplateRows={"50px 1fr 30px"}
-    //   gridTemplateColumns={"150px 1fr"}
-    //   h="200px"
-    //   gap="1"
-    //   color="blackAlpha.700"
-    //   fontWeight="bold"
-    // >
-    //   <GridItem pl="2" bg="orange.300" area={"header"}>
-    //     Header
-    //   </GridItem>
-    //   <GridItem pl="2" bg="pink.300" area={"nav"}>
-    //     Nav
-    //   </GridItem>
-    //   <GridItem pl="2" bg="green.300" area={"main"}>
-    //     Main
-    //   </GridItem>
-    // </Grid>
   );
-
-  // }
-  // return (
-  //   <div>
-  //     <div className="flex-row justify-center mb-3">
-  //       <h2 className="col-12 col-md-10 bg-dark text-light p-3 mb-5">
-  //         Viewing {userParam ? `${user.username}'s` : "your"} profile.
-  //       </h2>
-  //       {/* {!userParam && (
-  //         <div
-  //           className="col-12 col-md-10 mb-3 p-3"
-  //           style={{ border: '1px dotted #1a1a1a' }}
-  //         >
-  //           <ThoughtForm />
-  //         </div>
-  //       )} */}
-  //     </div>
-  //   </div>
-  // );
 };
 
 export default Profile;

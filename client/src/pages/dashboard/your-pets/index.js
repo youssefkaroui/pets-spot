@@ -3,16 +3,7 @@ import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { Grid, GridItem } from "@chakra-ui/react";
 
-import { ADD_PET } from "../../../utils/mutations";
-//IDK IF I NEED QUERY_ME
-// import { QUERY_MY_PETS, QUERY_ME } from "../../../utils/queries";
-//UNCOMMENT THIS OUT UNTIL BACKEND IS WORKING
-// import Auth from "../../../utils/auth";
-
 const PetList = ({ petsForAdoption }) => {
-  //UNCOMMENT THIS WHEN THE BACKEND WORKS MORE
-  // const pets = data.pets;
-  console.log(`petsForAdoption length: ${petsForAdoption.length}`);
   return (
     <div>
       {petsForAdoption.length === 0 ? (
@@ -31,7 +22,7 @@ const PetList = ({ petsForAdoption }) => {
         </Grid>
       ) : (
         <Grid
-          templateColumns="repeat(${petsForAdoption.length}, 1fr)"
+          templateColumns="repeat(3, 1fr)"
           gap={6}
           mb="3"
           className="profileBlock"
@@ -40,9 +31,9 @@ const PetList = ({ petsForAdoption }) => {
           margin="3"
         >
           {petsForAdoption.map((pet) => (
-            <GridItem w="100%" h="500" bg="gray.300">
+            <GridItem key={pet._id} w="100%" h="500" bg="gray.300">
               Pet Info
-              <div key={pet._id} className="card mb-3">
+              <div className="card mb-3">
                 <h2>{pet.name}</h2>
               </div>
             </GridItem>
