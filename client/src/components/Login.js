@@ -65,9 +65,6 @@ function LoginForm  () {
 
   return (
     <>
-    
-
-      
             <FormControl>
               <FormLabel>Email address</FormLabel>
               <Input ref={initialRef} placeholder='Email address' />
