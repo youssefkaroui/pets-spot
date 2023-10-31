@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useQuery, useLazyQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import {
   Grid,
   GridItem,
@@ -21,6 +21,7 @@ import { FaHeartCirclePlus } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa6";
 
 import { SEARCH_PETS } from "../utils/queries";
+import { FOLLOW_PET } from "../utils/mutations";
 
 import sampleData from "./sampleData.json";
 
@@ -39,6 +40,8 @@ const Listings = () => {
     const { data } = useQuery(SEARCH_PETS);
     const petsData = data?.search || sampleData.search || [];
 
+    const [followPet] = useMutation(FOLLOW_PET);
+
     const [interests, setInterests] = useState(
       Array(petsData.length).fill(false)
     );
@@ -55,6 +58,11 @@ const Listings = () => {
       ) : (
         <FaHeartCirclePlus fontSize="40px" />
       );
+    };
+
+    const handleButtonClick = (index) => {
+      handleInterestChange(index); // Call the first function
+      followPet({ variables: { petId: petsData[index].id } }); // Call the second function
     };
 
     return (
@@ -80,7 +88,7 @@ const Listings = () => {
                 </Button>
                 <Button
                   key={pet.id}
-                  onClick={() => handleInterestChange(index)}
+                  onClick={() => handleButtonClick(index)}
                   m="3px"
                 >
                   {showInterest(index)}
