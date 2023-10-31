@@ -72,20 +72,19 @@ console.log(userFormData);
             </FormControl>
             <FormControl mt={4}>
             <FormLabel>Email address</FormLabel>
-            <Input ref={initialRef} placeholder='Email address' />
-          </FormControl>
+            <Input type = "email" ref={initialRef} placeholder='Email address' />
+            </FormControl>
 
-          <FormControl mt={4}>
+           <FormControl mt={4}>
             <FormLabel> Password</FormLabel>
-            <Input placeholder='Password' />
-          </FormControl>
+            <Input type= "password" placeholder='Password' />
+           </FormControl>
           
-          <ModalFooter>
+           <ModalFooter>
             <Button colorScheme='green' mr={3}>
               Submit
             </Button>
-          </ModalFooter>
-        
+           </ModalFooter>
     </>
   );
 };

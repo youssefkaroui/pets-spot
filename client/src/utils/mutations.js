@@ -7,51 +7,6 @@ export const LOGIN_USER = gql`
       user {
         _id
         username
-        email
-        address {
-          line_one
-          line_two
-          city
-          state
-          zipcode
-        }
-        petsForAdoption {
-          _id
-          name
-          species
-          age
-          sex
-          image
-          breed
-          temperament
-          childFriendly
-          description
-          dateCreated
-          active
-          medicalHistory {
-            allergies
-            vaccinated
-            spayedNeutered
-          }
-        }
-        petsFollowed {
-          name
-          species
-          age
-          sex
-          image
-          description
-          owner {
-            username
-            email
-            address {
-              city: String
-              state: String
-            }
-          }
-        }
-        petCount: Int
-        followingCount: Int
       }
     }
   }
@@ -65,7 +20,6 @@ export const ADD_USER = gql`
       user {
         _id
         username
-        email
       }
     }
   }

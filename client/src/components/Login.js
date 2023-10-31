@@ -39,7 +39,6 @@ function LoginForm  () {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-    // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -67,7 +66,7 @@ function LoginForm  () {
     <>
             <FormControl>
               <FormLabel>Email address</FormLabel>
-              <Input ref={initialRef} placeholder='Email address' />
+              <Input type = "email" ref={initialRef} placeholder='Email address' />
             </FormControl>
 
             <FormControl mt={4}>
