@@ -48,7 +48,7 @@ console.log(userFormData);
 
     try {
       const { data } = await addUser({
-        variables: { ...userFormData },
+        variables: { userInput: { ...userFormData } },
         
       });
       console.log(data);
@@ -71,9 +71,10 @@ console.log(userFormData);
               <Input 
               ref={initialRef} 
               placeholder='User name' 
+              name='username'
               onChange={handleInputChange}
-             value={userFormData.username}
-             required
+              value={userFormData.username}
+              required
               />
             </FormControl>
             <FormControl mt={4}>
@@ -82,6 +83,7 @@ console.log(userFormData);
             type = "email" 
             ref={initialRef} 
             placeholder='Email address' 
+            name='email'
             onChange={handleInputChange}
             value={userFormData.email}
             required
@@ -93,6 +95,7 @@ console.log(userFormData);
             <Input 
             type= "password" 
             placeholder='Password' 
+            name="password"
             onChange={handleInputChange}
             value={userFormData.password}
             required
@@ -100,7 +103,7 @@ console.log(userFormData);
            </FormControl>
           
            <ModalFooter>
-            <Button colorScheme='green' mr={3}>
+            <Button onClick={handleFormSubmit} colorScheme='green' mr={3}>
               Submit
             </Button>
            </ModalFooter>

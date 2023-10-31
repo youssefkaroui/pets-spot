@@ -38,7 +38,7 @@ function LoginForm  () {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    console.log("Login Submission...")
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -49,6 +49,7 @@ function LoginForm  () {
       const { data } = await login({
         variables: { ...userFormData },
       });
+
       Auth.login(data.login.token);
     } catch (err) {
       console.error(err);
@@ -64,7 +65,7 @@ function LoginForm  () {
 
   return (
     <>
-            <FormControl>
+            <FormControl >
               <FormLabel>Email address</FormLabel>
               <Input 
               type = "email" 
@@ -90,7 +91,7 @@ function LoginForm  () {
             </FormControl>
             
             <ModalFooter>
-            <Button colorScheme='green' mr={3}>
+            <Button type="submit" onClick={handleFormSubmit} colorScheme='green' mr={3}>
               Submit
             </Button>
             
