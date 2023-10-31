@@ -27,8 +27,8 @@ export const ADD_USER = gql`
 
 // Mutation for adding a new pet
 export const ADD_PET = gql`
-  mutation addPet($petData: petData) {
-    addPet(petData: $petData) {
+  mutation addPet($pet: petData) {
+    addPet(pet: $pet) {
       _id
       name
       species
