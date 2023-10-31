@@ -32,38 +32,33 @@ const Listings = () => {
   const [dogCheck, setDogCheck] = useState(false);
   const [catCheck, setCatCheck] = useState(false);
 
+  // PetCard Component
   const PetCard = () => {
-    const [interest, setInterest] = useState(false);
-    const showInterest = () => {
-      if (interest === false) {
-        return <FaHeartCirclePlus fontSize="40px" />;
-      } else {
-        return <FaHeart fontSize="40px" color="red" />;
-      }
+    const { data } = useQuery(SEARCH_PETS);
+    const petsData = data?.search || sampleData.search || [];
+
+    const [interests, setInterests] = useState(
+      Array(petsData.length).fill(false)
+    );
+
+    const handleInterestChange = (index) => {
+      const newInterests = [...interests];
+      newInterests[index] = !newInterests[index];
+      setInterests(newInterests);
     };
 
-    const handleInterestChange = () => {
-      setInterest(!interest);
+    const showInterest = (index) => {
+      return interests[index] ? (
+        <FaHeart fontSize="40px" color="red" />
+      ) : (
+        <FaHeartCirclePlus fontSize="40px" />
+      );
     };
-
-    const { loading, error, data } = useQuery(SEARCH_PETS);
-
-    if (loading) {
-      console.log("This is loading");
-    }
-
-    if (error) {
-      console.error(error);
-    }
-
-    const petsData = data?.search || sampleData.search;
-
-    console.log(petsData);
 
     return (
       <>
         {petsData &&
-          petsData.map((pet) => (
+          petsData.map((pet, index) => (
             <GridItem
               border="solid 3px"
               borderRadius="10px"
@@ -81,8 +76,12 @@ const Listings = () => {
                 <Button m="3px">
                   <h2>Read More</h2>
                 </Button>
-                <Button onClick={handleInterestChange} m="3px">
-                  {showInterest()}
+                <Button
+                  key={pet.id}
+                  onClick={() => handleInterestChange(index)}
+                  m="3px"
+                >
+                  {showInterest(index)}
                 </Button>
               </Flex>
             </GridItem>
@@ -91,15 +90,10 @@ const Listings = () => {
     );
   };
 
-  return (
-    <>
-      <Grid
-        templateColumns="repeat(5, 1fr)"
-        columnGap={6}
-        rowGap={6}
-        templateRows="repeat(3,1fr)"
-        m="10px"
-      >
+  // SearchBar Component
+  const SearchBar = () => {
+    return (
+      <>
         <GridItem
           as="aside"
           colSpan={{ base: 5, lg: 2, xl: 1 }}
@@ -164,8 +158,20 @@ const Listings = () => {
             Search!
           </Button>
         </GridItem>
+      </>
+    );
+  };
 
-        {/* Below are all the pet Card examples:  */}
+  return (
+    <>
+      <Grid
+        templateColumns="repeat(5, 1fr)"
+        columnGap={6}
+        rowGap={6}
+        templateRows="repeat(3,1fr)"
+        m="10px"
+      >
+        <SearchBar />
         <PetCard />
       </Grid>
     </>
