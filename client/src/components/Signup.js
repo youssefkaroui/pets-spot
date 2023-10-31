@@ -68,16 +68,35 @@ console.log(userFormData);
     <>
             <FormControl>
               <FormLabel>User name</FormLabel>
-              <Input ref={initialRef} placeholder='User name' />
+              <Input 
+              ref={initialRef} 
+              placeholder='User name' 
+              onChange={handleInputChange}
+             value={userFormData.username}
+             required
+              />
             </FormControl>
             <FormControl mt={4}>
             <FormLabel>Email address</FormLabel>
-            <Input type = "email" ref={initialRef} placeholder='Email address' />
+            <Input 
+            type = "email" 
+            ref={initialRef} 
+            placeholder='Email address' 
+            onChange={handleInputChange}
+            value={userFormData.email}
+            required
+            />
             </FormControl>
 
            <FormControl mt={4}>
             <FormLabel> Password</FormLabel>
-            <Input type= "password" placeholder='Password' />
+            <Input 
+            type= "password" 
+            placeholder='Password' 
+            onChange={handleInputChange}
+            value={userFormData.password}
+            required
+            />
            </FormControl>
           
            <ModalFooter>

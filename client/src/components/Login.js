@@ -66,12 +66,27 @@ function LoginForm  () {
     <>
             <FormControl>
               <FormLabel>Email address</FormLabel>
-              <Input type = "email" ref={initialRef} placeholder='Email address' />
+              <Input 
+              type = "email" 
+              ref={initialRef} 
+              placeholder='Email address' 
+              name='email'
+              onChange={handleInputChange}
+             value={userFormData.email}
+             required
+              />
             </FormControl>
 
             <FormControl mt={4}>
               <FormLabel> Password</FormLabel>
-              <Input type="password" placeholder='Password' />
+              <Input 
+              type="password" 
+              placeholder='Password' 
+              name='password'
+             onChange={handleInputChange}
+             value={userFormData.password}
+             required
+              />
             </FormControl>
             
             <ModalFooter>
