@@ -55,6 +55,50 @@
           "vaccinated": true,
           "spayedNeutered": true
         }
+      },
+      {
+        "_id": "653ac9c9d0a9d0b2ca2db9edfdf",
+        "name": "Test1",
+        "species": "Cat",
+        "age": 6,
+        "sex": "M",
+        "image": "./assets/dogs/husky",
+        "breed": "Husky",
+        "temperament": "Anxious",
+        "childFriendly": true,
+        "description": "Its a cat",
+        "dateCreated": "10/26/2023",
+        "active": true,
+        "medicalHistory": {
+          "allergies": [
+            "peanuts",
+            "chocolate"
+          ],
+          "vaccinated": true,
+          "spayedNeutered": true
+        }
+      },
+      {
+        "_id": "653ac9c9d0a9d0b2ca2db9edfdfdfddf",
+        "name": "Test2",
+        "species": "Cat",
+        "age": 6,
+        "sex": "M",
+        "image": "./assets/dogs/husky",
+        "breed": "Husky",
+        "temperament": "Anxious",
+        "childFriendly": true,
+        "description": "Its a cat",
+        "dateCreated": "10/26/2023",
+        "active": true,
+        "medicalHistory": {
+          "allergies": [
+            "peanuts",
+            "chocolate"
+          ],
+          "vaccinated": true,
+          "spayedNeutered": true
+        }
       }
     ],
     "petsFollowed": [{
