@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useQuery, useLazyQuery } from "@apollo/client";
 import {
   Grid,
   GridItem,
@@ -13,13 +14,15 @@ import {
   Text,
   Image,
   Button,
-  IconButton,
-  Icon,
   Flex,
 } from "@chakra-ui/react";
 
 import { FaHeartCirclePlus } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa6";
+
+import { SEARCH_PETS } from "../utils/queries";
+
+import sampleData from "./sampleData.json";
 
 const Listings = () => {
   //THIS GRABS THE SLIDER'S VALUE FROM THE AGE SELECTOR
@@ -28,57 +31,69 @@ const Listings = () => {
   //THIS GRABS THE DATA FROM OTHER FIELDS
   const [dogCheck, setDogCheck] = useState(false);
   const [catCheck, setCatCheck] = useState(false);
-  // console.log(setDogCheck);
 
+  // PetCard Component
   const PetCard = () => {
-    const [interest, setInterest] = useState(false);
-    const showInterest = () => {
-      if (interest === false) {
-        return <FaHeartCirclePlus fontSize="40px" />;
-      } else {
-        return <FaHeart fontSize="40px" color="red" />;
-      }
+    const { data } = useQuery(SEARCH_PETS);
+    const petsData = data?.search || sampleData.search || [];
+
+    const [interests, setInterests] = useState(
+      Array(petsData.length).fill(false)
+    );
+
+    const handleInterestChange = (index) => {
+      const newInterests = [...interests];
+      newInterests[index] = !newInterests[index];
+      setInterests(newInterests);
     };
 
-    const handleInterestChange = () => {
-      setInterest(!interest);
+    const showInterest = (index) => {
+      return interests[index] ? (
+        <FaHeart fontSize="40px" color="red" />
+      ) : (
+        <FaHeartCirclePlus fontSize="40px" />
+      );
     };
 
     return (
       <>
-        <GridItem
-          border="solid 3px"
-          borderRadius="10px"
-          rowSpan="1"
-          colSpan={{ base: 5, lg: 2, xl: 1 }}
-          textAlign="center"
-        >
-          <Text fontSize="3xl">Name</Text>
-          <Image src="https://images.pexels.com/photos/2607544/pexels-photo-2607544.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></Image>
-          <Text fontSize="3xl">Age:</Text>
-          <Text fontSize="3xl">Sex:</Text>
-          <Flex justifyContent="center">
-            <Button m="3px">
-              <h2>Read More</h2>
-            </Button>
-            <Button onClick={handleInterestChange} m="3px">
-              {showInterest()}
-            </Button>
-          </Flex>
-        </GridItem>
+        {petsData &&
+          petsData.map((pet, index) => (
+            <GridItem
+              border="solid 3px"
+              borderRadius="10px"
+              rowSpan="1"
+              colSpan={{ base: 5, lg: 2, xl: 1 }}
+              textAlign="center"
+            >
+              <Text fontSize="3xl">Name: {pet.name}</Text>
+              <Flex justifyContent="center">
+                <Image src="../assets/cats/catthedog.jpg"></Image>
+              </Flex>
+              <Text fontSize="3xl">Age: {pet.age}</Text>
+              <Text fontSize="3xl">Sex: {pet.sex}</Text>
+              <Flex justifyContent="center">
+                <Button m="3px">
+                  <h2>Read More</h2>
+                </Button>
+                <Button
+                  key={pet.id}
+                  onClick={() => handleInterestChange(index)}
+                  m="3px"
+                >
+                  {showInterest(index)}
+                </Button>
+              </Flex>
+            </GridItem>
+          ))}
       </>
     );
   };
 
-  return (
-    <>
-      <Grid
-        templateColumns="repeat(5, 1fr)"
-        columnGap={6}
-        rowGap={6}
-        templateRows="repeat(3,1fr)"
-        m="10px"
-      >
+  // SearchBar Component
+  const SearchBar = () => {
+    return (
+      <>
         <GridItem
           as="aside"
           colSpan={{ base: 5, lg: 2, xl: 1 }}
@@ -88,7 +103,6 @@ const Listings = () => {
           p={{ base: "20px", lg: "30px" }}
         >
           <h1 className="searchHeader">Search for a Pet</h1>
-
           <Stack spacing={4} direction="row">
             <Checkbox value="dog" onChange={(e) => setDogCheck(true)}>
               Dog
@@ -140,14 +154,25 @@ const Listings = () => {
               <SliderThumb />
             </Tooltip>
           </Slider>
+          <Button mt="30px" pr="30px" pl="30px">
+            Search!
+          </Button>
         </GridItem>
+      </>
+    );
+  };
 
-        {/* Below are all the pet Card examples:  */}
+  return (
+    <>
+      <Grid
+        templateColumns="repeat(5, 1fr)"
+        columnGap={6}
+        rowGap={6}
+        templateRows="repeat(3,1fr)"
+        m="10px"
+      >
+        <SearchBar />
         <PetCard />
-        <PetCard />
-        <PetCard />
-        <PetCard />
-        
       </Grid>
     </>
   );
