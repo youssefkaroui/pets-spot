@@ -139,3 +139,14 @@ export const REMOVE_PET = gql`
     }
   }
 `;
+
+// Mutation for following a Pet
+export const FOLLOW_PET = gql`
+  mutation followPet($petId: ID!) {
+    followPet(petId: $petId){
+      _id
+      username
+      email
+    }
+  }
+`;

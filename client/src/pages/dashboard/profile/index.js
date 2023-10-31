@@ -41,10 +41,10 @@ const Profile = ({ name, email, address, petsForAdoption }) => {
       <GridItem w="100%" h="500" bg="gray.300">
         Address
         <p className="dash-info">
-          {address.line_one}, {address.line_two}
+          {address?.line_one}, {address?.line_two}
         </p>
         <p className="dash-info">
-          {address.city}, {address.state} {address.zipcode}
+          {address?.city}, {address?.state} {address?.zipcode}
         </p>
       </GridItem>
       <GridItem w="100%" h="500" bg="gray.300">
