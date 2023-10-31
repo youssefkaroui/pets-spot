@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useQuery, useLazyQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 import {
   Grid,
   GridItem,
@@ -21,6 +21,7 @@ import { FaHeartCirclePlus } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa6";
 
 import { SEARCH_PETS } from "../utils/queries";
+import { FOLLOW_PET } from "../utils/mutations";
 
 import sampleData from "./sampleData.json";
 
@@ -29,41 +30,45 @@ const Listings = () => {
   const [sliderValue, setSliderValue] = useState(1);
   const [showTooltip, setShowTooltip] = useState(false);
   //THIS GRABS THE DATA FROM OTHER FIELDS
+  const [searchForm, setSearchForm] = useState({});
   const [dogCheck, setDogCheck] = useState(false);
   const [catCheck, setCatCheck] = useState(false);
+  // console.log(setDogCheck);
 
+  // PetCard Component
   const PetCard = () => {
-    const [interest, setInterest] = useState(false);
-    const showInterest = () => {
-      if (interest === false) {
-        return <FaHeartCirclePlus fontSize="40px" />;
-      } else {
-        return <FaHeart fontSize="40px" color="red" />;
-      }
+    const { data } = useQuery(SEARCH_PETS);
+    const petsData = data?.search || sampleData.search || [];
+
+    const [followPet] = useMutation(FOLLOW_PET);
+
+    const [interests, setInterests] = useState(
+      Array(petsData.length).fill(false)
+    );
+
+    const handleInterestChange = (index) => {
+      const newInterests = [...interests];
+      newInterests[index] = !newInterests[index];
+      setInterests(newInterests);
     };
 
-    const handleInterestChange = () => {
-      setInterest(!interest);
+    const showInterest = (index) => {
+      return interests[index] ? (
+        <FaHeart fontSize="40px" color="red" />
+      ) : (
+        <FaHeartCirclePlus fontSize="40px" />
+      );
     };
 
-    const { loading, error, data } = useQuery(SEARCH_PETS);
-
-    if (loading) {
-      console.log("This is loading");
-    }
-
-    if (error) {
-      console.error(error);
-    }
-
-    const petsData = data?.search || sampleData.search;
-
-    console.log(petsData);
+    const handleButtonClick = (index) => {
+      handleInterestChange(index); // Call the first function
+      followPet({ variables: { petId: petsData[index].id } }); // Call the second function
+    };
 
     return (
       <>
         {petsData &&
-          petsData.map((pet) => (
+          petsData.map((pet, index) => (
             <GridItem
               border="solid 3px"
               borderRadius="10px"
@@ -81,8 +86,12 @@ const Listings = () => {
                 <Button m="3px">
                   <h2>Read More</h2>
                 </Button>
-                <Button onClick={handleInterestChange} m="3px">
-                  {showInterest()}
+                <Button
+                  key={pet.id}
+                  onClick={() => handleButtonClick(index)}
+                  m="3px"
+                >
+                  {showInterest(index)}
                 </Button>
               </Flex>
             </GridItem>
@@ -91,15 +100,10 @@ const Listings = () => {
     );
   };
 
-  return (
-    <>
-      <Grid
-        templateColumns="repeat(5, 1fr)"
-        columnGap={6}
-        rowGap={6}
-        templateRows="repeat(3,1fr)"
-        m="10px"
-      >
+  // SearchBar Component
+  const SearchBar = () => {
+    return (
+      <>
         <GridItem
           as="aside"
           colSpan={{ base: 5, lg: 2, xl: 1 }}
@@ -113,9 +117,10 @@ const Listings = () => {
             <Checkbox value="dog" onChange={(e) => setDogCheck(true)}>
               Dog
             </Checkbox>
-            {/* //<Checkbox value="cat" onChange={(e) => setCatCheck(true)}>
-            //  Cat
-            //</Checkbox> */}
+
+            <Checkbox value="cat" onChange={(e) => setCatCheck(true)}>
+              Cat
+            </Checkbox>
           </Stack>
           <Stack className="childFriendly" spacing={4} direction="row">
             <Checkbox value="childFriendly">Child Friendly</Checkbox>
@@ -164,8 +169,20 @@ const Listings = () => {
             Search!
           </Button>
         </GridItem>
+      </>
+    );
+  };
 
-        {/* Below are all the pet Card examples:  */}
+  return (
+    <>
+      <Grid
+        templateColumns="repeat(5, 1fr)"
+        columnGap={6}
+        rowGap={6}
+        templateRows="repeat(3,1fr)"
+        m="10px"
+      >
+        <SearchBar />
         <PetCard />
       </Grid>
     </>

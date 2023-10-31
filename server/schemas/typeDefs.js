@@ -87,16 +87,15 @@ const typeDefs = gql`
     age: Int
     sex: String
     childFriendly: Boolean
+    spayedNeutered: Boolean
   }
-
-  
 
   type Query {
     me: User
     search(searchInput: searchForm): [Pet]
     petProfile(petId: ID!): Pet
   }
-  
+
   type Mutation {
     login(email: String!, password: String!): Auth
     addUser(userInput: userForm): Auth
