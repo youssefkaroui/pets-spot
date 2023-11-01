@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery, useMutation, useLazyQuery } from "@apollo/client";
 import {
   Grid,
@@ -47,10 +47,17 @@ const Listings = () => {
   const [searchForm, setSearchForm] = useState({});
   const [dogCheck, setDogCheck] = useState(false);
   const [catCheck, setCatCheck] = useState(false);
-
+  const [formData, setFormData] = useState({})
+  useEffect(() => {
+    getSearch({
+      variables: {
+        searchInput: {...formData}
+      }
+    })
+  }, [])
 
   // console.log(setDogCheck);
-  const [formData, setFormData] = useState({})
+  
   console.log(formData)
 
   const handleSubmit = (e) => {
@@ -96,7 +103,7 @@ const Listings = () => {
 
     const handleButtonClick = (index) => {
       handleInterestChange(index);
-      followPet({ variables: { petId: petsData[index]._id } });
+      followPet({ variables: { petId: petData[index]._id } });
     };
 
     const PetDetailModal = ({ isOpen, onClose, pet }) => {
