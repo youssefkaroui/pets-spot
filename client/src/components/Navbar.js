@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link, Flex, Text } from "@chakra-ui/react";
+import { useNavigate } from "react-router-dom";
 import {
   Modal,
   ModalOverlay,
@@ -21,6 +22,7 @@ import Logo from "./navbarComponents/Logo";
 import { LayoutGroupContext } from "framer-motion";
 
 const Navbar = () => {
+  const navigate = useNavigate()
   const { isOpen: isOpenLogin, onOpen: onOpenLogin, onClose: onCloseLogin } = useDisclosure();
   const { isOpen: isOpenSignup, onOpen: onOpenSignup, onClose: onCloseSignup } = useDisclosure();
   
@@ -45,22 +47,30 @@ const Navbar = () => {
           </Text>
         </Flex>
         <Flex flexDirection={{ base: "column", lg: "row" }} textAlign="center">
-          <Link className="nav-link" color="primary.main" href="/">
+          <Link className="nav-link" color="primary.main" onClick={() => {
+            navigate('/')
+          }}>
             Home
           </Link>
-          <Link className="nav-link" color="primary.main" href="/listings">
+          <Link className="nav-link" color="primary.main" onClick={() => {
+            navigate('/listings')
+          }}>
             Listings
           </Link>
           {Auth.loggedIn() ? (
             <>
-              <Link className="nav-link" color="primary.main" href="/dashboard">
+              <Link className="nav-link" color="primary.main" onClick={() => {
+            navigate('/dashboard')
+          }}>
                 Dashboard
               </Link>
               <Link
                 to="/create"
                 className="nav-link"
                 color="primary.main"
-                href="/create"
+                onClick={() => {
+                  navigate('/create')
+                }}
               >
                 Create Listing
               </Link>
