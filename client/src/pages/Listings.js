@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery, useMutation, useLazyQuery } from "@apollo/client";
 import {
   Grid,
@@ -47,6 +47,9 @@ const Listings = () => {
   const [searchForm, setSearchForm] = useState({});
   const [dogCheck, setDogCheck] = useState(false);
   const [catCheck, setCatCheck] = useState(false);
+
+  
+  // console.log(setDogCheck);
   const [formData, setFormData] = useState({})
   useEffect(() => {
     getSearch({
@@ -55,10 +58,7 @@ const Listings = () => {
       }
     })
   }, [])
-
-  // console.log(setDogCheck);
-  
-  console.log(formData)
+  // console.log(formData)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -170,7 +170,6 @@ const Listings = () => {
         </Modal>
       );
     };
-    console.log(petData)
     return (
       <>
         {petData &&
@@ -230,14 +229,14 @@ const Listings = () => {
         >
           <h1 className="searchHeader">Search for a Pet</h1>
           <CheckboxGroup name="species" onChange={(e) => {
-            console.log(e[0])
+            const speciesData = e.toString()
               formData.species === e ? setFormData((current) => {
                 const {species, ...rest} = current;
                 return rest
               }):  
               setFormData({
                   ...formData,
-                  species: e
+                  species: speciesData
                 })
               }}>
             <Stack spacing={4} direction="row" >
@@ -254,6 +253,8 @@ const Listings = () => {
             <Checkbox
               value="childFriendly"
               onChange={(e) => {
+                // console.log(e.target.value)
+
                 setFormData({
                   ...formData,
                   childFriendly: e.target.checked,
@@ -276,40 +277,9 @@ const Listings = () => {
               })
             }}>
             <Checkbox value="Male">Male</Checkbox>
-            <Checkbox value="female">Female</Checkbox>
+            <Checkbox value="Female">Female</Checkbox>
           </Stack>
-          <p className="searchOptionHeader">Age</p>
-          <Slider
-            id="slider"
-            defaultValue={1}
-            min={1}
-            max={15}
-            colorScheme="teal"
-            onChange={(v) => setSliderValue(v)}
-            onMouseEnter={() => setShowTooltip(true)}
-            onMouseLeave={() => setShowTooltip(false)}
-          >
-            <SliderMark value={5} mt="1.5" ml="-1" fontSize="sm">
-              5
-            </SliderMark>
-            <SliderMark value={10} mt="1.5" ml="-2" fontSize="sm">
-              10
-            </SliderMark>
-
-            <SliderTrack>
-              <SliderFilledTrack />
-            </SliderTrack>
-            <Tooltip
-              hasArrow
-              bg="teal.500"
-              color="white"
-              placement="top"
-              isOpen={showTooltip}
-              label={`${sliderValue}`}
-            >
-              <SliderThumb />
-            </Tooltip>
-          </Slider>
+          
           <Button mt="30px" pr="30px" pl="30px" onClick={handleSubmit}>
             Search!
           </Button>

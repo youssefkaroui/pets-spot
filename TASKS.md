@@ -12,3 +12,6 @@ Ed - Dashboard - and it's tabs / buttons, Home
 Angelin - Utils, App.js / index.js
 Lucas - Components (LoginForm, NavBar, SignupForm)
 
+
+
+
