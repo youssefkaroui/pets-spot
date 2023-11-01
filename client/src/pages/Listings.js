@@ -15,46 +15,52 @@ import {
   Image,
   Button,
   Flex,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
 } from "@chakra-ui/react";
 
 import { FaHeartCirclePlus } from "react-icons/fa6";
 import { FaHeart } from "react-icons/fa6";
 
-import { SEARCH_PETS } from "../utils/queries";
+import { SEARCH_PETS, GET_PET_PROFILE } from "../utils/queries";
 import { FOLLOW_PET } from "../utils/mutations";
-
-import sampleData from "./sampleData.json";
 
 const Listings = () => {
   //THIS GRABS THE SLIDER'S VALUE FROM THE AGE SELECTOR
   const [sliderValue, setSliderValue] = useState(1);
   const [showTooltip, setShowTooltip] = useState(false);
-  const [getSearch, {data}] = useLazyQuery(SEARCH_PETS)
+  const [getSearch, { data }] = useLazyQuery(SEARCH_PETS);
   //THIS GRABS THE DATA FROM OTHER FIELDS
   const [searchForm, setSearchForm] = useState({});
   const [dogCheck, setDogCheck] = useState(false);
   const [catCheck, setCatCheck] = useState(false);
-  // console.log(setDogCheck);
   const [formData, setFormData] = useState({
     species: "",
     childFriendly: false,
     sex: "",
-  })
+  });
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     getSearch({
       variables: {
-        searchInput: {...formData}
-      }
-    })
-  }
-  console.log(data)
-  console.log(formData)
+        searchInput: { ...formData },
+      },
+    });
+  };
+
   // PetCard Component
   const PetCard = () => {
-    
-    const { data } = useQuery(SEARCH_PETS);
-    const petsData = data?.search || sampleData.search || [];
+    const { data: searchPetsData } = useQuery(SEARCH_PETS);
+    const petsData = searchPetsData?.search || [];
+
+    const [selectedPet, setSelectedPet] = useState(null);
+
     const [followPet] = useMutation(FOLLOW_PET);
 
     const [interests, setInterests] = useState(
@@ -75,9 +81,49 @@ const Listings = () => {
       );
     };
 
+    const { isOpen, onOpen, onClose } = useDisclosure();
+
+    const handlePetProfile = (pet) => {
+      setSelectedPet(pet);
+      onOpen(); // Open the modal
+    };
+
     const handleButtonClick = (index) => {
-      handleInterestChange(index); // Call the first function
-      followPet({ variables: { petId: petsData[index].id } }); // Call the second function
+      handleInterestChange(index);
+      followPet({ variables: { petId: petsData[index]._id } });
+    };
+
+    const PetDetailModal = ({ isOpen, onClose, pet }) => {
+      if (!pet) {
+        return null;
+      }
+
+      return (
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Name: {pet.name}</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <Flex flexDirection="column" alignItems="center" justifyContent="center">
+                <Image src={pet.image} alt={pet.name} />
+                <Text>Species: {pet.species}</Text>
+                <Text>Breed: {pet.breed}</Text>
+                <Text>Age: {pet.age}</Text>
+                <Text>Sex: {pet.sex}</Text>
+                <Text>Temperament: {pet.temperament}</Text>
+                <Text>Child Friendly: {pet.childFriendly}</Text>
+                <Text>Description: {pet.description}</Text>
+              </Flex>
+            </ModalBody>
+            <ModalFooter>
+              <Button colorScheme="blue" onClick={onClose}>
+                Close
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
+      );
     };
 
     return (
@@ -90,19 +136,23 @@ const Listings = () => {
               rowSpan="1"
               colSpan={{ base: 5, lg: 2, xl: 1 }}
               textAlign="center"
+              key={pet._id}
             >
               <Text fontSize="3xl">Name: {pet.name}</Text>
               <Flex justifyContent="center">
-                <Image src="../assets/cats/catthedog.jpg"></Image>
+                <Image src={pet.image}></Image>
               </Flex>
               <Text fontSize="3xl">Age: {pet.age}</Text>
               <Text fontSize="3xl">Sex: {pet.sex}</Text>
+              <Text fontSize="3xl">Species {pet.species}</Text>
+
               <Flex justifyContent="center">
-                <Button m="3px">
-                  <h2>Read More</h2>
+                <Button m="3px" onClick={() => handlePetProfile(pet)}>
+                  Read More
                 </Button>
+
                 <Button
-                  key={pet.id}
+                  key={pet._id}
                   onClick={() => handleButtonClick(index)}
                   m="3px"
                 >
@@ -111,15 +161,13 @@ const Listings = () => {
               </Flex>
             </GridItem>
           ))}
+        <PetDetailModal isOpen={isOpen} onClose={onClose} pet={selectedPet} />
       </>
     );
   };
 
   // SearchBar Component
   const SearchBar = () => {
-   
-   
-    
     return (
       <>
         <GridItem
@@ -132,42 +180,57 @@ const Listings = () => {
         >
           <h1 className="searchHeader">Search for a Pet</h1>
           <Stack spacing={4} direction="row">
-            <Checkbox value="dog" onChange={(e) => {
-              setFormData({
-                ...formData,
-                species: "Dog"
-              })
-            }}>
+            <Checkbox
+              value="dog"
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  species: "Dog",
+                });
+              }}
+            >
               Dog
             </Checkbox>
 
-            <Checkbox value="cat" onChange={(e) => {
-              setFormData({
-                ...formData,
-                species: "Cat"
-              })
-            }}>
+            <Checkbox
+              value="cat"
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  species: "Cat",
+                });
+              }}
+            >
               Cat
             </Checkbox>
           </Stack>
           <Stack className="childFriendly" spacing={4} direction="row">
-            <Checkbox value="childFriendly" onChange={(e) => {
-              setFormData({
-                ...formData,
-                childFriendly: e.target.checked
-              })
-            }}>Child Friendly</Checkbox>
+            <Checkbox
+              value="childFriendly"
+              onChange={(e) => {
+                setFormData({
+                  ...formData,
+                  childFriendly: e.target.checked,
+                });
+              }}
+            >
+              Child Friendly
+            </Checkbox>
           </Stack>
           <Stack className="spayed" spacing={4} direction="row">
             <Checkbox value="spayNeuter">Spayed/Neutered</Checkbox>
           </Stack>
           <p className="searchOptionHeader">Sex</p>
-          <Stack spacing={4} direction="row" onChange={(e) => {
+          <Stack
+            spacing={4}
+            direction="row"
+            onChange={(e) => {
               setFormData({
                 ...formData,
-                sex: "M"
-              })
-            }}>
+                sex: "M",
+              });
+            }}
+          >
             <Checkbox value="male">Male</Checkbox>
             <Checkbox value="female">Female</Checkbox>
           </Stack>

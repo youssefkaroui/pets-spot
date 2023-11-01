@@ -14,6 +14,7 @@ const resolvers = {
         return User.findOne({ _id: context.user._id }).populate(
           "petsForAdoption"
         ).populate('petsFollowed');
+
       }
       throw new AuthenticationError("You are not logged in");
     },
