@@ -103,41 +103,28 @@ export const UPDATE_PET = gql`
 `;
 
 // Mutation for deleting a pet
-export const REMOVE_PET = gql`
-  mutation removePet($petId: ID) {
-    deletePet(petId: $petId) {
+export const DELETE_PET = gql`
+  mutation DeletePet($petId: ID!) {
+  deletePet(petId: $petId) {
+    _id
+    username
+    email
+    petsForAdoption {
       _id
-      username
-      email
-      address {
-        line_one
-        line_two
-        city
-        state
-        zipcode
-      }
-      petsForAdoption {
-        _id
-        name
-        species
-        age
-        sex
-        image
-        breed
-        temperament
-        childFriendly
-        description
-        dateCreated
-        active
-        medicalHistory {
-          allergies
-          vaccinated
-          spayedNeutered
-        }
-      }
-      petCount
+      name
+      species
+      age
+      sex
+      image
+      breed
+      temperament
+      childFriendly
+      description
+      dateCreated
+      active
     }
   }
+}
 `;
 
 // Mutation for following a Pet

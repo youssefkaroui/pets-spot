@@ -27,6 +27,7 @@ import {
   AlertIcon,
   AlertTitle,
   AlertDescription,
+  CheckboxGroup,
 } from "@chakra-ui/react";
 
 import { FaHeartCirclePlus } from "react-icons/fa6";
@@ -46,31 +47,30 @@ const Listings = () => {
   const [searchForm, setSearchForm] = useState({});
   const [dogCheck, setDogCheck] = useState(false);
   const [catCheck, setCatCheck] = useState(false);
-  const [formData, setFormData] = useState({
-    species: "",
-    childFriendly: false,
-    sex: "",
-  });
+
+
+  // console.log(setDogCheck);
+  const [formData, setFormData] = useState({})
+  console.log(formData)
+
   const handleSubmit = (e) => {
     e.preventDefault();
     getSearch({
       variables: {
-        searchInput: { ...formData },
-      },
-    });
+        searchInput: {...formData}
+      }
+    })
   };
-
+  const petsData = data
   // PetCard Component
-  const PetCard = () => {
-    const { data: searchPetsData } = useQuery(SEARCH_PETS);
-    const petsData = searchPetsData?.search || [];
-
+  const PetCard = ({petsData}) => {
     const [selectedPet, setSelectedPet] = useState(null);
-
+    const { data } = useQuery(SEARCH_PETS);
+    const petData = petsData?.search || [];
     const [followPet] = useMutation(FOLLOW_PET);
 
     const [interests, setInterests] = useState(
-      Array(petsData.length).fill(false)
+      Array(petData.length).fill(false)
     );
 
     const handleInterestChange = (index) => {
@@ -102,9 +102,6 @@ const Listings = () => {
     const PetDetailModal = ({ isOpen, onClose, pet }) => {
       if (!pet) {
         return null;
-      }
-
-      if (!Auth.loggedIn) {
       }
 
       return (
@@ -166,11 +163,11 @@ const Listings = () => {
         </Modal>
       );
     };
-
+    console.log(petData)
     return (
       <>
-        {petsData &&
-          petsData.map((pet, index) => (
+        {petData &&
+          petData.map((pet, index) => (
             <GridItem
               border="solid 3px"
               borderRadius="10px"
@@ -225,31 +222,27 @@ const Listings = () => {
           p={{ base: "20px", lg: "30px" }}
         >
           <h1 className="searchHeader">Search for a Pet</h1>
-          <Stack spacing={4} direction="row">
-            <Checkbox
-              value="dog"
-              onChange={(e) => {
-                setFormData({
+          <CheckboxGroup name="species" onChange={(e) => {
+            console.log(e[0])
+              formData.species === e ? setFormData((current) => {
+                const {species, ...rest} = current;
+                return rest
+              }):  
+              setFormData({
                   ...formData,
-                  species: "Dog",
-                });
-              }}
-            >
-              Dog
-            </Checkbox>
-
-            <Checkbox
-              value="cat"
-              onChange={(e) => {
-                setFormData({
-                  ...formData,
-                  species: "Cat",
-                });
-              }}
-            >
-              Cat
-            </Checkbox>
-          </Stack>
+                  species: e
+                })
+              }}>
+            <Stack spacing={4} direction="row" >
+              <Checkbox value="Dog">
+                Dog
+              </Checkbox>
+  
+              <Checkbox value="Cat">
+                Cat
+              </Checkbox>
+            </Stack>
+          </CheckboxGroup>
           <Stack className="childFriendly" spacing={4} direction="row">
             <Checkbox
               value="childFriendly"
@@ -263,21 +256,19 @@ const Listings = () => {
               Child Friendly
             </Checkbox>
           </Stack>
-          <Stack className="spayed" spacing={4} direction="row">
-            <Checkbox value="spayNeuter">Spayed/Neutered</Checkbox>
-          </Stack>
+        
           <p className="searchOptionHeader">Sex</p>
-          <Stack
-            spacing={4}
-            direction="row"
-            onChange={(e) => {
-              setFormData({
+          <Stack spacing={4} direction="row" onChange={(e) => {
+            formData.sex === e.target.value ? setFormData((current) => {
+              const {sex, ...rest} = current;
+              return rest
+            }):  
+            setFormData({
                 ...formData,
-                sex: "M",
-              });
-            }}
-          >
-            <Checkbox value="male">Male</Checkbox>
+                sex: e.target.value
+              })
+            }}>
+            <Checkbox value="Male">Male</Checkbox>
             <Checkbox value="female">Female</Checkbox>
           </Stack>
           <p className="searchOptionHeader">Age</p>
@@ -330,7 +321,7 @@ const Listings = () => {
         m="10px"
       >
         <SearchBar formData={formData} />
-        <PetCard />
+        <PetCard petsData={petsData}/>
       </Grid>
     </>
   );
