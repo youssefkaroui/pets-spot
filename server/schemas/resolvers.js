@@ -3,9 +3,6 @@ const { User, Pet, Image } = require("../models");
 const { signToken } = require("../utils/auth");
 const { connect } = require("mongoose");
 
-
-// NICETOHAVE: Messages field to User
-
 const resolvers = {
   Query: {
     //Query all data on a logged in user

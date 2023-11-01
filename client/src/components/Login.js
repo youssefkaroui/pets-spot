@@ -2,13 +2,7 @@
 import React, { useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import {
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
   ModalFooter,
-  ModalBody,
-  ModalCloseButton,
   Button,
   FormControl,
   FormLabel,
@@ -16,7 +10,6 @@ import {
   useDisclosure,
   useToast
 } from "@chakra-ui/react";
-import { DefaultContext } from "react-icons/lib";
 
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
@@ -44,10 +37,6 @@ function LoginForm  () {
     event.preventDefault();
     console.log("Login Submission...")
     const form = event.currentTarget;
-    // if (form.checkValidity() === false) {
-    //   event.preventDefault();
-    //   event.stopPropagation();
-    // }
 
     try {
       const { data } = await login({
@@ -75,12 +64,6 @@ function LoginForm  () {
         isClosable: true,
       });
     }
-
-    // setUserFormData({
-    //   username: "",
-    //   email: "",
-    //   password: "",
-    // });
   };
 
   return (

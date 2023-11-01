@@ -66,12 +66,13 @@ const CreateListing = () => {
     });
     toast({
       title: "Pet listing created.",
-      description: "We've created your pet listing for you. Check out your pet in the 'Listed Pets' section of your dashboard",
+      description:
+        "We've created your pet listing for you. Check out your pet in the 'Listed Pets' section of your dashboard",
       status: "success",
       duration: 5000,
       isClosable: true,
     });
-    navigate("/dashboard")
+    navigate("/dashboard");
   };
   const handleFileUpload = async (e) => {
     //convert file to base64 then add to state
@@ -82,7 +83,7 @@ const CreateListing = () => {
       image: base64,
     });
   };
-  //console.log(formData);
+
   return (
     <Box p={8}>
       <form onSubmit={handlePetCreate}>
@@ -121,13 +122,6 @@ const CreateListing = () => {
 
         <FormControl mb={4}>
           <FormLabel>Sex</FormLabel>
-          {/* <Input
-            type="text"
-            name="sex"
-            placeholder="Male/Female"
-            value={formData.sex}
-            onChange={handleChange}
-          /> */}
           <RadioGroup
             name="sex"
             onChange={(value) => {
@@ -139,14 +133,13 @@ const CreateListing = () => {
               console.log("Selected Value:", value);
               let petSex;
               //if value of radio-button is yes, set isFriendly to true
-              
+
               setFormData({
                 ...formData,
                 sex: value,
               });
             }}
           >
-            
             <HStack spacing="24px">
               <Radio value="Male">Male</Radio>
               <Radio value="Female">Female</Radio>
@@ -166,15 +159,6 @@ const CreateListing = () => {
             onChange={handleFileUpload}
           />
         </FormControl>
-
-        {/* To show the image in the form */}
-        {/* {imageFile && (
-  <img
-    src={URL.createObjectURL(imageFile)}
-    alt="Selected"
-    style={{ maxWidth: "100px" }}
-  />
-)} */}
 
         <FormControl mb={4}>
           <FormLabel>Breed</FormLabel>
@@ -220,7 +204,6 @@ const CreateListing = () => {
               });
             }}
           >
-            
             <HStack spacing="24px">
               <Radio value="yes">Yes</Radio>
               <Radio value="no">No</Radio>
@@ -261,34 +244,6 @@ const CreateListing = () => {
             }}
           />
         </FormControl>
-
-        {/* <FormControl mt={4}mb={4}>
-            <FormLabel>Fully Vaccinated</FormLabel>
-            <RadioGroup
-              name="vaccinated"
-              value={formData.medicalHistory.vaccinated}
-              onChange={handleChange}
-            >
-              <HStack spacing="24px">
-                <Radio value="yes">Yes</Radio>
-                <Radio value="no">No</Radio>
-              </HStack>
-            </RadioGroup>
-          </FormControl>
-
-          <FormControl mb={4}>
-            <FormLabel>Spayed Neutered</FormLabel>
-            <RadioGroup
-              name="spayedNeutered"
-              value={formData.medicalHistory.spayedNeutered}
-              onChange={handleChange}
-            >
-              <HStack spacing="24px">
-                <Radio value="yes">Yes</Radio>
-                <Radio value="no">No</Radio>
-              </HStack>
-            </RadioGroup>
-          </FormControl> */}
 
         <FormControl mt={4} mb={4}>
           <FormLabel htmlFor="vaccinated">Fully Vaccinated</FormLabel>
@@ -355,19 +310,7 @@ const CreateListing = () => {
             </HStack>
           </RadioGroup>
         </FormControl>
-        <Button
-          type="submit"
-          colorScheme="blue"
-          // onClick={() => {
-          //   toast({
-          //     title: "Pet listing created.",
-          //     description: "We've created your pet listing for you. Check out your pet in the 'Listed Pets' section of your dashboard",
-          //     status: "success",
-          //     duration: 5000,
-          //     isClosable: true,
-          //   });
-          // }}
-        >
+        <Button type="submit" colorScheme="blue">
           Create
         </Button>
       </form>

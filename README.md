@@ -1,9 +1,10 @@
-# Pets-spot
-![alt text](./client/public/images/README.screenshot.png)
-
-It's your Pets-spot! It's a platform where you can look for a cute pet for adoption or maybe list your pet form adoption.
- 
+# Pet Spot
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Description
+Pet Spot is a platform where users can easily search for pets to adopt and/or list pets for adoption. Sign up and search for pets [here](https://shielded-beach-29867-5efce834725b.herokuapp.com/)!
+
+![alt text](./client/public/images/README.screenshot.png)
 
   ## Table of Contents
 
@@ -18,66 +19,43 @@ It's your Pets-spot! It's a platform where you can look for a cute pet for adopt
   - [Questions](#questions)
   - [View-Our-Projects](#projects)
 
-
-  <a name="installation"></a>
   ## Installation
 
   Please clone the repository on your local machine and run `npm install` then `npm run develop`.
-
-  <a name= "usage"></a>
 
   ## Usage
 
   Run the application on your local machine then run it on your default browser. 
   
-  <a name="contribution"></a>
-
   ## Contribution 
     
-        * Angelin Rajan 
+        * Angelin Rajan
         * Lucas Young
         * Youssef Karoui
         * Edward Chang
         * Ziad Alfadl
   
-
-  <a name= "deployment"></a>
-
   ## Deployment
 
   [Here's a link to heroku deployment](https://shielded-beach-29867-5efce834725b.herokuapp.com/)
 
-  <a name= "display"></a>
-
   ## Display
 
-
- This is how the signup page looks like
+ ### Signup Page
    
    ![alt text](./client/public/images/signup.screenshot.png)
 
 
- This is how the dashboard shows after you are logged in 
-
+ ### Dashboard - Access your information, and owned & followed pet information
   
-  ![alt text](./client/public/images/dashboard.screenshot.png)
+  ![alt text](./client/public/images/dashboard2.screenshot.png)
 
- This is how the create a listing for your pet looks like 
+ ### Create Listing - Add a pet for adoption
 
-  
   ![alt text](./client/public/images/create.listing.screenshot.png)
 
- 
-
-
-  
-
-
-
-
-
-
-  <a name= "technologies"></a>
+### Listings - Search for pets, follow them and read their information
+  ![alt text](./client/public/images/listing2.screenshot.png)
 
   ## Technologies
 
@@ -94,15 +72,9 @@ It's your Pets-spot! It's a platform where you can look for a cute pet for adopt
         * Bcrypt
         * Jsonwebtoken
 
-
-
-  <a name="testing"></a>
-
   ## Testing 
 
   Run the application on your local machine and navigate through all pages of the app to checkout the functionality  on the application.
-
-  <a name="license"></a>
 
   ## License 
 
@@ -110,15 +82,11 @@ It's your Pets-spot! It's a platform where you can look for a cute pet for adopt
 
   If you would like to know more about licensing information here's a link for more details: https://opensource.org/license/mit/
 
-  <a name="questions"></a>
-
   ## Questions 
 
   [Email us if you have any questions](mailto:youssefkaroui6@gmail.com;uwlryroung@gmail.com;ziad.t.alfadl@gmail.com;boyofpopsicle@gmail.com;angelinrajan20@gmail.com)
 
-<a name="projects"></a>
-
-## View-Our-Projects
+## View Our Projects on Github
  
  * [Ziad's](https://github.com/Z-Alfadl?tab=repositories)
  * [Youssef's](https://github.com/youssefkaroui?tab=repositories)

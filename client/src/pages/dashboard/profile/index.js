@@ -1,21 +1,5 @@
 import React from "react";
-import YourPets from "../your-pets";
-import Favorites from "../favorites";
-import {
-  Badge,
-  Box,
-  Text,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-  Link,
-  Grid,
-  GridItem,
-} from "@chakra-ui/react";
-import sampleData from "../../sampleData.json";
-import { Navigate, useParams } from "react-router-dom";
+import { Grid, GridItem } from "@chakra-ui/react";
 
 const Profile = ({ name, email, address, petsForAdoption }) => {
   return (
@@ -42,7 +26,6 @@ const Profile = ({ name, email, address, petsForAdoption }) => {
           {address?.city}, {address?.state} {address?.zipcode}
         </p>
       </GridItem>
-      
     </Grid>
   );
 };
