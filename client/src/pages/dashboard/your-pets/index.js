@@ -61,7 +61,7 @@ const PetList = ({ petsForAdoption }) => {
             <Text fontSize="3xl">Sex: {pet.sex}</Text>
             <Flex justifyContent="center">
               <Button m="3px" colorScheme='red' onClick={() => handleDelete(pet._id)}>
-                <h2>Kill me</h2>
+                <h2>Delete {pet.name}'s listing</h2>
               </Button>
             </Flex>
           </GridItem>
