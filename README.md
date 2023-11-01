@@ -15,6 +15,7 @@ It's your Pets-spot! It's a platform where you can look for a cute pet for adopt
   - [Testing](#testing)
   - [License](#license)
   - [Questions](#questions)
+  - [View-Our-Projects](#projects)
 
 
   <a name="installation"></a>
@@ -36,7 +37,7 @@ It's your Pets-spot! It's a platform where you can look for a cute pet for adopt
         * Lucas Young
         * Youssef Karoui
         * Edward Chang
-        * Ziad ALfadl
+        * Ziad Alfadl
   
 
   <a name= "deployment"></a>
@@ -82,8 +83,12 @@ It's your Pets-spot! It's a platform where you can look for a cute pet for adopt
 
   ## Questions 
 
-  [Email me if you have any questions](mailto:youssefkaroui6@gmail.com)
+  [Email us if you have any questions](mailto:youssefkaroui6@gmail.com; ziad.t.alfadl@gmail.com; boyofpopsicle@gmail.com; uwlryoung@gmail.com; angelinrajan20@gmail.com)
 
-[Review my other projects on GitHub.](https://www.github.com/youssefkaroui)
+<a name="projects"></a>
+
+## View-Our-Projects
+
+
 
   
