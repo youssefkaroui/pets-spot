@@ -82,7 +82,7 @@ const CreateListing = () => {
       image: base64,
     });
   };
-
+  //console.log(formData);
   return (
     <Box p={8}>
       <form onSubmit={handlePetCreate}>
@@ -179,6 +179,7 @@ const CreateListing = () => {
           <RadioGroup
             name="childFriendly"
             // value={formData.childFriendly}
+
             onChange={(value) => {
               const label = document.querySelector(
                 "label[for='childFriendly']"
@@ -195,6 +196,7 @@ const CreateListing = () => {
               });
             }}
           >
+            
             <HStack spacing="24px">
               <Radio value="yes">Yes</Radio>
               <Radio value="no">No</Radio>
