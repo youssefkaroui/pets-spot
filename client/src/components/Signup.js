@@ -12,6 +12,11 @@ import {
   FormLabel,
   Input,
   useDisclosure,
+  useToast,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
 } from "@chakra-ui/react";
 import { ADD_USER } from  "../utils/mutations";
 import { useMutation } from "@apollo/client";
@@ -19,6 +24,7 @@ import Auth from "../utils/auth";
 
 
 const SignUpForm = () => {
+  const toast = useToast()
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   const initialRef = React.useRef()
@@ -53,6 +59,7 @@ console.log(userFormData);
       });
       console.log(data);
       Auth.login(data.addUser.token);
+      ;
     } catch (err) {
       console.error(err);
       setShowAlert(true);
@@ -66,7 +73,15 @@ console.log(userFormData);
   };
   return (
     <>
-            <FormControl>
+            <FormControl onClose={() => {
+              toast({
+                title: "Welcome Back!",
+                description: "Check out our Listings page for all the animals looking for a new home!",
+                status: "success",
+                duration: 5000,
+                isClosable: true,
+              });
+            }}>
               <FormLabel>User name</FormLabel>
               <Input 
               ref={initialRef} 
