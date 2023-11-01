@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useQuery, useMutation } from "@apollo/client";
+import { useQuery, useMutation, useLazyQuery } from "@apollo/client";
 import {
   Grid,
   GridItem,
@@ -29,17 +29,32 @@ const Listings = () => {
   //THIS GRABS THE SLIDER'S VALUE FROM THE AGE SELECTOR
   const [sliderValue, setSliderValue] = useState(1);
   const [showTooltip, setShowTooltip] = useState(false);
+  const [getSearch, {data}] = useLazyQuery(SEARCH_PETS)
   //THIS GRABS THE DATA FROM OTHER FIELDS
   const [searchForm, setSearchForm] = useState({});
   const [dogCheck, setDogCheck] = useState(false);
   const [catCheck, setCatCheck] = useState(false);
   // console.log(setDogCheck);
-
+  const [formData, setFormData] = useState({
+    species: "",
+    childFriendly: false,
+    sex: "",
+  })
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    getSearch({
+      variables: {
+        searchInput: {...formData}
+      }
+    })
+  }
+  console.log(data)
+  console.log(formData)
   // PetCard Component
   const PetCard = () => {
+    
     const { data } = useQuery(SEARCH_PETS);
     const petsData = data?.search || sampleData.search || [];
-
     const [followPet] = useMutation(FOLLOW_PET);
 
     const [interests, setInterests] = useState(
@@ -102,6 +117,9 @@ const Listings = () => {
 
   // SearchBar Component
   const SearchBar = () => {
+   
+   
+    
     return (
       <>
         <GridItem
@@ -114,22 +132,42 @@ const Listings = () => {
         >
           <h1 className="searchHeader">Search for a Pet</h1>
           <Stack spacing={4} direction="row">
-            <Checkbox value="dog" onChange={(e) => setDogCheck(true)}>
+            <Checkbox value="dog" onChange={(e) => {
+              setFormData({
+                ...formData,
+                species: "Dog"
+              })
+            }}>
               Dog
             </Checkbox>
 
-            <Checkbox value="cat" onChange={(e) => setCatCheck(true)}>
+            <Checkbox value="cat" onChange={(e) => {
+              setFormData({
+                ...formData,
+                species: "Cat"
+              })
+            }}>
               Cat
             </Checkbox>
           </Stack>
           <Stack className="childFriendly" spacing={4} direction="row">
-            <Checkbox value="childFriendly">Child Friendly</Checkbox>
+            <Checkbox value="childFriendly" onChange={(e) => {
+              setFormData({
+                ...formData,
+                childFriendly: e.target.checked
+              })
+            }}>Child Friendly</Checkbox>
           </Stack>
           <Stack className="spayed" spacing={4} direction="row">
             <Checkbox value="spayNeuter">Spayed/Neutered</Checkbox>
           </Stack>
           <p className="searchOptionHeader">Sex</p>
-          <Stack spacing={4} direction="row">
+          <Stack spacing={4} direction="row" onChange={(e) => {
+              setFormData({
+                ...formData,
+                sex: "M"
+              })
+            }}>
             <Checkbox value="male">Male</Checkbox>
             <Checkbox value="female">Female</Checkbox>
           </Stack>
@@ -165,7 +203,7 @@ const Listings = () => {
               <SliderThumb />
             </Tooltip>
           </Slider>
-          <Button mt="30px" pr="30px" pl="30px">
+          <Button mt="30px" pr="30px" pl="30px" onClick={handleSubmit}>
             Search!
           </Button>
         </GridItem>
@@ -182,7 +220,7 @@ const Listings = () => {
         templateRows="repeat(3,1fr)"
         m="10px"
       >
-        <SearchBar />
+        <SearchBar formData={formData} />
         <PetCard />
       </Grid>
     </>

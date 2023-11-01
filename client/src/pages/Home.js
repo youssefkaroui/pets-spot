@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Flex,
   Image,
@@ -13,8 +14,10 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import SignUpForm from "../components/Signup";
+import Auth from "../utils/auth";
 
 function Home() {
+  const navigate = useNavigate()
   const SignUpModal = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
@@ -32,10 +35,13 @@ function Home() {
             bgColor: "#34656D",
             color: "white",
           }}
-          onClick={onOpen}
+          onClick={() => {
+            Auth.loggedIn() ? navigate('/listings') :
+            onOpen()}}
         >
           Adopt Today!
         </Button>
+        
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
