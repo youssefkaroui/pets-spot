@@ -11,10 +11,12 @@ It's your Pets-spot! It's a platform where you can look for a cute pet for adopt
   - [Usage](#usage)
   - [Contribution](#contribution)
   - [Deployment](#deployment)
+  - [display](#display)
   - [Technologies](#technologies)
   - [Testing](#testing)
   - [License](#license)
   - [Questions](#questions)
+  - [View-Our-Projects](#projects)
 
 
   <a name="installation"></a>
@@ -36,7 +38,7 @@ It's your Pets-spot! It's a platform where you can look for a cute pet for adopt
         * Lucas Young
         * Youssef Karoui
         * Edward Chang
-        * Ziad ALfadl
+        * Ziad Alfadl
   
 
   <a name= "deployment"></a>
@@ -44,6 +46,36 @@ It's your Pets-spot! It's a platform where you can look for a cute pet for adopt
   ## Deployment
 
   [Here's a link to heroku deployment](https://shielded-beach-29867-5efce834725b.herokuapp.com/)
+
+  <a name= "display"></a>
+
+  ## Display
+
+
+ This is how the signup page looks like
+   
+   ![alt text](./client/public/images/signup.screenshot.png)
+
+
+ This is how the dashboard shows after you are logged in 
+
+  
+  ![alt text](./client/public/images/dashboard.screenshot.png)
+
+ This is how the create a listing for your pet looks like 
+
+  
+  ![alt text](./client/public/images/create.listing.screenshot.png)
+
+ 
+
+
+  
+
+
+
+
+
 
   <a name= "technologies"></a>
 
@@ -82,8 +114,16 @@ It's your Pets-spot! It's a platform where you can look for a cute pet for adopt
 
   ## Questions 
 
-  [Email me if you have any questions](mailto:youssefkaroui6@gmail.com)
+  [Email us if you have any questions](mailto:youssefkaroui6@gmail.com;uwlryroung@gmail.com;ziad.t.alfadl@gmail.com;boyofpopsicle@gmail.com;angelinrajan20@gmail.com)
 
-[Review my other projects on GitHub.](https://www.github.com/youssefkaroui)
+<a name="projects"></a>
+
+## View-Our-Projects
+ 
+ * [Ziad's](https://github.com/Z-Alfadl?tab=repositories)
+ * [Youssef's](https://github.com/youssefkaroui?tab=repositories)
+ * [Angelin's](https://github.com/angelinrajan?tab=repositories)
+ * [Edward's](https://github.com/ednihilator?tab=repositories)
+ * [Lucas's](https://github.com/uwlryoung?tab=repositories)
 
   
