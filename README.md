@@ -49,9 +49,33 @@ It's your Pets-spot! It's a platform where you can look for a cute pet for adopt
 
   <a name= "display"></a>
 
-  ## Display 
+  ## Display
+
+
+ This is how the signup page looks like
+   
+   ![alt text](./client/public/images/signup.screenshot.png)
+
+
+ This is how the dashboard shows after you are logged in 
 
   
+  ![alt text](./client/public/images/dashboard.screenshot.png)
+
+ This is how the create a listing for your pet looks like 
+
+  
+  ![alt text](./client/public/images/create.listing.screenshot.png)
+
+ 
+
+
+  
+
+
+
+
+
 
   <a name= "technologies"></a>
 
