@@ -22,13 +22,11 @@ const resolvers = {
     search: async (parent, { searchInput }) => {
       //finds a pet by search parameters
       const searchedPets = await Pet.find({ ...searchInput });
-      console.log(searchedPets);
       return searchedPets; //Expect array of objects
     },
     petProfile: async (parent, { petId }) => {
       //gets ONE pet by its ID
       const getPetProfile = await Pet.findOne({ _id: petId }).populate("owner");
-      console.log(getPetProfile)
       return getPetProfile;
     },
   },

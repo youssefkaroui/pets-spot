@@ -23,6 +23,10 @@ import {
   ModalBody,
   ModalCloseButton,
   useDisclosure,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
 } from "@chakra-ui/react";
 
 import { FaHeartCirclePlus } from "react-icons/fa6";
@@ -30,6 +34,8 @@ import { FaHeart } from "react-icons/fa6";
 
 import { SEARCH_PETS, GET_PET_PROFILE } from "../utils/queries";
 import { FOLLOW_PET } from "../utils/mutations";
+
+import Auth from "../utils/auth";
 
 const Listings = () => {
   //THIS GRABS THE SLIDER'S VALUE FROM THE AGE SELECTOR
@@ -98,22 +104,57 @@ const Listings = () => {
         return null;
       }
 
+      if (!Auth.loggedIn) {
+      }
+
       return (
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
-            <ModalHeader>Name: {pet.name}</ModalHeader>
+            <ModalHeader fontSize="40px">{pet.name}</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
-              <Flex flexDirection="column" alignItems="center" justifyContent="center">
+              <Flex
+                flexDirection="column"
+                alignItems="center"
+                justifyContent="center"
+              >
                 <Image src={pet.image} alt={pet.name} />
-                <Text>Species: {pet.species}</Text>
-                <Text>Breed: {pet.breed}</Text>
-                <Text>Age: {pet.age}</Text>
-                <Text>Sex: {pet.sex}</Text>
-                <Text>Temperament: {pet.temperament}</Text>
-                <Text>Child Friendly: {pet.childFriendly}</Text>
-                <Text>Description: {pet.description}</Text>
+                <Text>
+                  <strong>Species: </strong> {pet.species}
+                </Text>
+                <Text>
+                  <strong>Breed: </strong>
+                  {pet.breed}
+                </Text>
+                <Text>
+                  <strong>Age: </strong> {pet.age}
+                </Text>
+                <Text>
+                  <strong>Sex:</strong> {pet.sex}
+                </Text>
+                <Text>
+                  <strong>Temperament: </strong> {pet.temperament}
+                </Text>
+                <Text>
+                  <strong>Child Friendly: </strong>
+                  {pet.childFriendly ? "Yes" : "No"}
+                </Text>
+                <Text>
+                  <strong>Vaccinated: </strong>
+                  {pet.medicalHistory.vaccinated ? "Yes" : "No"}
+                </Text>
+                <Text>
+                  <strong>Spayed/Neutered:</strong>{" "}
+                  {pet.medicalHistory.spayedNeutered ? "Yes" : "No"}
+                </Text>
+                <Text>
+                  <strong>Allergies: </strong>
+                  {pet.medicalHistory.allergies}
+                </Text>
+                <Text>
+                  <strong>Description:</strong> {pet.description}
+                </Text>
               </Flex>
             </ModalBody>
             <ModalFooter>
@@ -138,27 +179,32 @@ const Listings = () => {
               textAlign="center"
               key={pet._id}
             >
-              <Text fontSize="3xl">Name: {pet.name}</Text>
+              <Text fontSize="3xl">{pet.name}</Text>
               <Flex justifyContent="center">
                 <Image src={pet.image}></Image>
               </Flex>
-              <Text fontSize="3xl">Age: {pet.age}</Text>
-              <Text fontSize="3xl">Sex: {pet.sex}</Text>
-              <Text fontSize="3xl">Species {pet.species}</Text>
+              <Text fontSize="2xl">Age: {pet.age}</Text>
+              <Text fontSize="2xl">Sex: {pet.sex}</Text>
+              <Text fontSize="2xl">Species {pet.species}</Text>
+              {Auth.loggedIn() ? (
+                <>
+                  <Flex justifyContent="center">
+                    <Button m="3px" onClick={() => handlePetProfile(pet)}>
+                      Read More
+                    </Button>
 
-              <Flex justifyContent="center">
-                <Button m="3px" onClick={() => handlePetProfile(pet)}>
-                  Read More
-                </Button>
-
-                <Button
-                  key={pet._id}
-                  onClick={() => handleButtonClick(index)}
-                  m="3px"
-                >
-                  {showInterest(index)}
-                </Button>
-              </Flex>
+                    <Button
+                      key={pet._id}
+                      onClick={() => handleButtonClick(index)}
+                      m="3px"
+                    >
+                      {showInterest(index)}
+                    </Button>
+                  </Flex>
+                </>
+              ) : (
+                ""
+              )}
             </GridItem>
           ))}
         <PetDetailModal isOpen={isOpen} onClose={onClose} pet={selectedPet} />
