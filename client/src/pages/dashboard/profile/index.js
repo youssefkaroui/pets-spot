@@ -16,16 +16,11 @@ import {
 } from "@chakra-ui/react";
 import sampleData from "../../sampleData.json";
 import { Navigate, useParams } from "react-router-dom";
-// import { useQuery } from "@apollo/client";
-
-// import { QUERY_USER } from "../utils/queries";
-
-// import Auth from "../utils/auth";
 
 const Profile = ({ name, email, address, petsForAdoption }) => {
   return (
     <Grid
-      templateColumns="repeat(3, 1fr)"
+      templateColumns="repeat(2, 1fr)"
       gap={6}
       mb="3"
       className="profileBlock"
@@ -47,14 +42,7 @@ const Profile = ({ name, email, address, petsForAdoption }) => {
           {address?.city}, {address?.state} {address?.zipcode}
         </p>
       </GridItem>
-      <GridItem w="100%" h="500" bg="gray.300">
-        Pet Info
-        {petsForAdoption.map((pet) => (
-          <div key={pet._id} className="card mb-3">
-            <p className="dash-info">{pet.name}</p>
-          </div>
-        ))}
-      </GridItem>
+      
     </Grid>
   );
 };

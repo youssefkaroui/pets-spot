@@ -30,7 +30,7 @@ const SignUpForm = () => {
   const initialRef = React.useRef()
   const finalRef = React.useRef()
 
-  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '' });
+  const [userFormData, setUserFormData] = useState({ username: '', email: '', password: '', address: { line_one: "", line_two: "", city: "", state: "", zipcode:"" } });
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
@@ -44,8 +44,6 @@ const SignUpForm = () => {
 console.log(userFormData);
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
-    // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
@@ -104,8 +102,7 @@ console.log(userFormData);
             required
             />
             </FormControl>
-
-           <FormControl mt={4}>
+           <FormControl  mt={4}>
             <FormLabel> Password</FormLabel>
             <Input 
             type= "password" 
@@ -116,7 +113,47 @@ console.log(userFormData);
             required
             />
            </FormControl>
-          
+           <FormControl onChange={(e) => {
+              const {name, value} = e.target
+              setUserFormData({...userFormData, address: {...userFormData.address, [name]: value}})
+              }} mt={4}>
+            <FormLabel> Address </FormLabel>
+            <Input 
+            type= "text" 
+            placeholder='line_one' 
+            name="line_one"
+            value={userFormData.address.line_one}
+            required
+            />
+            <Input 
+            type= "text" 
+            placeholder='line_two' 
+            name="line_two"
+            value={userFormData.address.line_two}
+            required
+            />
+            <Input 
+            type= "text" 
+            placeholder='city' 
+            name="city"
+            value={userFormData.address.city}
+            required
+            />
+            <Input 
+            type= "text" 
+            placeholder='state' 
+            name="state"
+            value={userFormData.address.state}
+            required
+            />
+            <Input 
+            type= "text" 
+            placeholder='zipcode' 
+            name="zipcode"
+            value={userFormData.address.zipcode}
+            required
+            />
+           </FormControl>
            <ModalFooter>
             <Button onClick={handleFormSubmit} colorScheme='green' mr={3}>
               Submit
