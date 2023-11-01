@@ -17,7 +17,7 @@ import SignUpForm from "../components/Signup";
 import Auth from "../utils/auth";
 
 function Home() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const SignUpModal = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
@@ -36,12 +36,12 @@ function Home() {
             color: "white",
           }}
           onClick={() => {
-            Auth.loggedIn() ? navigate('/listings') :
-            onOpen()}}
+            Auth.loggedIn() ? navigate("/listings") : onOpen();
+          }}
         >
           Adopt Today!
         </Button>
-        
+
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>

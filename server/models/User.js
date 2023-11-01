@@ -1,4 +1,3 @@
-
 const { Schema, model} = require('mongoose');
 const bcrypt = require('bcrypt');
 
@@ -34,13 +33,6 @@ const userSchema = new Schema (
             type: Schema.Types.ObjectId,
             ref: 'Pet'
         }],
-        // messages: [{
-        //     //messagesSchema: {
-        //     message: "hello"
-        //      sentBy: User._id
-        //      sendDate: Date
-        // }
-        // }]
     },
     {
         toJSON: {

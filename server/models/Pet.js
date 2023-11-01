@@ -1,5 +1,3 @@
-
-
 const { Schema, model } = require('mongoose');
 const medicalHistorySchema = require('./MedicalHistory')
 

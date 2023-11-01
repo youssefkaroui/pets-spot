@@ -10,7 +10,6 @@ import { setContext } from "@apollo/client/link/context";
 import { ChakraProvider } from "@chakra-ui/react";
 import customTheme from "./utils/theme";
 import Dashboard from "./pages/Dashboard";
-//import Donate from './pages/Donate';     NICE TO HAVE
 import Home from "./pages/Home";
 import Listings from "./pages/Listings";
 import Favorites from "./pages/dashboard/favorites";
@@ -54,10 +53,6 @@ function App() {
               <Route path="/listings" element={<Listings />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/create" element={<CreateListing />} />
-              {/* <Route 
-              path='/donate' 
-              element={<Donate />} 
-            /> */}
               <Route path="/favorites" element={<Favorites />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/yourpets" element={<YourPets />} />
@@ -75,12 +70,3 @@ function App() {
 }
 
 export default App;
-
-// {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-//             {/* <Route
-//               path='/donate'
-//               element={<Donate />}
-//             /> */}
-//             {/* <Route path="/favorites" element={<Favorites />} />
-//             <Route path="/profile" element={<Profile />} />
-//             <Route path="/yourpets" element={<YourPets />} /> */}

@@ -17,18 +17,24 @@ import Auth from "../utils/auth";
 import SignUpForm from "./Signup";
 import LoginForm from "./Login";
 
-// import Auth from '../utils/auth';
 import Logo from "./navbarComponents/Logo";
-import { LayoutGroupContext } from "framer-motion";
 
 const Navbar = () => {
-  const navigate = useNavigate()
-  const { isOpen: isOpenLogin, onOpen: onOpenLogin, onClose: onCloseLogin } = useDisclosure();
-  const { isOpen: isOpenSignup, onOpen: onOpenSignup, onClose: onCloseSignup } = useDisclosure();
-  
+  const navigate = useNavigate();
+  const {
+    isOpen: isOpenLogin,
+    onOpen: onOpenLogin,
+    onClose: onCloseLogin,
+  } = useDisclosure();
+  const {
+    isOpen: isOpenSignup,
+    onOpen: onOpenSignup,
+    onClose: onCloseSignup,
+  } = useDisclosure();
+
   const handleLogout = () => {
     Auth.logout();
-  }
+  };
 
   return (
     <>
@@ -47,21 +53,33 @@ const Navbar = () => {
           </Text>
         </Flex>
         <Flex flexDirection={{ base: "column", lg: "row" }} textAlign="center">
-          <Link className="nav-link" color="primary.main" onClick={() => {
-            navigate('/')
-          }}>
+          <Link
+            className="nav-link"
+            color="primary.main"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
             Home
           </Link>
-          <Link className="nav-link" color="primary.main" onClick={() => {
-            navigate('/listings')
-          }}>
+          <Link
+            className="nav-link"
+            color="primary.main"
+            onClick={() => {
+              navigate("/listings");
+            }}
+          >
             Listings
           </Link>
           {Auth.loggedIn() ? (
             <>
-              <Link className="nav-link" color="primary.main" onClick={() => {
-            navigate('/dashboard')
-          }}>
+              <Link
+                className="nav-link"
+                color="primary.main"
+                onClick={() => {
+                  navigate("/dashboard");
+                }}
+              >
                 Dashboard
               </Link>
               <Link
@@ -69,7 +87,7 @@ const Navbar = () => {
                 className="nav-link"
                 color="primary.main"
                 onClick={() => {
-                  navigate('/create')
+                  navigate("/create");
                 }}
               >
                 Create Listing
@@ -80,8 +98,11 @@ const Navbar = () => {
           )}
 
           {Auth.loggedIn() ? (
-            <Link className="nav-link" color="primary.main" onClick={handleLogout}>
-
+            <Link
+              className="nav-link"
+              color="primary.main"
+              onClick={handleLogout}
+            >
               Logout
             </Link>
           ) : (
