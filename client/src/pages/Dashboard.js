@@ -22,6 +22,7 @@ export default function DashboardContainer() {
   // create a useQuery for ME? then pass it down to YourPets/Favorites/Profile
   const { loading, data } = useQuery(GET_USER_DATA);
   const userData = data?.me || sampleData.me;
+  // console.log(userData)
   const { username, email, address, petsForAdoption, petsFollowed } = userData;
   // console.log(`petsForAdoption: ${petsForAdoption}`);
   // This method is checking to see what the value of `currentPage` is. Depending on the value of currentPage, we return the corresponding component to render.
