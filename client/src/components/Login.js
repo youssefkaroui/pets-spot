@@ -1,5 +1,6 @@
 
 import React, { useState} from 'react';
+import { useNavigate } from "react-router-dom";
 import {
   Modal,
   ModalOverlay,
@@ -13,6 +14,7 @@ import {
   FormLabel,
   Input,
   useDisclosure,
+  useToast
 } from "@chakra-ui/react";
 import { DefaultContext } from "react-icons/lib";
 
@@ -22,6 +24,8 @@ import Auth from "../utils/auth";
 
 
 function LoginForm  () {
+  const toast = useToast()
+  const navigate = useNavigate()
   const { isOpen, onOpen, onClose } = useDisclosure()
   const initialRef = React.useRef()
   const finalRef = React.useRef()
@@ -40,27 +44,43 @@ function LoginForm  () {
     event.preventDefault();
     console.log("Login Submission...")
     const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.preventDefault();
-      event.stopPropagation();
-    }
+    // if (form.checkValidity() === false) {
+    //   event.preventDefault();
+    //   event.stopPropagation();
+    // }
 
     try {
       const { data } = await login({
         variables: { ...userFormData },
       });
-
+      setTimeout(() => {
+        console.log("Delayed for 1 second.");
+      }, 10000);
       Auth.login(data.login.token);
+      toast({
+        title: "Welcome Back!",
+        description: "Check out our Listings page for all the animals looking for a new home!",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+      navigate("/dashboard")
     } catch (err) {
       console.error(err);
-      setShowAlert(true);
+      toast({
+        title: `${err}`,
+        description: "Please try again",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
     }
 
-    setUserFormData({
-      username: "",
-      email: "",
-      password: "",
-    });
+    // setUserFormData({
+    //   username: "",
+    //   email: "",
+    //   password: "",
+    // });
   };
 
   return (
@@ -69,7 +89,7 @@ function LoginForm  () {
               <FormLabel>Email address</FormLabel>
               <Input 
               type = "email" 
-              ref={initialRef} 
+              // ref={initialRef} 
               placeholder='Email address' 
               name='email'
               onChange={handleInputChange}

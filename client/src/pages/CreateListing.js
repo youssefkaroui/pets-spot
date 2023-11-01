@@ -64,6 +64,14 @@ const CreateListing = () => {
     const { data } = await addPet({
       variables: { pet: formData },
     });
+    toast({
+      title: "Pet listing created.",
+      description: "We've created your pet listing for you. Check out your pet in the 'Listed Pets' section of your dashboard",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
+    navigate("/dashboard")
   };
   const handleFileUpload = async (e) => {
     //convert file to base64 then add to state
@@ -170,7 +178,7 @@ const CreateListing = () => {
           <FormLabel htmlFor="childFriendly">Child-Friendly</FormLabel>
           <RadioGroup
             name="childFriendly"
-            value={formData.childFriendly}
+            // value={formData.childFriendly}
             onChange={(value) => {
               const label = document.querySelector(
                 "label[for='childFriendly']"
@@ -260,7 +268,7 @@ const CreateListing = () => {
           <FormLabel htmlFor="vaccinated">Fully Vaccinated</FormLabel>
           <RadioGroup
             name="vaccinated"
-            value={formData.vaccinated}
+            // value={formData.vaccinated}
             onChange={(value) => {
               const label = document.querySelector("label[for='vaccinated']");
               const labelText = label.textContent;
@@ -324,16 +332,15 @@ const CreateListing = () => {
         <Button
           type="submit"
           colorScheme="blue"
-          onClick={() => {
-            toast({
-              title: "Pet listing created.",
-              description: "We've created your pet listing for you. Check out your pet in the 'Listed Pets' section of your dashboard",
-              status: "success",
-              duration: 5000,
-              isClosable: true,
-            });
-            navigate('/dashboard')
-          }}
+          // onClick={() => {
+          //   toast({
+          //     title: "Pet listing created.",
+          //     description: "We've created your pet listing for you. Check out your pet in the 'Listed Pets' section of your dashboard",
+          //     status: "success",
+          //     duration: 5000,
+          //     isClosable: true,
+          //   });
+          // }}
         >
           Create
         </Button>
