@@ -109,7 +109,7 @@ const CreateListing = () => {
         </FormControl>
 
         <FormControl mb={4}>
-          <FormLabel>Age</FormLabel>
+          <FormLabel>Age (In human years)</FormLabel>
           <Input
             type="number"
             name="age"
@@ -121,13 +121,37 @@ const CreateListing = () => {
 
         <FormControl mb={4}>
           <FormLabel>Sex</FormLabel>
-          <Input
+          {/* <Input
             type="text"
             name="sex"
             placeholder="Male/Female"
             value={formData.sex}
             onChange={handleChange}
-          />
+          /> */}
+          <RadioGroup
+            name="sex"
+            onChange={(value) => {
+              const label = document.querySelector(
+                "label[for='childFriendly']"
+              );
+              const labelText = label.textContent;
+              console.log("Form Label Text:", labelText);
+              console.log("Selected Value:", value);
+              let petSex;
+              //if value of radio-button is yes, set isFriendly to true
+              
+              setFormData({
+                ...formData,
+                sex: value,
+              });
+            }}
+          >
+            
+            <HStack spacing="24px">
+              <Radio value="Male">Male</Radio>
+              <Radio value="Female">Female</Radio>
+            </HStack>
+          </RadioGroup>
         </FormControl>
 
         <FormControl mb={4}>
