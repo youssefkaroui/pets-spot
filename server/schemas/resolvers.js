@@ -2,6 +2,7 @@ const { AuthenticationError } = require("apollo-server-express");
 const { User, Pet, Image } = require("../models");
 const { signToken } = require("../utils/auth");
 const { connect } = require("mongoose");
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 
 // NICETOHAVE: Messages field to User
@@ -29,6 +30,21 @@ const resolvers = {
       const getPetProfile = await Pet.findOne({ _id: petId }).populate("owner");
       return getPetProfile;
     },
+    donate: async (parent, args, context) => {
+      const {donation} = args
+
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: donation,
+        currency: "usd",
+        automatic_payment_methods: {
+          enabled: true,
+        },
+      })
+
+      
+      return {clientSecret: paymentIntent.client_secret}
+    
+    }
   },
   Mutation: {
     //Logs in an existing user
