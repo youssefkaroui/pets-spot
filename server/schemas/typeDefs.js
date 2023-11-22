@@ -90,10 +90,15 @@ const typeDefs = gql`
     spayedNeutered: Boolean
   }
 
+  type Donate {
+    clientSecret: String
+  }
+
   type Query {
     me: User
     search(searchInput: searchForm): [Pet]
     petProfile(petId: ID!): Pet
+    donate(donation: Int): Donate
   }
 
   type Mutation {

@@ -57,6 +57,11 @@ const Navbar = () => {
           }}>
             Listings
           </Link>
+          <Link className="nav-link" color="primary.main" onClick={()=> {
+            navigate('/donate')
+          }}>
+            Donate
+          </Link>
           {Auth.loggedIn() ? (
             <>
               <Link className="nav-link" color="primary.main" onClick={() => {

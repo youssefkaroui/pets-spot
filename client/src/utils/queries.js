@@ -70,7 +70,6 @@ export const SEARCH_PETS = gql`
       }
     }
   }
-  
 `;
 
 // Query to fetch a pet's profile
@@ -102,6 +101,14 @@ export const GET_PET_PROFILE = gql`
           state
         }
       }
+    }
+  }
+`;
+
+export const MAKE_DONATION = gql`
+  query Donate($donation: Int) {
+    donate(donation: $donation) {
+      clientSecret
     }
   }
 `;
