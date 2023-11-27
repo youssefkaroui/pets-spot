@@ -4,14 +4,23 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import './CheckoutForm.css'
-export default function CheckoutForm() {
+import {
+  Center,
+  FormControl,
+  FormLabel,
+  IconButton,
+  Input,
+  HStack
+} from "@chakra-ui/react";
+import { CiEdit } from "react-icons/ci";
+import "./CheckoutForm.css";
+export default function CheckoutForm({ donationAmount, handleChange }) {
   const stripe = useStripe();
   const elements = useElements();
 
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [ showInput, toggleShowInput ] = useState(false);
   useEffect(() => {
     if (!stripe) {
       return;
@@ -20,7 +29,7 @@ export default function CheckoutForm() {
     const clientSecret = new URLSearchParams(window.location.search).get(
       "payment_intent_client_secret"
     );
-      
+
     if (!clientSecret) {
       return;
     }
@@ -59,28 +68,68 @@ export default function CheckoutForm() {
     });
 
     if (error.type === "card_error" || error.type === "validation_error") {
-        setMessage(error.message)
+      setMessage(error.message);
     } else {
-        setMessage("An unexpected error occured")
+      setMessage("An unexpected error occured");
     }
-    setIsLoading(false)
+    setIsLoading(false);
   };
 
   const paymentElementOptions = {
-    layout: "tabs"
-  }
-
+    layout: "tabs",
+  };
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
-
-      <PaymentElement id="payment-element" options={paymentElementOptions} />
-      <button disabled={isLoading || !stripe || !elements} id="submit">
-        <span id="button-text">
-          {isLoading ? <div className="spinner" id="spinner"></div> : "Pay now"}
-        </span>
-      </button>
-      {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
-    </form>
-  )
+    <>
+      {/* <Center>
+        <FormControl
+          onChange={handleChange}
+          cursor="pointer"
+          w="25%"
+          justifyContent="center"
+          px={5}
+          py={3}
+          m={2}
+        >
+          <FormLabel>Input a custom amount ($)</FormLabel>
+          <Input type="number" placeholder="1.00"></Input>
+        </FormControl>
+      </Center> */}
+      <form id="payment-form" onSubmit={handleSubmit}>
+        <HStack>
+          <h1>${isNaN(donationAmount) ? parseFloat(0.00) : donationAmount}</h1>
+          <IconButton
+            icon={<CiEdit />}
+            color="white"
+            bg="primary.main"
+            onClick={() => toggleShowInput(prev => !prev)}
+          ></IconButton>
+        </HStack>
+        {showInput ? <Center>
+        <FormControl
+          onChange={handleChange}
+          cursor="pointer"
+          justifyContent="center"
+          px={5}
+          py={3}
+          m={2}
+        >
+          <FormLabel>Edit donation amount ($)</FormLabel>
+          <Input type="number" placeholder="1.00"></Input>
+        </FormControl>
+      </Center>: null}
+        <PaymentElement id="payment-element" options={paymentElementOptions} />
+        <button disabled={isLoading || !stripe || !elements} id="submit">
+          <span id="button-text">
+            {isLoading ? (
+              <div className="spinner" id="spinner"></div>
+            ) : (
+              "Pay now"
+            )}
+          </span>
+        </button>
+        {/* Show any error or success messages */}
+        {message && <div id="payment-message">{message}</div>}
+      </form>
+    </>
+  );
 }

@@ -6,25 +6,36 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from "../components/CheckoutForm";
 import { useLazyQuery } from "@apollo/client";
 import { MAKE_DONATION } from "../utils/queries";
-import { Button, FormControl, FormLabel, HStack, RadioGroup, Radio } from "@chakra-ui/react";
+import {
+  Button,
+  FormControl,
+  FormLabel,
+  HStack,
+  RadioGroup,
+  Radio,
+  Input,
+  Flex,
+  VStack,
+  Center,
+} from "@chakra-ui/react";
 
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
 export default function Donation() {
   const [clientSecret, setClientSecret] = useState("");
-  const [showForm, setShowForm] = useState(false)
-  const [donationAmount, setDonationAmount] = useState()
-  const [makePaymentIntent, {data}] = useLazyQuery(MAKE_DONATION)
+  const [showForm, setShowForm] = useState(false);
+  const [donationAmount, setDonationAmount] = useState();
+  const [makePaymentIntent, { data }] = useLazyQuery(MAKE_DONATION);
   useEffect(() => {
-    try {makePaymentIntent({
-      variables: {
-        donation: 1000
-      }
-    })
-    setClientSecret(data.donate.clientSecret)
-    }
-    catch {
-      console.log("useEffect Failed")
+    try {
+      makePaymentIntent({
+        variables: {
+          donation: 1000,
+        },
+      });
+      setClientSecret(data.donate.clientSecret);
+    } catch {
+      console.log("useEffect Failed");
     }
     // fetch("/create-payment-intent", {
     //   method: "POST",
@@ -36,48 +47,79 @@ export default function Donation() {
   }, []);
 
   const appearance = {
-    theme: 'stripe',
+    theme: "stripe",
   };
   const options = {
     clientSecret,
     appearance,
   };
   const handleClick = async (e) => {
-    
     makePaymentIntent({
       variables: {
-        donation: donationAmount
-      }
-    })
-    setClientSecret(data.donate.clientSecret)
-    console.log("Now data is:")
-    console.log(data)
-    setShowForm((prev)=> !prev)
-  }
+        donation: donationAmount,
+      },
+    });
+    setClientSecret(data.donate.clientSecret);
+    console.log("Now data is:");
+    console.log(data);
+    setShowForm((prev) => !prev);
+  };
+  const handleChange = (e) => {
+    setDonationAmount(parseFloat(e.target.value).toFixed(2));
+  };
+  console.log(donationAmount);
+
   return (
     <>
-    <FormControl>
-      <FormLabel>
-        How Much Would You Like To Donate?
-      </FormLabel>
-      <RadioGroup onChange={(value) => {
-        setDonationAmount(Number(value))
-      }}>
-        <HStack>
-          <Radio value="1">$1.00</Radio>
-          <Radio value="5">$5.00</Radio>
-          <Radio value="10">$10.00</Radio>
-          <Radio value="100">$100.00</Radio>
-        </HStack>
-      </RadioGroup>
-    </FormControl>
-    <Button type="submit" onClick={handleClick}>Proceed to Checkout</Button>
+     
 
-    {showForm ? (
+      {showForm ? (
         <Elements options={options} stripe={stripePromise}>
-            <CheckoutForm></CheckoutForm>
+          <CheckoutForm donationAmount={donationAmount} handleChange={handleChange}></CheckoutForm>
         </Elements>
-    ) : null}
+      ) :  <VStack
+      cursor="pointer"
+      borderWidth="1px"
+      borderRadius="md"
+      boxShadow="md"
+      justifyContent="center"
+      px={5}
+      py={3}
+      m={2}
+    >
+      <Center>
+        <FormControl>
+          <FormLabel>How Much Would You Like To Donate?</FormLabel>
+          <RadioGroup
+            onChange={(value) => {
+              setDonationAmount(Number(value));
+            }}
+          >
+            <HStack>
+              <Radio value="1">$1.00</Radio>
+              <Radio value="5">$5.00</Radio>
+              <Radio value="10">$10.00</Radio>
+              <Radio value="100">$100.00</Radio>
+            </HStack>
+          </RadioGroup>
+        </FormControl>
+      </Center>
+<Center>
+
+        <FormControl onChange={handleChange}>
+          <FormLabel>Or input a custom amount ($)</FormLabel>
+          <Input type="number" placeholder="1.00"></Input>
+        </FormControl>
+</Center>
+      <Button
+        type="submit"
+        onClick={handleClick}
+        disabled={!donationAmount || donationAmount <= 0.1}
+        bg={!donationAmount || donationAmount <= 0.1? "grey" : "#5469d4"}
+      >
+        Proceed to Checkout
+      </Button>
+    </VStack>}
     </>
-  )
+  );
 }
