@@ -14,7 +14,6 @@ import {
   RadioGroup,
   Radio,
   Input,
-  Flex,
   VStack,
   Center,
 } from "@chakra-ui/react";
@@ -27,6 +26,7 @@ export default function Donation() {
   const [donationAmount, setDonationAmount] = useState();
   const [makePaymentIntent, { data }] = useLazyQuery(MAKE_DONATION);
   useEffect(() => {
+    //creates paymentIntent on page load
     try {
       makePaymentIntent({
         variables: {
@@ -37,89 +37,90 @@ export default function Donation() {
     } catch {
       console.log("useEffect Failed");
     }
-    // fetch("/create-payment-intent", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => setClientSecret(data.clientSecret));
   }, []);
-
+  //theme for stripe
   const appearance = {
     theme: "stripe",
   };
+  //pass appearance and client secret to options object
   const options = {
     clientSecret,
     appearance,
   };
-  const handleClick = async (e) => {
+  //function to create paymentIntent based on donationAmount state
+  const handleSubmit = async (e) => {
     makePaymentIntent({
       variables: {
         donation: donationAmount,
       },
     });
+    //update client secret
     setClientSecret(data.donate.clientSecret);
-    console.log("Now data is:");
-    console.log(data);
+
     setShowForm((prev) => !prev);
   };
+  //set donationAmount state based on typed input
   const handleChange = (e) => {
+    //converts input string to float with 2 significant figures eg 2.50
     setDonationAmount(parseFloat(e.target.value).toFixed(2));
   };
-  console.log(donationAmount);
 
   return (
     <>
-     
-
+      {/* If user has submitted donation, renders payment form  */}
       {showForm ? (
         <Elements options={options} stripe={stripePromise}>
-          <CheckoutForm donationAmount={donationAmount} handleChange={handleChange}></CheckoutForm>
+          <CheckoutForm
+            donationAmount={donationAmount}
+            handleChange={handleChange}
+          ></CheckoutForm>
         </Elements>
-      ) :  <VStack
-      cursor="pointer"
-      borderWidth="1px"
-      borderRadius="md"
-      boxShadow="md"
-      justifyContent="center"
-      px={5}
-      py={3}
-      m={2}
-    >
-      <Center>
-        <FormControl>
-          <FormLabel>How Much Would You Like To Donate?</FormLabel>
-          <RadioGroup
-            onChange={(value) => {
-              setDonationAmount(Number(value));
-            }}
+      ) : (
+        <VStack
+          cursor="pointer"
+          borderWidth="1px"
+          borderRadius="md"
+          boxShadow="md"
+          justifyContent="center"
+          px={5}
+          py={3}
+          m={2}
+        >
+          <Center>
+            {/* Radios with preset payment amounts */}
+            <FormControl>
+              <FormLabel>How Much Would You Like To Donate?</FormLabel>
+              <RadioGroup
+                onChange={(value) => {
+                  setDonationAmount(Number(value));
+                }}
+              >
+                <HStack>
+                  <Radio value="1">$1.00</Radio>
+                  <Radio value="5">$5.00</Radio>
+                  <Radio value="10">$10.00</Radio>
+                  <Radio value="100">$100.00</Radio>
+                </HStack>
+              </RadioGroup>
+            </FormControl>
+          </Center>
+          <Center>
+            {/* custom payment amount */}
+            <FormControl onChange={handleChange}>
+              <FormLabel>Or input a custom amount ($)</FormLabel>
+              <Input type="number" placeholder="1.00"></Input>
+            </FormControl>
+          </Center>
+          <Button
+            type="submit"
+            onClick={handleSubmit}
+            disabled={!donationAmount || donationAmount <= 0.1}
+            bg={!donationAmount || donationAmount <= 0.1 ? "grey" : "#5469d4"}
           >
-            <HStack>
-              <Radio value="1">$1.00</Radio>
-              <Radio value="5">$5.00</Radio>
-              <Radio value="10">$10.00</Radio>
-              <Radio value="100">$100.00</Radio>
-            </HStack>
-          </RadioGroup>
-        </FormControl>
-      </Center>
-<Center>
-
-        <FormControl onChange={handleChange}>
-          <FormLabel>Or input a custom amount ($)</FormLabel>
-          <Input type="number" placeholder="1.00"></Input>
-        </FormControl>
-</Center>
-      <Button
-        type="submit"
-        onClick={handleClick}
-        disabled={!donationAmount || donationAmount <= 0.1}
-        bg={!donationAmount || donationAmount <= 0.1? "grey" : "#5469d4"}
-      >
-        Proceed to Checkout
-      </Button>
-    </VStack>}
+            Proceed to Checkout
+          </Button>
+        </VStack>
+      )}
     </>
   );
 }

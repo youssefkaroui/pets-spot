@@ -10,7 +10,7 @@ import {
   FormLabel,
   IconButton,
   Input,
-  HStack
+  HStack,
 } from "@chakra-ui/react";
 import { CiEdit } from "react-icons/ci";
 import "./CheckoutForm.css";
@@ -20,8 +20,9 @@ export default function CheckoutForm({ donationAmount, handleChange }) {
 
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [ showInput, toggleShowInput ] = useState(false);
+  const [showInput, toggleShowInput] = useState(false);
   useEffect(() => {
+    //Boilerplate code
     if (!stripe) {
       return;
     }
@@ -62,8 +63,8 @@ export default function CheckoutForm({ donationAmount, handleChange }) {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000",
+        //if payment successful, redirects to success page
+        return_url: "http://localhost:3000/donate/success",
       },
     });
 
@@ -80,43 +81,32 @@ export default function CheckoutForm({ donationAmount, handleChange }) {
   };
   return (
     <>
-      {/* <Center>
-        <FormControl
-          onChange={handleChange}
-          cursor="pointer"
-          w="25%"
-          justifyContent="center"
-          px={5}
-          py={3}
-          m={2}
-        >
-          <FormLabel>Input a custom amount ($)</FormLabel>
-          <Input type="number" placeholder="1.00"></Input>
-        </FormControl>
-      </Center> */}
       <form id="payment-form" onSubmit={handleSubmit}>
         <HStack>
-          <h1>${isNaN(donationAmount) ? parseFloat(0.00) : donationAmount}</h1>
+          <h1>${isNaN(donationAmount) ? parseFloat(0.0) : donationAmount}</h1>
+          {/* allow user to edit amount without navigation away */}
           <IconButton
             icon={<CiEdit />}
             color="white"
             bg="primary.main"
-            onClick={() => toggleShowInput(prev => !prev)}
+            onClick={() => toggleShowInput((prev) => !prev)}
           ></IconButton>
         </HStack>
-        {showInput ? <Center>
-        <FormControl
-          onChange={handleChange}
-          cursor="pointer"
-          justifyContent="center"
-          px={5}
-          py={3}
-          m={2}
-        >
-          <FormLabel>Edit donation amount ($)</FormLabel>
-          <Input type="number" placeholder="1.00"></Input>
-        </FormControl>
-      </Center>: null}
+        {showInput ? (
+          <Center>
+            <FormControl
+              onChange={handleChange}
+              cursor="pointer"
+              justifyContent="center"
+              px={5}
+              py={3}
+              m={2}
+            >
+              <FormLabel>Edit donation amount ($)</FormLabel>
+              <Input type="number" placeholder="1.00"></Input>
+            </FormControl>
+          </Center>
+        ) : null}
         <PaymentElement id="payment-element" options={paymentElementOptions} />
         <button disabled={isLoading || !stripe || !elements} id="submit">
           <span id="button-text">

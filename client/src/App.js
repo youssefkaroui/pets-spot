@@ -19,7 +19,8 @@ import YourPets from "./pages/dashboard/your-pets";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import CreateListing from "./pages/CreateListing";
-import Donate from "./pages/Donate"
+import Donate from "./pages/Donate";
+import Success from "./components/Success";
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -55,10 +56,9 @@ function App() {
               <Route path="/listings" element={<Listings />} />
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/create" element={<CreateListing />} />
-              <Route 
-              path='/donate' 
-              element={<Donate />} 
-            />
+              <Route path="/donate" element={<Donate />} />
+
+              <Route path="/donate/success" element={<Success />} />
               <Route path="/favorites" element={<Favorites />} />
               <Route path="/profile" element={<Profile />} />
               <Route path="/yourpets" element={<YourPets />} />
