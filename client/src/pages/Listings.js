@@ -96,7 +96,8 @@ const Listings = () => {
           <ModalOverlay />
           <ModalContent>
             <ModalHeader fontSize="40px">{pet.name}</ModalHeader>
-            <ModalCloseButton />
+            {/* <ModalCloseButton /> */}
+            {/* Uncomment above if we want to show a clickable Close Button */}
             <ModalBody>
               <Flex
                 flexDirection="column"
@@ -158,13 +159,19 @@ const Listings = () => {
               border="solid 3px"
               borderRadius="10px"
               rowSpan="1"
-              colSpan={{ base: 5, lg: 2, xl: 1 }}
+              colSpan={{ base: 5, md: 4, lg: 2, xl: 1 }}
               textAlign="center"
               key={pet._id}
             >
               <Text fontSize="3xl">{pet.name}</Text>
               <Flex justifyContent="center">
-                <Image src={pet.image}></Image>
+                <Image 
+                  src={pet.image}
+                  // maxHeight= {{base: "400px", md: "300px", lg: "300px", xl: "200px" }}
+                  height = "300px"
+                  width = "300px"
+                  objectFit={"cover"}
+                ></Image>
               </Flex>
               <Text fontSize="2xl">Age: {pet.age}</Text>
               <Text fontSize="2xl">Sex: {pet.sex}</Text>
@@ -201,11 +208,15 @@ const Listings = () => {
       <>
         <GridItem
           as="aside"
-          colSpan={{ base: 5, lg: 2, xl: 1 }}
-          rowSpan={{ base: 3 }}
+          colSpan={{ base: 5, md: 1, lg: 1, xl: 1 }}
+          rowSpan={{ base: 5 }}
           bg="primary.main"
           minHeight={{ lg: "100vh" }}
           p={{ base: "20px", lg: "30px" }}
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          textAlign="center"
         >
           <h1 className="searchHeader">Search for a Pet</h1>
           <CheckboxGroup
