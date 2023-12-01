@@ -10,6 +10,7 @@ import {
   Button,
   HStack,
   useToast,
+  Image,
 } from "@chakra-ui/react";
 import convertToBase64 from "../utils/imgto64";
 import { useMutation } from "@apollo/client";
@@ -149,8 +150,14 @@ const CreateListing = () => {
 
         <FormControl mb={4}>
           <FormLabel>
-            Upload Image: (Click on choose file to select upload an image)
-            <img src={formData.image} alt="selected" />
+            Upload Image: (Click on choose file to select upload an image) <br></br>This is how the image will appear on the pet listing. <br></br> Image Preview: 
+            <Image 
+              src={formData.image} alt="selected"
+              // width="300px"
+              // height="300px"
+              // objectFit="cover"
+            >
+            </Image>
           </FormLabel>
           <Input
             type="file"
