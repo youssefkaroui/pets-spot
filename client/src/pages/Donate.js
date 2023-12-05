@@ -16,6 +16,7 @@ import {
   Input,
   VStack,
   Center,
+  Text
 } from "@chakra-ui/react";
 
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
@@ -88,6 +89,7 @@ export default function Donation() {
         >
           <Center>
             {/* Radios with preset payment amounts */}
+            {/* <h1>${isNaN(donationAmount) ? parseFloat(0.0) : donationAmount}</h1> */}
             <FormControl>
               <FormLabel>How Much Would You Like To Donate?</FormLabel>
               <RadioGroup
