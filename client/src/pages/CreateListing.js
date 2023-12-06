@@ -14,19 +14,19 @@ import {
 import convertToBase64 from "../utils/imgto64";
 import { useMutation } from "@apollo/client";
 import { ADD_PET } from "../utils/mutations";
-
+import S3Upload from "../utils/S3Upload"
 const CreateListing = () => {
   const navigate = useNavigate();
   const toast = useToast();
   const [addPet, { error }] = useMutation(ADD_PET);
   const [allergiesList, setAllergiesList] = useState("");
   //Note to team: medicalHistory.allergies are added in the handlePetCreate
+  const [imageFile, setImageFile] = useState(null)
   const [formData, setFormData] = useState({
     name: "",
     species: "",
     age: 0,
     sex: "",
-    image: "",
     breed: "",
     temperament: "",
     childFriendly: false,
@@ -60,29 +60,41 @@ const CreateListing = () => {
     let newAllergies = allergiesList.split(/[ ,]+/);
     formData.medicalHistory.allergies = newAllergies;
 
+    const petImage = `https://practice-bucket-12-4-2023.s3.amazonaws.com/${imageFile.name}`
+    try {
+      S3Upload(imageFile)
+      formData.image = petImage
+    } catch (error) {
+      console.log(error)
+    }
+    
+    
     //pass formData to addPet mutation
     const { data } = await addPet({
       variables: { pet: formData },
     });
     toast({
       title: "Pet listing created.",
-      description: "We've created your pet listing for you. Check out your pet in the 'Listed Pets' section of your dashboard",
+      description:
+        "We've created your pet listing for you. Check out your pet in the 'Listed Pets' section of your dashboard",
       status: "success",
       duration: 5000,
       isClosable: true,
     });
-    navigate("/dashboard")
+    navigate("/dashboard");
   };
   const handleFileUpload = async (e) => {
     //convert file to base64 then add to state
     const file = e.target.files[0];
-    const base64 = await convertToBase64(file);
-    setFormData({
-      ...formData,
-      image: base64,
-    });
+    // const base64 = await convertToBase64(file);
+    const newImage = new FileReader()
+    newImage.onload = (event) => {
+      document.getElementById("petImage").src = event.target.result
+    }
+    newImage.readAsDataURL(file)
+    setImageFile(file)
   };
-  //console.log(formData);
+  // console.log(formData.image);
   return (
     <Box p={8}>
       <form onSubmit={handlePetCreate}>
@@ -96,7 +108,6 @@ const CreateListing = () => {
             onChange={handleChange}
           />
         </FormControl>
-
         <FormControl mb={4}>
           <FormLabel>Species</FormLabel>
           <Input
@@ -139,14 +150,13 @@ const CreateListing = () => {
               console.log("Selected Value:", value);
               let petSex;
               //if value of radio-button is yes, set isFriendly to true
-              
+
               setFormData({
                 ...formData,
                 sex: value,
               });
             }}
           >
-            
             <HStack spacing="24px">
               <Radio value="Male">Male</Radio>
               <Radio value="Female">Female</Radio>
@@ -157,7 +167,7 @@ const CreateListing = () => {
         <FormControl mb={4}>
           <FormLabel>
             Upload Image: (Click on choose file to select upload an image)
-            <img src={formData.image} alt="selected" />
+            <img src="" id="petImage" alt="selected" />
           </FormLabel>
           <Input
             type="file"
@@ -220,7 +230,6 @@ const CreateListing = () => {
               });
             }}
           >
-            
             <HStack spacing="24px">
               <Radio value="yes">Yes</Radio>
               <Radio value="no">No</Radio>

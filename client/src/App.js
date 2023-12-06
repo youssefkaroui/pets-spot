@@ -45,6 +45,7 @@ const client = new ApolloClient({
 });
 
 function App() {
+
   return (
     <ChakraProvider theme={customTheme}>
       <ApolloProvider client={client}>
