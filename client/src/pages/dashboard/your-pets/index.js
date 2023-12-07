@@ -3,7 +3,7 @@ import { useMutation } from "@apollo/client";
 import { DELETE_PET } from "../../../utils/mutations";
 import { Link } from "react-router-dom";
 import { Grid, GridItem, Image, Flex, Button, Text } from "@chakra-ui/react";
-
+import S3Delete from "../../../utils/S3Delete"
 const PetList = ({ petsForAdoption }) => {
 
   const [removePet, {error}] = useMutation(DELETE_PET)
@@ -11,13 +11,21 @@ const PetList = ({ petsForAdoption }) => {
   //UNCOMMENT THIS WHEN THE BACKEND WORKS MORE
   // const pets = data.pets;
   console.log(`petsForAdoption length: ${petsForAdoption.length}`);
- const handleDelete = async (pet_id) => {
+ const handleDelete = async (pet_id, petImage) => {
     // console.log(petId)
     const {data} = await removePet({
       variables: {petId: pet_id}
     })
+    //get image source and extract file name
+    const imageName = petImage.split('com/')[1]
+    //make delete call to S3
+    S3Delete(imageName)
  }
-
+ const imageGrab = () => {
+ const imageName = "https://practice-bucket-12-4-2023.s3.amazonaws.com/husky.jpeg"
+   const imageSplit = imageName.split('com/')[1]
+   console.log(imageSplit)
+ }
   
   return (
     <div>
@@ -55,12 +63,12 @@ const PetList = ({ petsForAdoption }) => {
           >
             <Text fontSize="3xl">Name: {pet.name}</Text>
             <Flex justifyContent="center">
-              <Image src={pet.image}></Image>
+              <Image src={pet.image} onClick={imageGrab}></Image>
             </Flex>
             <Text fontSize="3xl">Age: {pet.age}</Text>
             <Text fontSize="3xl">Sex: {pet.sex}</Text>
             <Flex justifyContent="center">
-              <Button m="3px" colorScheme='red' onClick={() => handleDelete(pet._id)}>
+              <Button m="3px" colorScheme='red' onClick={() => handleDelete(pet._id, pet.image)}>
                 <h2>Delete {pet.name}'s listing</h2>
               </Button>
             </Flex>
